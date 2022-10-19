@@ -41,13 +41,19 @@ double	degtorad(double a)
 	return (a * M_PI / 180.0);
 }
 
+char	*get_bar(int i)
+{
+	char	*s;
+
+	s = strdup("bar/bar1.xpm");
+	s[7] = i + 48;
+	return (s);
+}
+
 int main()
 {
-	char str[] = "😀";
-	// for(int i =0; i < 5; ++i)
-	// {
-	// 	sleep(1);
-	// }
-	write(1, "😀", 2);
-	write(1, "😀"+1, 2);
+	char *s;
+
+	s = get_bar(9);
+	printf("%s\n", s);
 }

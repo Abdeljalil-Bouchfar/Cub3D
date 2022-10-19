@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 09:36:04 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:03:56 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
+	int hi;
+
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
@@ -83,6 +85,22 @@ int	key_hook1(int keycode, t_game *game)
 		ft_build(game);
 	else if (keycode == X)
 		ft_destroy(game);
+	else if (keycode == 47)
+	{
+		game->barn++;
+		if (game->barn > 8)
+			game->barn = 0;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
+	else if (keycode == 43)
+	{
+		game->barn--;
+		if (game->barn < 0)
+			game->barn = 8;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
 	// else if (keycode == W)
 	// 	game->offset += 3;
 	return (0);
@@ -121,6 +139,7 @@ void	get_img_path(t_game *game)
 	game->pix = 1000;
 	game->offset = 3;
 	game->cpa = 3;
+	game->barn = 0;
 	game->img = mlx_new_image(game->mlx, 1080, 1080);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	game->pa = 90.0;
@@ -137,7 +156,8 @@ void	get_img_path(t_game *game)
 	game->door2adr = mlx_get_data_addr(game->door2, &game->bits_per_pixel8, &game->line_length8, &game->endian8);
 	game->floor = mlx_xpm_file_to_image(game->mlx, "xpms/floor/floor.xpm", &hi, &hi);
 	game->flooradr = mlx_get_data_addr(game->floor, &game->bits_per_pixel7, &game->line_length7, &game->endian7);
-	game->bar = mlx_xpm_file_to_image(game->mlx, "xpms/bar/bar.xpm", &hi, &hi);
+	creat_str_bar(game);
+	game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
 	game->hand = mlx_xpm_file_to_image(game->mlx, "xpms/hand/hand1.xpm", &hi, &hi);
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);

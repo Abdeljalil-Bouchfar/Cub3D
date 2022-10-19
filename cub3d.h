@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/17 17:04:46 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:40:17 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
+	char	**bartex;
+	int		barn;
 	float	px;
 	float	py;
 	double	pdx;
@@ -118,5 +120,6 @@ void	ft_anime(t_game *game);
 void	draw_rays(t_game *game);
 void	ft_build(t_game *game);
 void	ft_destroy(t_game *game);
+void	creat_str_bar(t_game *game);
 
 #endif
