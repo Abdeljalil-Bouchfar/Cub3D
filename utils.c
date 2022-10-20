@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:32:48 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 15:38:02 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:10:10 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	creat_str_bar(t_game *game)
 {
 	int	i;
 
-	game->bartex = malloc(sizeof(char *) * 9);
+	game->bartex = malloc(sizeof(char *) * 10);
 	i = 0;
 	while (i < 9)
 	{

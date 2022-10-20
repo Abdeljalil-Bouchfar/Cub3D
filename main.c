@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 16:03:56 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:34:06 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,6 @@ int	key_hook1(int keycode, t_game *game)
 		ft_build(game);
 	else if (keycode == X)
 		ft_destroy(game);
-	else if (keycode == 47)
-	{
-		game->barn++;
-		if (game->barn > 8)
-			game->barn = 0;
-		mlx_destroy_image(game->mlx, game->bar);
-		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
-	}
-	else if (keycode == 43)
-	{
-		game->barn--;
-		if (game->barn < 0)
-			game->barn = 8;
-		mlx_destroy_image(game->mlx, game->bar);
-		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
-	}
 	// else if (keycode == W)
 	// 	game->offset += 3;
 	return (0);
@@ -196,6 +180,29 @@ int	ft_hook(t_game *game)
 	return (0);
 }
 
+int		ft_mouse(int keycode, int x, int y, t_game *game)
+{
+	int hi;
+
+	if (keycode == 4)
+	{
+		game->barn++;
+		if (game->barn > 8)
+			game->barn = 0;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
+	else if (keycode == 5)
+	{
+		game->barn--;
+		if (game->barn < 0)
+			game->barn = 8;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -209,7 +216,7 @@ int	main(int ac, char **av)
 	get_img_path(game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
-	mlx_hook(game->mlx_win, 6, 0, key_hook1, game);
+	mlx_hook(game->mlx_win, 4, 0, ft_mouse, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }
