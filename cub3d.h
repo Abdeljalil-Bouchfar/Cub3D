@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 12:40:37 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:30:21 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <mlx.h>
 # include <math.h>
 
+# define WIN_HIGHT 1200.0
+# define WIN_WIDTH 1200.0
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -41,12 +43,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	char	*tex_n;
-	char	*tex_s;
-	char	*tex_w;
-	char	*tex_e;
-	int		f_color;
-	int		c_color;
+	char	**bartex;
+	int		barn;
 	float	px;
 	float	py;
 	double	pdx;
@@ -93,18 +91,26 @@ typedef struct s_game
 	void	*bar;
 	void	*hand;
 	char	*handadr;
+	char	*no_textr;
+	char	*so_textr;
+	char	*we_textr;
+	char	*ea_textr;
+	int		floor_c;
+	int		ceilling_c;
 }		t_game;
 
-void	ft_map(t_game *game, char *str);
+void	parse(t_game *game, char *path);
 void	ft_check_map(char *str, char *cub);
-size_t	ft_strlen(char *s);
+
+size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, size_t len);
-int		ft_strchr(char *s, char c);
+char    *ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
 char	**ft_split(char *s, char c);
 char	*get_next_line(int fd);
 void	ft_error(char *str);
+
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_drawl(t_game *game, double x2, double y2);
 double	degtorad(double a);
@@ -124,5 +130,6 @@ void	ft_anime(t_game *game);
 void	draw_rays(t_game *game);
 void	ft_build(t_game *game);
 void	ft_destroy(t_game *game);
+void	creat_str_bar(t_game *game);
 
 #endif
