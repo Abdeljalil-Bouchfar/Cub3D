@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/17 17:04:46 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:40:37 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
+	char	*tex_n;
+	char	*tex_s;
+	char	*tex_w;
+	char	*tex_e;
+	int		f_color;
+	int		c_color;
 	float	px;
 	float	py;
 	double	pdx;
