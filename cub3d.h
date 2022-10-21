@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 15:40:17 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:42:41 by abdeljalilb      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,15 @@ typedef struct s_game
 	void	*bar;
 	void	*hand;
 	char	*handadr;
+	char	*no_textr;
+	char	*so_textr;
+	char	*we_textr;
+	char	*ea_textr;
+	int		floor_c;
+	int		ceilling_c;
 }		t_game;
 
-void	ft_map(t_game *game, char *str);
+void	parse(t_game *game, char *path);
 void	ft_check_map(char *str, char *cub);
 size_t	ft_strlen(char *s);
 char	*ft_strdup(char *s);

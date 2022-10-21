@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/20 20:11:54 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/10/21 11:29:38 by abdeljalilb      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
 CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
-SRCS = main.c ft_map.c utils.c ft_split.c get_next_line.c get_next_line_utils.c ft_dda.c ft_moves.c \
+SRCS = main.c parse.c utils.c ft_split.c get_next_line.c get_next_line_utils.c ft_dda.c ft_moves.c \
 		ft_animation.c
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
 OBJ = $(SRCS:.c=.o)

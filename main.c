@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/20 20:34:06 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:28:57 by abdeljalilb      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
 	game = malloc(sizeof(t_game));
-	ft_map(game, av[1]);
+	parse(game, av[1]);
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, 1080, 1080, "cub3d");
 	get_img_path(game);

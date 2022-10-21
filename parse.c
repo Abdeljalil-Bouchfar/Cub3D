@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.c                                           :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/18 16:46:38 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:42:29 by abdeljalilb      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_check_map(char *str, char *cub)
+// void	ft_error(char *str)
+// {
+// 	printf("%s", str);
+// 	exit (1);
+// }
+
+void	validate_path(char *str, char *cub)
 {
 	int	i;
 	int	j;
@@ -63,8 +69,22 @@ void	ft_read_map(t_game *game, char *map_file)
 	free(str);
 }
 
-void	ft_map(t_game *game, char *str)
+void	parse(t_game *game, char *path)
 {
-	ft_check_map(str, ".cub");
-	ft_read_map(game, str);
+	validate_path(path, ".cub");
+	ft_read_map(game, path);
 }
+
+// int main(int ac, char **av)
+// {
+// 	t_game	*game;
+
+// 	if (ac != 2)
+// 		ft_error("Error\nWrong Number Of Args\n");
+// 	game = malloc(sizeof(t_game));
+// 	parse(game, av[1]);
+// 	char **tmp = game->map;
+// 	int i = -1;
+// 	while (tmp[++i])
+// 		printf("%s\n", tmp[i]);
+// }
