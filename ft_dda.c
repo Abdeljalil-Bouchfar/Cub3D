@@ -6,44 +6,44 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/19 19:15:41 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:39:50 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_drawline3(t_game *game, float y1, double lineh, float mx)
+void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 {
 	char	*dst;
 	int		i;
 
 	i = 0;
-	if (lineh > 1080.0)
-		i = (lineh - 1080.0) / 2;
+	if (lineh > WIN_HIGHT)
+		i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
-		if (y1 >= 1080.0)
+		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->tadr1 + (int)(i * (IMG_W1 / lineh)) % IMG_W1 * game->line_length1 + (int)(mx * IMG_W1 / 50) % IMG_W1 * (game->bits_per_pixel1 / 8);
+		dst = game->tadr1 + (int)(i * (IMG_W1 / lineh)) % IMG_W1 * game->line_length1 + (int)(x * IMG_W1 / 50) % IMG_W1 * (game->bits_per_pixel1 / 8);
 		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
 }
 
-void	ft_drawline4(t_game *game, float y1, double lineh, float mx)
+void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 {
 	char	*dst;
 	int		i;
 
 	i = 0;
-	if (lineh > 1080.0)
-		i = (lineh - 1080.0) / 2;
+	if (lineh > WIN_HIGHT)
+		i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
-		if (y1 >= 1080.0)
+		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(mx * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
+		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
 		if (*(unsigned int *)dst != 0xFF000000)
 			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
@@ -63,11 +63,11 @@ void	ft_drawf(t_game *game, double lineh, float lineo, float x, float y)
 	l=0;
 	deg = degtorad(game->r);
 	rafix = cos(degtorad(fixang(game->pa-game->r)));
-	while (j < 1080)
+	while (j < WIN_HIGHT)
 	{
-		dy = j-(1080/2.0);
-		tx = game->px*20 + (cos(deg)*540*FLOOR_W/dy/rafix);
-		ty = game->py*20 + (sin(deg)*540*FLOOR_W/dy/rafix);
+		dy = j-(WIN_HIGHT/2.0);
+		tx = game->px*20 + (cos(deg)*(WIN_HIGHT/2)*FLOOR_W/dy/rafix);
+		ty = game->py*20 + (sin(deg)*(WIN_HIGHT/2)*FLOOR_W/dy/rafix);
 		int y;
 		int x;
 		y = ((int)(ty)%FLOOR_W);
@@ -91,7 +91,7 @@ void	ft_drawc(t_game *game, float y1)
 	int	i;
 	
 	i = 0;
-	while (i < 1080)
+	while (i < WIN_HIGHT)
 	{
 		y1 = 0;
 		while (y1 < game->lineo[i])
@@ -117,12 +117,12 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 		ca -= 360;
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
-	lineh = 54000.0 / len;
+	lineh = (50*WIN_HIGHT) / len;
 	ch = lineh;
-	if (lineh > 1080.0)
-		lineh = 1080.0;
+	if (lineh > WIN_HIGHT)
+		lineh = WIN_HIGHT;
 	game->lineh[game->i] = lineh;
-	lineo = 540.0 - (lineh / 2);
+	lineo = (WIN_HIGHT/2) - (lineh / 2);
 	// lineo += game->offset;
 	game->lineo[game->i] = lineo;
 	if (i == 1)
@@ -145,12 +145,12 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 		ca -= 360;
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
-	lineh = 54000.0 / len;
+	lineh = (50*WIN_HIGHT) / len;
 	ch = lineh;
-	if (lineh > 1080.0)
-		lineh = 1080.0;
+	if (lineh > WIN_HIGHT)
+		lineh = WIN_HIGHT;
 	game->lineh[game->i] = lineh;
-	lineo = 540.0 - (lineh / 2);
+	lineo = (WIN_HIGHT/2) - (lineh / 2);
 	// lineo += game->offset;
 	game->lineo[game->i] = lineo;
 	if (i == 1)

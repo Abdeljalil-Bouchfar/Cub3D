@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 11:28:57 by abdeljalilb      ###   ########.fr       */
+/*   Updated: 2022/10/21 15:37:20 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	draw_rays(t_game *game)
 	if (game->r > 360.0)
 		game->r -= 360.0;
 	game->i = 0;
-	while (game->i < 1080)
+	while (game->i < WIN_WIDTH)
 	{
 		x = (cos(degtorad(game->r)) * 5);
 		y = (sin(degtorad(game->r)) * 5);
 		ft_drawl(game, x, y);
 		game->i++;
-		game->r += 60.0 / 1080.0;
+		game->r += 60.0 / WIN_WIDTH;
 		if (game->r < 0)
 			game->r += 360.0;
 		if (game->r > 360.0)
@@ -117,14 +117,14 @@ void	get_img_path(t_game *game)
 {
 	int	hi;
 
-	game->lineo = malloc(sizeof(float) * 1080);
-	game->lineh = malloc(sizeof(float) * 1080);
+	game->lineo = malloc(sizeof(float) * WIN_WIDTH);
+	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
 	game->keys = calloc(sizeof(int), 5);
 	game->pix = 1000;
 	game->offset = 3;
 	game->cpa = 3;
 	game->barn = 0;
-	game->img = mlx_new_image(game->mlx, 1080, 1080);
+	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	game->pa = 90.0;
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
@@ -152,7 +152,7 @@ void	get_img_path(t_game *game)
 int	ft_hook(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, 1080, 1080);
+	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	if (game->keys[4])
 		ft_anime(game);
@@ -212,7 +212,7 @@ int	main(int ac, char **av)
 	game = malloc(sizeof(t_game));
 	parse(game, av[1]);
 	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, 1080, 1080, "cub3d");
+	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	get_img_path(game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
