@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdeljalilbouchfar <abdeljalilbouchfar@    +#+  +:+       +#+         #
+#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/21 11:29:38 by abdeljalilb      ###   ########.fr        #
+#    Updated: 2022/10/22 16:09:04 by ressalhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

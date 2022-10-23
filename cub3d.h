@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 15:41:27 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/22 16:04:38 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIN_HIGHT 90.0
-# define WIN_WIDTH 90.0
+# define WIN_HIGHT 1080.0
+# define WIN_WIDTH 1080.0
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -32,8 +32,8 @@
 # define IMG_W1 826
 # define DOOR_W 230
 # define FLOOR_W 890
-# define V 1
-# define P_SPEED 10
+# define V 5
+# define P_SPEED 5
 # define W 13
 # define Q 12
 # define X 7

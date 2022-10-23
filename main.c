@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 15:37:20 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:27:06 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	key_hook1(int keycode, t_game *game)
 		ft_build(game);
 	else if (keycode == X)
 		ft_destroy(game);
-	// else if (keycode == W)
-	// 	game->offset += 3;
+	else if (keycode == W)
+		game->offset += 3;
 	return (0);
 }
 
@@ -158,13 +158,13 @@ int	ft_hook(t_game *game)
 		ft_anime(game);
 	if (game->keys[0])
 	{
-		game->offset *= -1;
+		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_moveup(game);
 	}
 	if (game->keys[1])
 	{
-		game->offset *= -1;
+		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_movedown(game);
 	}
@@ -175,7 +175,7 @@ int	ft_hook(t_game *game)
 	draw_rays(game);
 	game->pix+=3;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 0+game->cpa, 500+game->offset);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 0+game->cpa, 500);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->bar, 170, 920);
 	return (0);
 }
@@ -216,7 +216,7 @@ int	main(int ac, char **av)
 	get_img_path(game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
-	mlx_hook(game->mlx_win, 4, 0, ft_mouse, game);
+	// mlx_hook(game->mlx_win, 4, 0, ft_mouse, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }

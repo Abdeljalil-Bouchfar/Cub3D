@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 15:39:50 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:28:00 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 	int		i;
 
 	i = 0;
-	if (lineh > WIN_HIGHT)
-		i = (lineh - WIN_HIGHT) / 2;
+	// if (lineh > WIN_HIGHT)
+	// 	i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
 		if (y1 >= WIN_HIGHT)
@@ -37,15 +37,14 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 	int		i;
 
 	i = 0;
-	if (lineh > WIN_HIGHT)
-		i = (lineh - WIN_HIGHT) / 2;
+	// if (lineh > WIN_HIGHT)
+	// 	i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
 		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
-		if (*(unsigned int *)dst != 0xFF000000)
-			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
@@ -117,18 +116,21 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 		ca -= 360;
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
-	lineh = (50*WIN_HIGHT) / len;
-	ch = lineh;
-	if (lineh > WIN_HIGHT)
-		lineh = WIN_HIGHT;
-	game->lineh[game->i] = lineh;
-	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	// lineo += game->offset;
-	game->lineo[game->i] = lineo;
-	if (i == 1)
-		ft_drawline3(game, lineo, ch, x);
+	if (len > 0)
+		lineh = (50*WIN_HIGHT) / len;
 	else
-		ft_drawline3(game, lineo, ch, y);
+		lineh = (50*WIN_HIGHT);
+	ch = lineh;
+	// if (lineh > WIN_HIGHT)
+	// 	lineh = WIN_HIGHT;
+	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
+	game->lineh[game->i] = lineh;
+	game->lineo[game->i] = lineo;
+	lineo += game->offset;
+	if (i == 1)
+		ft_drawline3(game, lineo, lineh, x);
+	else
+		ft_drawline3(game, lineo, lineh, y);
 	ft_drawf(game, lineh, lineo, x, y);
 }
 
@@ -147,16 +149,16 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	len = len * cos(degtorad(ca));
 	lineh = (50*WIN_HIGHT) / len;
 	ch = lineh;
-	if (lineh > WIN_HIGHT)
-		lineh = WIN_HIGHT;
-	game->lineh[game->i] = lineh;
+	// if (lineh > WIN_HIGHT)
+	// 	lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	// lineo += game->offset;
+	game->lineh[game->i] = lineh;
 	game->lineo[game->i] = lineo;
+	lineo += game->offset;
 	if (i == 1)
-		ft_drawline4(game, lineo, ch, x);
+		ft_drawline4(game, lineo, lineh, x);
 	else
-		ft_drawline4(game, lineo, ch, y);
+		ft_drawline4(game, lineo, lineh, y);
 	ft_drawf(game, lineh, lineo, x, y);
 }
 
