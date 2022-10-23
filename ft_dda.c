@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/22 18:28:00 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:13:02 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 	int		i;
 
 	i = 0;
-	// if (lineh > WIN_HIGHT)
-	// 	i = (lineh - WIN_HIGHT) / 2;
+	if (lineh > WIN_HIGHT)
+		i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
 		if (y1 >= WIN_HIGHT)
@@ -37,8 +37,8 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 	int		i;
 
 	i = 0;
-	// if (lineh > WIN_HIGHT)
-	// 	i = (lineh - WIN_HIGHT) / 2;
+	if (lineh > WIN_HIGHT)
+		i = (lineh - WIN_HIGHT) / 2;
 	while (i < lineh)
 	{
 		if (y1 >= WIN_HIGHT)
@@ -116,21 +116,18 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 		ca -= 360;
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
-	if (len > 0)
-		lineh = (50*WIN_HIGHT) / len;
-	else
-		lineh = (50*WIN_HIGHT);
+	lineh = (50*WIN_HIGHT) / len;
 	ch = lineh;
-	// if (lineh > WIN_HIGHT)
-	// 	lineh = WIN_HIGHT;
-	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
+	if (lineh > WIN_HIGHT)
+		lineh = WIN_HIGHT;
 	game->lineh[game->i] = lineh;
+	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
+	// lineo += game->offset;
 	game->lineo[game->i] = lineo;
-	lineo += game->offset;
 	if (i == 1)
-		ft_drawline3(game, lineo, lineh, x);
+		ft_drawline3(game, lineo, ch, x);
 	else
-		ft_drawline3(game, lineo, lineh, y);
+		ft_drawline3(game, lineo, ch, y);
 	ft_drawf(game, lineh, lineo, x, y);
 }
 
@@ -149,16 +146,16 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	len = len * cos(degtorad(ca));
 	lineh = (50*WIN_HIGHT) / len;
 	ch = lineh;
-	// if (lineh > WIN_HIGHT)
-	// 	lineh = WIN_HIGHT;
-	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	if (lineh > WIN_HIGHT)
+		lineh = WIN_HIGHT;
 	game->lineh[game->i] = lineh;
+	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	// lineo += game->offset;
 	game->lineo[game->i] = lineo;
-	lineo += game->offset;
 	if (i == 1)
-		ft_drawline4(game, lineo, lineh, x);
+		ft_drawline4(game, lineo, ch, x);
 	else
-		ft_drawline4(game, lineo, lineh, y);
+		ft_drawline4(game, lineo, ch, y);
 	ft_drawf(game, lineh, lineo, x, y);
 }
 

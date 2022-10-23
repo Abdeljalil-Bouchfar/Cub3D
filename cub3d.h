@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/22 16:04:38 by ressalhi         ###   ########.fr       */
-=======
-/*   Updated: 2022/10/21 18:30:21 by abouchfa         ###   ########.fr       */
->>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
+/*   Updated: 2022/10/23 15:16:30 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +20,10 @@
 # include <mlx.h>
 # include <math.h>
 
-<<<<<<< HEAD
+
 # define WIN_HIGHT 1080.0
 # define WIN_WIDTH 1080.0
-=======
-# define WIN_HIGHT 1200.0
-# define WIN_WIDTH 1200.0
->>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
+
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -41,8 +34,8 @@
 # define IMG_W1 826
 # define DOOR_W 230
 # define FLOOR_W 890
-# define V 5
-# define P_SPEED 5
+# define V 1
+# define P_SPEED 10
 # define W 13
 # define Q 12
 # define X 7

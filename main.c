@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/22 18:27:06 by ressalhi         ###   ########.fr       */
-=======
-/*   Updated: 2022/10/21 18:08:53 by abouchfa         ###   ########.fr       */
->>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
+/*   Updated: 2022/10/23 15:15:58 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +59,8 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
+
+	int hi;
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
@@ -83,6 +81,22 @@ int	key_hook1(int keycode, t_game *game)
 		ft_destroy(game);
 	else if (keycode == W)
 		game->offset += 3;
+	if (keycode == 47)
+	{
+		game->barn++;
+		if (game->barn > 8)
+			game->barn = 0;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
+	else if (keycode == 43)
+	{
+		game->barn--;
+		if (game->barn < 0)
+			game->barn = 8;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
 	return (0);
 }
 
