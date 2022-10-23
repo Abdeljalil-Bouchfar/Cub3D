@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 15:15:58 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:23:28 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	ft_hook(t_game *game)
 	return (0);
 }
 
-int		ft_mouse(int keycode, t_game *game)
+int		key_hook3(int keycode, int x, int y, t_game *game)
 {
 	int hi;
 
@@ -220,13 +220,14 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
 	game = malloc(sizeof(t_game));
+	printf("%lu\n", sizeof(t_game));
 	parse(game, av[1]);
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	get_img_path(game);
-	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
-	// mlx_hook(game->mlx_win, 4, 0, ft_mouse, game);
+	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
+	mlx_hook(game->mlx_win, 4, 1L << 2, key_hook3, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }

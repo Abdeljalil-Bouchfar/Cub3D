@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 15:16:30 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:15:28 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define DOOR_W 230
 # define FLOOR_W 890
 # define V 1
-# define P_SPEED 10
+# define P_SPEED 15
 # define W 13
 # define Q 12
 # define X 7
@@ -45,8 +45,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	char	**bartex;
 	int		barn;
+	char	**bartex;
 	float	px;
 	float	py;
 	double	pdx;
