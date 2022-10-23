@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/23 20:21:58 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/10/23 20:46:27 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,11 @@ SRCS =	main.c \
 		shared/ft_strjoin.c \
 		shared/ft_substr.c \
 		shared/print_error.c \
-		shared/ft_split.c\
+		shared/ft_split.c \
+		shared/ft_isdigit.c \
+		shared/ft_atoi.c \
+		shared/ft_strlcpy.c \
+		shared/ft_strncmp.c \
 		ft_dda.c \
 		ft_moves.c \
 		ft_animation.c
