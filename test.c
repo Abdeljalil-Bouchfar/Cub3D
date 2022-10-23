@@ -36,24 +36,22 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-double	degtorad(double a)
-{
-	return (a * M_PI / 180.0);
-}
+// double	degtorad(double a)
+// {
+// 	return (a * M_PI / 180.0);
+// }
 
-char	*get_bar(int i)
-{
-	char	*s;
+// char	*get_bar(int i)
+// {
+// 	char	*s;
 
-	s = strdup("bar/bar1.xpm");
-	s[7] = i + 48;
-	return (s);
-}
+// 	s = strdup("bar/bar1.xpm");
+// 	s[7] = i + 48;
+// 	return (s);
+// }
 
 int main()
 {
-	char *s;
-
-	s = get_bar(9);
-	printf("%s\n", s);
+	long i = 4147483647;
+	printf("%ld\n", i);
 }
