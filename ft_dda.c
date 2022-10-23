@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 15:39:50 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:13:02 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 		if (y1 >= WIN_HIGHT)
 			break ;
 		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
-		if (*(unsigned int *)dst != 0xFF000000)
-			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
@@ -122,7 +121,7 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	game->lineh[game->i] = lineh;
-	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
 	// lineo += game->offset;
 	game->lineo[game->i] = lineo;
 	if (i == 1)

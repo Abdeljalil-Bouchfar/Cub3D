@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:43:55 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:46:24 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
+
+	int hi;
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
@@ -77,8 +79,24 @@ int	key_hook1(int keycode, t_game *game)
 		ft_build(game);
 	else if (keycode == X)
 		ft_destroy(game);
-	// else if (keycode == W)
-	// 	game->offset += 3;
+	else if (keycode == W)
+		game->offset += 3;
+	if (keycode == 47)
+	{
+		game->barn++;
+		if (game->barn > 8)
+			game->barn = 0;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
+	else if (keycode == 43)
+	{
+		game->barn--;
+		if (game->barn < 0)
+			game->barn = 8;
+		mlx_destroy_image(game->mlx, game->bar);
+		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
+	}
 	return (0);
 }
 
@@ -151,13 +169,13 @@ int	ft_hook(t_game *game)
 		ft_anime(game);
 	if (game->keys[0])
 	{
-		game->offset *= -1;
+		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_moveup(game);
 	}
 	if (game->keys[1])
 	{
-		game->offset *= -1;
+		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_movedown(game);
 	}
@@ -168,12 +186,12 @@ int	ft_hook(t_game *game)
 	draw_rays(game);
 	game->pix+=3;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 0+game->cpa, 500+game->offset);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 0+game->cpa, 500);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->bar, 170, 920);
 	return (0);
 }
 
-int		ft_mouse(int keycode, t_game *game)
+int		key_hook3(int keycode, int x, int y, t_game *game)
 {
 	int hi;
 
@@ -203,13 +221,14 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
 	game = malloc(sizeof(t_game));
+	printf("%lu\n", sizeof(t_game));
 	parse(game, av[1]);
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	get_img_path(game);
-	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
-	mlx_hook(game->mlx_win, 4, 0, ft_mouse, game);
+	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
+	mlx_hook(game->mlx_win, 4, 1L << 2, key_hook3, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 18:02:20 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:46:03 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIN_HIGHT 1100.0
-# define WIN_WIDTH 1100.0
+
+# define WIN_HIGHT 1080.0
+# define WIN_WIDTH 1080.0
+
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -33,7 +35,7 @@
 # define DOOR_W 230
 # define FLOOR_W 890
 # define V 1
-# define P_SPEED 10
+# define P_SPEED 15
 # define W 13
 # define Q 12
 # define X 7
@@ -43,8 +45,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	char	**bartex;
 	int		barn;
+	char	**bartex;
 	float	px;
 	float	py;
 	double	pdx;
