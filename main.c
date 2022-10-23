@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/22 18:27:06 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/21 18:08:53 by abouchfa         ###   ########.fr       */
+>>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_error(char *str)
-{
-	printf("%s", str);
-	exit (1);
-}
 
 void	draw_rays(t_game *game)
 {
@@ -65,8 +63,6 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
-	int hi;
-
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
@@ -180,7 +176,7 @@ int	ft_hook(t_game *game)
 	return (0);
 }
 
-int		ft_mouse(int keycode, int x, int y, t_game *game)
+int		ft_mouse(int keycode, t_game *game)
 {
 	int hi;
 

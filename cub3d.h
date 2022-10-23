@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/22 16:04:38 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/21 18:30:21 by abouchfa         ###   ########.fr       */
+>>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +24,13 @@
 # include <mlx.h>
 # include <math.h>
 
+<<<<<<< HEAD
 # define WIN_HIGHT 1080.0
 # define WIN_WIDTH 1080.0
+=======
+# define WIN_HIGHT 1200.0
+# define WIN_WIDTH 1200.0
+>>>>>>> e69367f639c875a024f80ea07e2e99113a03973a
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -101,14 +110,16 @@ typedef struct s_game
 
 void	parse(t_game *game, char *path);
 void	ft_check_map(char *str, char *cub);
-size_t	ft_strlen(char *s);
+
+size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, size_t len);
-int		ft_strchr(char *s, char c);
+char    *ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
 char	**ft_split(char *s, char c);
 char	*get_next_line(int fd);
 void	ft_error(char *str);
+
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_drawl(t_game *game, double x2, double y2);
 double	degtorad(double a);
