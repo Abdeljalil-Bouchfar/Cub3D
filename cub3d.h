@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/21 18:30:21 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/23 18:02:20 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIN_HIGHT 1200.0
-# define WIN_WIDTH 1200.0
+# define WIN_HIGHT 1100.0
+# define WIN_WIDTH 1100.0
 # define BUFFER_SIZE 1
 # define UP 126
 # define DOWN 125
@@ -104,12 +104,16 @@ void	ft_check_map(char *str, char *cub);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	**ft_split(char *s, char c);
 char	*get_next_line(int fd);
 void	ft_error(char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_drawl(t_game *game, double x2, double y2);

@@ -1,6 +1,6 @@
-NO ./textures/stone.xpm
+ NO ./textures/stone.xpm
 
-SO 				./textures/stone.xpm
+	SO 				./textures/stone.xpm
 
 WE 			./textures/stone.xpm
 
