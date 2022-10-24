@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 14:10:51 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:35:38 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_rays(t_game *game)
 		if (game->r > 360.0)
 			game->r -= 360.0;
 	}
-	ft_drawc(game, 0);
+	ft_drawceilling(game, 0);
 }
 
 int	key_hook2(int keycode, t_game *game)
@@ -69,6 +69,18 @@ int	key_hook1(int keycode, t_game *game)
 	return (0);
 }
 
+void	get_player_angle(t_game *game, char c)
+{
+	if (c == 'N')
+		game->pa = 270.0;
+	else if (c == 'S')
+		game->pa = 90.0;
+	else if (c == 'W')
+		game->pa = 180.0;
+	else if (c == 'E')
+		game->pa = 0;
+}
+
 void	get_player_cord(t_game *game)
 {
 	int	i;
@@ -85,6 +97,7 @@ void	get_player_cord(t_game *game)
 			{
 				game->px = j * 50;
 				game->py = i * 50;
+				get_player_angle(game, game->map[i][j]);
 				game->map[i][j] = '0';
 			}
 			j++;
@@ -122,11 +135,10 @@ void	ft_init(t_game *game)
 	game->keys = calloc(sizeof(int), 4);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
-	game->pa = 90.0;
+	get_tex_path(game);
+	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
-	get_player_cord(game);
-	get_tex_path(game);
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }

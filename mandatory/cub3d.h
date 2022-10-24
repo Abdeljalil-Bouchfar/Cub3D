@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 14:09:25 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:29:30 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define W_W 1468
 # define E_W 1000
 	
-# define P_SPEED 15
+# define P_SPEED 10
 
 typedef struct s_game
 {
@@ -105,8 +105,8 @@ void	ft_drawl(t_game *game, double x2, double y2);
 double	degtorad(double a);
 double	dist(float ax, float ay, float bx, float by);
 int		ft_hook(t_game *game);
-void	ft_drawc(t_game *game, float y1);
-void	ft_drawf(t_game *game, double lineh, float lineo, float x, float y);
+void	ft_drawceilling(t_game *game, float y1);
+void	ft_drawfloor(t_game *game, double lineh, float lineo);
 void	ft_moveup(t_game *game);
 void	ft_movedown(t_game *game);
 void	ft_moveright(t_game *game);
