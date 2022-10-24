@@ -1,7 +1,7 @@
-NO ./textures/hjrifi.xpm
-WE ./textures/ilefhail.xpm
-SO ./textures/ytouate.xpm
-EA ./textures/hjrifi.xpm
+NO ./xpms/ressalhi2.xpm
+WE ./xpms/ressalhi2.xpm
+SO ./xpms/ressalhi2.xpm
+EA ./xpms/ressalhi2.xpm
 C    10,10,155
 F    114,114,114
 
