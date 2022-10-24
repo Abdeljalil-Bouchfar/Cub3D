@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 17:46:50 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/24 21:02:27 by ressalhi         ###   ########.fr       */
+/*   Created: 2022/10/24 20:23:22 by ressalhi          #+#    #+#             */
+/*   Updated: 2022/10/24 21:02:09 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include <stdlib.h>
 
-void	ft_error(char *str)
+static void	ft_bzero(void *s, size_t n)
 {
-	printf("%s", str);
-	exit (1);
+	char	*str;
+
+	str = s;
+	while (n > 0)
+	{
+		*str = 0;
+		n--;
+		str++;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*s;
+
+	s = malloc(count * size);
+	if (!s)
+		return (0);
+	ft_bzero(s, (count * size));
+	return (s);
 }
