@@ -1,10 +1,10 @@
- NO ./textures/stone.xpm
+ NO ./xpms/ressalhi1.xpm
 
-	SO 				./textures/stone.xpm
+	SO 				./xpms/ressalhi1.xpm
 
-WE 			./textures/stone.xpm
+WE 			./xpms/ressalhi1.xpm
 
-EA ./textures/stone.xpm
+EA ./xpms/ressalhi1.xpm
 F 110,100,0
 C 120,30,90
 
