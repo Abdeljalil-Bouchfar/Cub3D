@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-NO 		./xpms/ressalhi1.xpm
-SO 		 ./xpms/ressalhi2.xpm
-WE  	 ./xpms/ressalhi3.xpm
-EA          ./xpms/ressalhi4.xpm
-=======
  NO ./xpms/ressalhi1.xpm
 
 	SO 				./xpms/ressalhi1.xpm
@@ -11,7 +5,6 @@ EA          ./xpms/ressalhi4.xpm
 WE 			./xpms/ressalhi1.xpm
 
 EA ./xpms/ressalhi1.xpm
->>>>>>> cd1c602b28797c25432e66570fef31069164de3a
 F 110,100,0
 C 120,30,90
 
