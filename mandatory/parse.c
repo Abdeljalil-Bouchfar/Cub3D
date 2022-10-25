@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:49:49 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:57:11 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	read_file(t_game *game, char *map_file)
 		if (stage >= 6)
 		{
 			if (*line == '\n')
-				ft_error("Error: Invalid Map 1\n");
+				ft_error("Error: Invalid Map\n");
 			str = ft_strjoin(str, line);
 			stage++;
 		}
@@ -147,16 +147,16 @@ void	read_file(t_game *game, char *map_file)
 	free(line);
 	game->map = ft_split(str, '\n');
 	if (stage < 8)
-		ft_error("Error: Invalid Map 2\n");
+		ft_error("Error: Invalid Map\n");
 	free(str);
 }
 
 void	validate_map(char **map)
 {
 	char	*tmp;
-	int		i;
-	int		c;
-	int		j;
+	size_t	i;
+	size_t	c;
+	size_t	j;
 
 	i = -1;
 	c = 0;
@@ -170,18 +170,20 @@ void	validate_map(char **map)
 				c++;
 			if (c > 1 || ((j == 0 || tmp[j + 1] == '\0' || tmp[j + 1] == ' ' ||
 				i == 0 || map[i + 1] == NULL ||
-				(map[i + 1] && map[i + 1][j] == ' ') ||
-				(i > 0 && map[i - 1][j] == ' ')) &&
+				(map[i + 1] && j < ft_strlen(map[i + 1]) && map[i + 1][j] == ' ') ||
+				(i > 0 && j < ft_strlen(map[i - 1]) && map[i - 1][j] == ' ')) &&
 				tmp[j] != '1' && tmp[j] != ' ') ||
 				(tmp[j] != '1' && tmp[j] != '0' && tmp[j] != 'N' &&
 				tmp[j] != 'S' && tmp[j] != 'E' && tmp[j] != 'W' &&
 				tmp[j] != ' ' && tmp[j] != '	'))
 				{
 					//printf("%i %i\n", i, j);
-					ft_error("Error: Invalid Map 3\n");
+					ft_error("Error: Invalid Map\n");
 				}
 		}
 	}
+	if (c != 1)
+		ft_error("Error: Invalid Map\n");
 }
 
 void	parse(t_game *game, char *path)

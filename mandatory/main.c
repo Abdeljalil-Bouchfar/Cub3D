@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 16:35:38 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:53:15 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	draw_rays(t_game *game)
 
 int	key_hook2(int keycode, t_game *game)
 {
-	int hi;
-
 	if (keycode == UP)
 		game->keys[0] = 0;
 	else if (keycode == DOWN)
@@ -54,8 +52,6 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
-
-	int hi;
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/24 16:20:10 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/10/25 21:52:57 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 SRCS =	main.c \
 		parse.c \
 		utils.c \
