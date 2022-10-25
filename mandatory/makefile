@@ -6,7 +6,7 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/25 21:52:57 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/10/25 22:00:03 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,10 @@ SRCS =	main.c \
 		shared/ft_atoi.c \
 		shared/ft_strlcpy.c \
 		shared/ft_strncmp.c \
+		shared/ft_calloc.c \
 		ft_dda.c \
-		ft_moves.c 
+		ft_moves.c \
+		ft_hooks.c 
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
 #OBJ = $(SRCS:.c=.o)
 

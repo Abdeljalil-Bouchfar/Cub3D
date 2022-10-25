@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 21:57:11 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:59:59 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	ft_open_file(char *map_file)
 int	get_color(char **str)
 {
 	uint8_t	rgb[3];
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (str && str[++i])
 	{
 		j = -1;
-		while(str[i][++j])
+		while (str[i][++j])
 			if (!ft_isdigit(str[i][j]))
 				ft_error("Error: Invalid Color\n");
 		if (i < 3)
@@ -70,10 +70,10 @@ void	set_data(t_game *game, char *line, int stage)
 	int		j;
 
 	i = 0;
-	while((line[i] == ' ' || line[i] == '	') && line[i])
+	while ((line[i] == ' ' || line[i] == '	') && line[i])
 		i++;
 	j = i;
-	while(line[j] != '\n' && line[j] != ' ' && line[j])
+	while (line[j] != '\n' && line[j] != ' ' && line[j])
 		j++;
 	res = malloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
@@ -97,12 +97,12 @@ int	set_elements(t_game *game, char *line, int stage)
 	int	j;
 
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 	{
 		j = i;
 		if (line[i] != ' ' && line[i] != '\n')
 		{
-			while(line[j] && line[j] != ' ')
+			while (line[j] && line[j] != ' ')
 				j++;
 			if (ft_strncmp(line + i, "NO", j - i) || ft_strncmp(line + i, "SO", j - i) ||
 				ft_strncmp(line + i, "WE", j - i) || ft_strncmp(line + i, "EA", j - i) ||
@@ -164,7 +164,7 @@ void	validate_map(char **map)
 	{
 		j = -1;
 		tmp = map[i];
-		while(tmp[++j])
+		while (tmp[++j])
 		{
 			if (tmp[j] == 'N' || tmp[j] == 'S' || tmp[j] == 'E' || tmp[j] == 'W')
 				c++;
