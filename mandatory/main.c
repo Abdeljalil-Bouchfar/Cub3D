@@ -6,22 +6,38 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 22:00:16 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:17:27 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_player_angle(t_game *game, char c)
+void	get_player_angle(t_game *game, char c, int i, int j)
 {
 	if (c == 'N')
+	{
+		game->px = j * 53.5;
+		game->py = i * 53.5;
 		game->pa = 270.0;
+	}
 	else if (c == 'S')
+	{
+		game->px = j * 53.5;
+		game->py = i * 53.5;
 		game->pa = 90.0;
+	}
 	else if (c == 'W')
+	{
+		game->px = j * 53.5;
+		game->py = i * 53.5;
 		game->pa = 180.0;
+	}
 	else if (c == 'E')
+	{
+		game->px = j * 53.5;
+		game->py = i * 53.5;
 		game->pa = 0;
+	}
 }
 
 void	get_player_cord(t_game *game)
@@ -38,9 +54,7 @@ void	get_player_cord(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->px = j * 50;
-				game->py = i * 50;
-				get_player_angle(game, game->map[i][j]);
+				get_player_angle(game, game->map[i][j], i, j);
 				game->map[i][j] = '0';
 			}
 			j++;
@@ -81,6 +95,8 @@ void	ft_init(t_game *game)
 	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	game->px += cos(degtorad(game->pa));
+	game->py += sin(degtorad(game->pa));
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }

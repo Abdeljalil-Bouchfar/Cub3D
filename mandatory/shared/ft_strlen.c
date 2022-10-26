@@ -6,15 +6,15 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:55:53 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/21 17:55:05 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:24:17 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])

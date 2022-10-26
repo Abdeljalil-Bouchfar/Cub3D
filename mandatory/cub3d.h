@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 18:07:03 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:25:15 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,18 @@ typedef struct s_game
 	int		ceilling_c;
 }		t_game;
 
-void	parse(t_game *game, char *path);
-void	ft_check_map(char *str, char *cub);
+// ----------------- Parse -------------------
 
-size_t	ft_strlen(const char *s);
+void	parse(t_game *game, char *path);
+void	validate_path(char *str, char *cub);
+int		ft_open_file(char *map_file);
+int		get_color(char **str);
+void	set_data(t_game *game, char *line, int stage);
+int		set_elements(t_game *game, char *line, int stage);
+
+// ----------------- Shared -------------------
+
+int		ft_strlen(const char *s);
 char	*ft_strdup(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -96,6 +104,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
+
+// ----------------- Graphics -------------------
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_castray1(t_game *game, double x2, double y2);
