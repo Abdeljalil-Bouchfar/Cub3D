@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 20:44:37 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/25 18:59:18 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ int	key_hook2(int keycode, t_game *game)
 		game->keys[2] = 0;
 	else if (keycode == LEFT)
 		game->keys[3] = 0;
+	else if (keycode == ROTATE_RIGHT)
+		game->keys[4] = 0;
+	else if (keycode == ROTATE_LEFT)
+		game->keys[5] = 0;
+	
 	return (0);
 }
 
@@ -84,6 +89,10 @@ int	key_hook1(int keycode, t_game *game)
 		game->keys[2] = 1;
 	else if (keycode == LEFT)
 		game->keys[3] = 1;
+	else if (keycode == ROTATE_RIGHT)
+		game->keys[4] = 1;
+	else if (keycode == ROTATE_LEFT)
+		game->keys[5] = 1;
 	return (0);
 }
 
@@ -101,6 +110,10 @@ int	ft_hook(t_game *game)
 		ft_moveright(game);
 	if (game->keys[3])
 		ft_moveleft(game);
+	if (game->keys[4])
+		ft_rotateright(game);
+	if (game->keys[5])
+		ft_rotateleft(game);
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 	return (0);

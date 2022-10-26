@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 20:23:58 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/25 18:53:44 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	get_tex_path(t_game *g)
 
 void	ft_init(t_game *game)
 {
-	game->keys = ft_calloc(sizeof(int), 4);
+	game->keys = ft_calloc(sizeof(int), 6);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp,
 			&game->llen, &game->en);

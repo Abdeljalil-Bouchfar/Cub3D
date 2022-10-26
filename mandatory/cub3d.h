@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 18:07:03 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/25 18:55:44 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 # define WIN_WIDTH 1520.0
 
 # define BUFFER_SIZE 1
-# define UP 126
-# define DOWN 125
-# define RIGHT 124
-# define LEFT 123
+# define UP 13
+# define DOWN 1
+# define RIGHT 2
+# define LEFT 0
+# define ROTATE_RIGHT 124
+# define ROTATE_LEFT 123
 # define N_W 1190
 # define S_W 1162
 # define W_W 1468
@@ -106,6 +108,8 @@ void	ft_drawceilling(t_game *game, float lineo);
 void	ft_drawfloor(t_game *game, double lineh, float lineo);
 void	ft_moveup(t_game *game);
 void	ft_movedown(t_game *game);
+void	ft_rotateright(t_game *game);
+void	ft_rotateleft(t_game *game);
 void	ft_moveright(t_game *game);
 void	ft_moveleft(t_game *game);
 double	fixang(double a);
