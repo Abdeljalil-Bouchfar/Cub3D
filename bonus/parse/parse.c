@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:14:52 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:02:58 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	validate_line(char *line, char *pre, char *next, int i)
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
 				&& line[j] != ' ' && line[j] != '	'))
 				{
-					printf("%i %i\n", i, j);
 					ft_error("Error: Invalid Map\n");
 				}
 	}

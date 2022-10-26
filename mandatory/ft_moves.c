@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 20:20:22 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:01:58 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,26 @@ void	ft_moveright(t_game *game)
 {
 	int	xo;
 	int	yo;
+	double nadx;
+	double nady;
+	double na;
 
-	if (game->pdx < 0)
+	na = fixang(game->pa + 90.0);
+	nadx = cos(degtorad(na)) * P_SPEED;
+	nady = sin(degtorad(na)) * P_SPEED;
+	if (nadx < 0)
 		xo = -20;
 	else
 		xo = 20;
-	if (game->pdy < 0)
+	if (nady < 0)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px - xo) / 50.0)] == '0')
-		game->px -= game->pdx;
+	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	{
+		game->px += nadx;
+		game->py += nady;
+	}
 }
 
 void	ft_moveleft(t_game *game)
@@ -94,8 +103,8 @@ void	ft_moveleft(t_game *game)
 	double na;
 
 	na = fixang(game->pa - 90.0);
-	nadx = cos(na) * P_SPEED;
-	nady = sin(na) * P_SPEED;
+	nadx = cos(degtorad(na)) * P_SPEED;
+	nady = sin(degtorad(na)) * P_SPEED;
 	if (nadx < 0)
 		xo = -20;
 	else
@@ -104,7 +113,9 @@ void	ft_moveleft(t_game *game)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
-		game->px -= nadx;
-	// game->py += nady;
+	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	{
+		game->px += nadx;
+		game->py += nady;
+	}
 }

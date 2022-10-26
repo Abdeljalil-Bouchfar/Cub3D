@@ -6,38 +6,22 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:51 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:42:06 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_player_angle(t_game *game, char c, int i, int j)
+void	get_player_angle(t_game *game, char c)
 {
 	if (c == 'N')
-	{
-		game->px = j * 53.5;
-		game->py = i * 53.5;
 		game->pa = 270.0;
-	}
 	else if (c == 'S')
-	{
-		game->px = j * 53.5;
-		game->py = i * 53.5;
 		game->pa = 90.0;
-	}
 	else if (c == 'W')
-	{
-		game->px = j * 53.5;
-		game->py = i * 53.5;
 		game->pa = 180.0;
-	}
 	else if (c == 'E')
-	{
-		game->px = j * 53.5;
-		game->py = i * 53.5;
 		game->pa = 0;
-	}
 }
 
 void	get_player_cord(t_game *game)
@@ -54,7 +38,9 @@ void	get_player_cord(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				get_player_angle(game, game->map[i][j], i, j);
+				game->px = j * 53.5;
+				game->py = i * 53.5;
+				get_player_angle(game, game->map[i][j]);
 				game->map[i][j] = '0';
 			}
 			j++;
