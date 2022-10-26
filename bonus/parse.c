@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:49:49 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:20:25 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	ft_open_file(char *map_file)
 int	get_color(char **str)
 {
 	uint8_t	rgb[3];
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (str && str[++i])
 	{
 		j = -1;
-		while(str[i][++j])
+		while (str[i][++j])
 			if (!ft_isdigit(str[i][j]))
 				ft_error("Error: Invalid Color\n");
 		if (i < 3)
@@ -70,10 +70,10 @@ void	set_data(t_game *game, char *line, int stage)
 	int		j;
 
 	i = 0;
-	while((line[i] == ' ' || line[i] == '	') && line[i])
+	while ((line[i] == ' ' || line[i] == '	') && line[i])
 		i++;
 	j = i;
-	while(line[j] != '\n' && line[j] != ' ' && line[j])
+	while (line[j] != '\n' && line[j] != ' ' && line[j])
 		j++;
 	res = malloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
@@ -97,12 +97,12 @@ int	set_elements(t_game *game, char *line, int stage)
 	int	j;
 
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 	{
 		j = i;
 		if (line[i] != ' ' && line[i] != '\n')
 		{
-			while(line[j] && line[j] != ' ')
+			while (line[j] && line[j] != ' ')
 				j++;
 			if (ft_strncmp(line + i, "NO", j - i) || ft_strncmp(line + i, "SO", j - i) ||
 				ft_strncmp(line + i, "WE", j - i) || ft_strncmp(line + i, "EA", j - i) ||
@@ -136,7 +136,7 @@ void	read_file(t_game *game, char *map_file)
 		if (stage >= 6)
 		{
 			if (*line == '\n')
-				ft_error("Error: Invalid Map 1\n");
+				ft_error("Error: Invalid Map\n");
 			str = ft_strjoin(str, line);
 			stage++;
 		}
@@ -147,16 +147,16 @@ void	read_file(t_game *game, char *map_file)
 	free(line);
 	game->map = ft_split(str, '\n');
 	if (stage < 8)
-		ft_error("Error: Invalid Map 2\n");
+		ft_error("Error: Invalid Map\n");
 	free(str);
 }
 
 void	validate_map(char **map)
 {
 	char	*tmp;
-	int		i;
-	int		c;
-	int		j;
+	size_t	i;
+	size_t	c;
+	size_t	j;
 
 	i = -1;
 	c = 0;
@@ -164,24 +164,26 @@ void	validate_map(char **map)
 	{
 		j = -1;
 		tmp = map[i];
-		while(tmp[++j])
+		while (tmp[++j])
 		{
 			if (tmp[j] == 'N' || tmp[j] == 'S' || tmp[j] == 'E' || tmp[j] == 'W')
 				c++;
 			if (c > 1 || ((j == 0 || tmp[j + 1] == '\0' || tmp[j + 1] == ' ' ||
 				i == 0 || map[i + 1] == NULL ||
-				(map[i + 1] && map[i + 1][j] == ' ') ||
-				(i > 0 && map[i - 1][j] == ' ')) &&
+				(map[i + 1] && j < ft_strlen(map[i + 1]) && map[i + 1][j] == ' ') ||
+				(i > 0 && j < ft_strlen(map[i - 1]) && map[i - 1][j] == ' ')) &&
 				tmp[j] != '1' && tmp[j] != ' ') ||
 				(tmp[j] != '1' && tmp[j] != '0' && tmp[j] != 'N' &&
 				tmp[j] != 'S' && tmp[j] != 'E' && tmp[j] != 'W' &&
 				tmp[j] != ' ' && tmp[j] != '	'))
 				{
 					//printf("%i %i\n", i, j);
-					ft_error("Error: Invalid Map 3\n");
+					ft_error("Error: Invalid Map\n");
 				}
 		}
 	}
+	if (c != 1)
+		ft_error("Error: Invalid Map\n");
 }
 
 void	parse(t_game *game, char *path)
