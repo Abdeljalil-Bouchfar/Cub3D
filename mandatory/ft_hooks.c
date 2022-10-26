@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/25 18:59:18 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:41:01 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 		if (game->r >= 0 && game->r <= 180.0)
 			dst = game->so_texadr + (int)(i * (S_W / lineh)) % S_W * game->llen2
 				+ (int)(x * S_W / 50) % S_W * (game->bpp2 / 8);
-		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst); // TODO: SEGV, run ./cub3d maps/{e b}.cub
 		y1++;
 		i++;
 	}
@@ -57,8 +57,6 @@ void	draw_rays(t_game *game)
 
 int	key_hook2(int keycode, t_game *game)
 {
-	int	hi;
-
 	if (keycode == UP)
 		game->keys[0] = 0;
 	else if (keycode == DOWN)
@@ -77,8 +75,6 @@ int	key_hook2(int keycode, t_game *game)
 
 int	key_hook1(int keycode, t_game *game)
 {
-	int	hi;
-
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)

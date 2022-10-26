@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 22:37:27 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:19:25 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int	ft_hook(t_game *game)
 	return (0);
 }
 
-int		key_hook3(int keycode, int x, int y, t_game *game)
+int		key_hook3(int keycode, t_game *game)
 {
 	int hi;
 
