@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 15:32:01 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:50:47 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ void	draw_rays(t_game *game)
 {
 	double	x, y;
 
-	game->r = game->pa - 30.0;
-	if (game->r < 0)
-		game->r += 360.0;
-	if (game->r > 360.0)
-		game->r -= 360.0;
+	game->r = fixang(game->pa - 30.0);
 	game->i = 0;
 	while (game->i < WIN_WIDTH)
 	{
@@ -29,10 +25,7 @@ void	draw_rays(t_game *game)
 		ft_drawl(game, x, y);
 		game->i++;
 		game->r += 60.0 / WIN_WIDTH;
-		if (game->r < 0)
-			game->r += 360.0;
-		if (game->r > 360.0)
-			game->r -= 360.0;
+		game->r = fixang(game->r);
 	}
 	ft_drawc(game, 0);
 }
@@ -81,23 +74,19 @@ int	key_hook1(int keycode, t_game *game)
 		ft_destroy(game);
 	else if (keycode == W)
 		game->offset += 3;
-	if (keycode == 47)
-	{
-		game->barn++;
-		if (game->barn > 8)
-			game->barn = 0;
-		mlx_destroy_image(game->mlx, game->bar);
-		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
-	}
-	else if (keycode == 43)
-	{
-		game->barn--;
-		if (game->barn < 0)
-			game->barn = 8;
-		mlx_destroy_image(game->mlx, game->bar);
-		game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
-	}
 	return (0);
+}
+
+void	get_player_angle(t_game *game, char c)
+{
+	if (c == 'N')
+		game->pa = 270.0;
+	else if (c == 'S')
+		game->pa = 90.0;
+	else if (c == 'W')
+		game->pa = 180.0;
+	else if (c == 'E')
+		game->pa = 0;
 }
 
 void	get_player_cord(t_game *game)
@@ -114,8 +103,9 @@ void	get_player_cord(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->px = j * 50;
-				game->py = i * 50;
+				game->px = j * 53.5;
+				game->py = i * 53.5;
+				get_player_angle(game, game->map[i][j]);
 				game->map[i][j] = '0';
 			}
 			j++;
