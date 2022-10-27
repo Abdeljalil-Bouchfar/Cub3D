@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dda.c                                           :+:      :+:    :+:   */
+/*   ft_dda_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/23 15:13:02 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:26:27 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 {

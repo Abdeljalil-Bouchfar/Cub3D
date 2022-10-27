@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 12:19:25 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:32:01 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	draw_rays(t_game *game)
 {
@@ -191,10 +191,12 @@ int	ft_hook(t_game *game)
 	return (0);
 }
 
-int		key_hook3(int keycode, t_game *game)
+int		key_hook3(int keycode, int x, int y, t_game *game)
 {
 	int hi;
-
+	
+	(void)x;
+	(void)y;
 	if (keycode == 4)
 	{
 		game->barn++;
