@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 15:50:47 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:55:45 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	draw_rays(t_game *game)
 	game->i = 0;
 	while (game->i < WIN_WIDTH)
 	{
-		x = (cos(degtorad(game->r)) * 5);
-		y = (sin(degtorad(game->r)) * 5);
+		x = cos(degtorad(game->r));
+		y = sin(degtorad(game->r));
 		ft_drawl(game, x, y);
 		game->i++;
 		game->r += 60.0 / WIN_WIDTH;
@@ -103,8 +103,8 @@ void	get_player_cord(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->px = j * 53.5;
-				game->py = i * 53.5;
+				game->px = j * 51.5;
+				game->py = i * 51.5;
 				get_player_angle(game, game->map[i][j]);
 				game->map[i][j] = '0';
 			}
@@ -121,16 +121,15 @@ void	get_img_path(t_game *game)
 	game->lineo = malloc(sizeof(float) * WIN_WIDTH);
 	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
 	game->keys = calloc(sizeof(int), 5);
-	game->pix = 1000;
+	game->pix = 10;
 	game->offset = 3;
 	game->cpa = 3;
 	game->barn = 0;
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
-	game->pa = 90.0;
+	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
-	get_player_cord(game);
 	game->tex1 = mlx_xpm_file_to_image(game->mlx, "xpms/stone/stone.xpm", &hi, &hi);
 	game->tadr1 = mlx_get_data_addr(game->tex1, &game->bits_per_pixel1, &game->line_length1, &game->endian1);
 	game->sky = mlx_xpm_file_to_image(game->mlx, "xpms/sky/sky5.xpm", &hi, &hi);
