@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 20:45:01 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:49:05 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,17 @@ void	ft_castray1(t_game *game, double x2, double y2)
 	y = game->py;
 	while (1)
 	{
-		if (game->map[(int)(y + y2) / 50][(int)(x + x2) / 50] != '0')
+		if (game->map[(int)(y) / 50][(int)(x + x2/4) / 50] != '0')
 		{
 			ft_castray2(game, x, y);
 			return ;
 		}
-		x += x2;
-		y += y2;
+		if (game->map[(int)(y + y2/4) / 50][(int)(x) / 50] != '0')
+		{
+			ft_castray2(game, x, y);
+			return ;
+		}
+		x += x2/4;
+		y += y2/4;
 	}
 }

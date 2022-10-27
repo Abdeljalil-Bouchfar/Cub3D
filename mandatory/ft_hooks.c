@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:41:01 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:16:07 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ int	ft_hook(t_game *game)
 		ft_moveup(game);
 	if (game->keys[1])
 		ft_movedown(game);
-	if (game->keys[2])
-		ft_moveright(game);
-	if (game->keys[3])
-		ft_moveleft(game);
 	if (game->keys[4])
 		ft_rotateright(game);
 	if (game->keys[5])
 		ft_rotateleft(game);
+	if (game->keys[2])
+		ft_moveright(game);
+	if (game->keys[3])
+		ft_moveleft(game);
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 	return (0);

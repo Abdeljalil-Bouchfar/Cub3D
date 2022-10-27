@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:41:05 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:23:15 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define S_W 1162
 # define W_W 1468
 # define E_W 1000
-# define P_SPEED 10
+# define P_SPEED 7
 
 typedef struct s_game
 {
