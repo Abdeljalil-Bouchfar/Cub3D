@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/26 13:18:37 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:37:58 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,56 +42,82 @@ int	ft_open_file(char *map_file)
 	return (fd);
 }
 
-int	get_color(char **str)
+int	get_color(char *line)
 {
-	uint8_t	rgb[3];
+	char	*tmp;
+	int		rgb[3];
 	int		i;
 	int		j;
+	int		n;
 
 	i = -1;
-	while (str && str[++i])
+	n = 0;
+	while (line[++i])
 	{
-		j = -1;
-		while (str[i][++j])
-			if (!ft_isdigit(str[i][j]))
+		while (line[i] && !ft_isdigit(line[i]) && (line[i] != ' ' || line[i] != '\t'))
+			i++;
+		j = i;
+		while (ft_isdigit(line[j]))
+			j++;
+		if (n < 3 && i != j)
+		{	
+			tmp = malloc(sizeof(char) * (j - i + 1));
+			ft_strlcpy(tmp, line + i, j - i + 1);
+			rgb[n] = ft_atoi(tmp);
+			if (rgb[n] < 0 || rgb[n] > 255)
 				ft_error("Error: Invalid Color\n");
-		if (i < 3)
-			rgb[i] = ft_atoi(str[i]);
+		}
+		i = j;
+		while (line[i] && !ft_isdigit(line[i]) && (line[i] != ' ' || line[i] != '\t' || line[i] == ','))
+		{
+			if (line[i] == ',')
+				n++;
+			i++;
+		}
+		if (n > 3)
+			ft_error("Error: Invalid Color\n");
+		j++;
 	}
-	if (i != 3)
-		ft_error("Error: Invalid Color\n");
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
-void	set_data(t_game *game, char *line, int stage)
+int	set_data(t_game *game, char *line, int code)
 {
 	char	*res;
 	int		i;
 	int		j;
 
 	i = 0;
-	while ((line[i] == ' ' || line[i] == '	') && line[i])
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	j = i;
-	while (line[j] != '\n' && line[j] != ' ' && line[j])
+	while (line[j] && line[j] != '\n')
 		j++;
 	res = malloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
-	if (stage == 0 && j - i > 0)
+	if ((code == 0 && game->no_textr) || (code == 1 && game->so_textr)
+		|| (code == 2 && game->we_textr) || (code == 3 && game->ea_textr)
+		|| (code == 4 && game->floor_c != -1) || (code == 5 && game->ceilling_c != -1))
+		{
+			printf("%i | %s\n", i, line);
+			ft_error("Error: Duplicate values\n");
+		}
+	if (code == 0 && j - i > 0)
 		game->no_textr = res;
-	else if (stage == 1 && j - i > 0)
+	else if (code == 1 && j - i > 0)
 		game->so_textr = res;
-	else if (stage == 2 && j - i > 0)
+	else if (code == 2 && j - i > 0)
 		game->we_textr = res;
-	else if (stage == 3 && j - i > 0)
+	else if (code == 3 && j - i > 0)
 		game->ea_textr = res;
-	else if (stage == 4 && j - i > 0)
-		game->floor_c = get_color(ft_split(res, ','));
-	else if (stage == 5 && j - i > 0)
-		game->ceilling_c = get_color(ft_split(res, ','));
+	else if (code == 4 && j - i > 0)
+		game->floor_c = get_color(res);
+	else if (code == 5 && j - i > 0)
+		game->ceilling_c = get_color(res);
+	return (1);
 }
 
-int	set_elements(t_game *game, char *line, int stage)
+int	extarct_data(t_game *game, char *line)
 {
 	int	i;
 	int	j;
@@ -104,16 +130,23 @@ int	set_elements(t_game *game, char *line, int stage)
 		{
 			while (line[j] && line[j] != ' ')
 				j++;
-			if (ft_strncmp(line + i, "NO", j - i)
-				|| ft_strncmp(line + i, "SO", j - i)
-				|| ft_strncmp(line + i, "WE", j - i)
-				|| ft_strncmp(line + i, "EA", j - i)
-				|| ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' '))
-			{
-				set_data(game, line + j, stage);
-				return (1);
-			}
+			if (!ft_strncmp(line + i, "NO", j - i))
+				return set_data(game, line + j, 0);
+			else if(!ft_strncmp(line + i, "SO", j - i))
+				return set_data(game, line + j, 1);
+			else if(!ft_strncmp(line + i, "WE", j - i))
+				return set_data(game, line + j, 2);
+			else if(!ft_strncmp(line + i, "EA", j - i))
+				return set_data(game, line + j, 3);
+			else if(line[i] == 'F' && line[i + 1] == ' ')
+				return set_data(game, line + j, 4);
+			else if(line[i] == 'C' && line[i + 1] == ' ')
+				return set_data(game, line + j, 5);
 		}
 	}
 	return (0);
 }
+
+// DUplicate items | DONE
+// spaces in colors and multble ','
+// giving mixed order | DONE

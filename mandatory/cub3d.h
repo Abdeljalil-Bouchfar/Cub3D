@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/27 22:18:31 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/28 17:12:54 by abouchfa         ###   ########.fr       */
+>>>>>>> 071dd553758f4ce0c90adab12ad621817fc5f6c8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,7 @@
 # include <math.h>
 
 # define WIN_HIGHT 1080.0
-# define WIN_WIDTH 1520.0
+# define WIN_WIDTH 1080.0
 
 # define BUFFER_SIZE 1
 # define UP 13
@@ -87,9 +91,7 @@ typedef struct s_game
 void	parse(t_game *game, char *path);
 void	validate_path(char *str, char *cub);
 int		ft_open_file(char *map_file);
-int		get_color(char **str);
-void	set_data(t_game *game, char *line, int stage);
-int		set_elements(t_game *game, char *line, int stage);
+int		extarct_data(t_game *game, char *line);
 
 // ----------------- Shared -------------------
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 18:20:39 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:42:35 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,15 @@ void	get_tex_path(t_game *g)
 	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
 }
 
-void	ft_init(t_game *game)
+void	ft_init(t_game *game, char *arg)
 {
+	game->floor_c = -1;
+	game->ceilling_c = -1;
+	game->no_textr = NULL;
+	game->so_textr = NULL;
+	game->we_textr = NULL;
+	game->ea_textr = NULL;
+	parse(game, arg);
 	game->keys = ft_calloc(sizeof(int), 6);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp,
@@ -81,8 +88,6 @@ void	ft_init(t_game *game)
 	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
-	game->px += cos(degtorad(game->pa));
-	game->py += sin(degtorad(game->pa));
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }
@@ -94,10 +99,9 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
 	game = malloc(sizeof(t_game));
-	parse(game, av[1]);
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
-	ft_init(game);
+	ft_init(game, av[1]);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);

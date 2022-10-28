@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 15:35:24 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:39:09 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	read_file(t_game *game, int fd)
 {
-	int		stage;
+	int		count;
 	char	*line;
 	char	*str;
 
 	str = ft_strdup("");
-	stage = 0;
+	count = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (stage <= 6 && *line == '\n')
+		else if (*line == '\n' && count == 6)
 			continue ;
-		if (stage >= 6)
+		if (count >= 6)
 		{
 			if (*line == '\n')
-				ft_error("Error: Invalid Map 3\n");
+				ft_error("Error: Invalid Map\nEmpty line\n");
 			str = ft_strjoin(str, line);
-			stage++;
+			count++;
 		}
-		else
-			stage += set_elements(game, line, stage);
+		else if (*line != '\n')
+			count += extarct_data(game, line);
 	}
 	game->map = ft_split(str, '\n');
 }
@@ -60,11 +60,11 @@ int	validate_line(char *line, char *pre, char *next, int i)
 					|| (j < ft_strlen(pre) && pre[j] == ' ')))
 			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
-				&& line[j] != ' ' && line[j] != '	'))
-				{
-					printf("%i %i\n", i, j);
-					ft_error("Error: Invalid Map\n");
-				}
+				&& line[j] != ' ' && line[j] != '\t'))
+			{
+				printf("Error: Invalid Map\nunexpected character (%i, %i)\n", i, j);
+				exit(1);
+			}
 	}
 	return (c);
 }
@@ -92,7 +92,7 @@ void	parse(t_game *game, char *path)
 		c += validate_line(game->map[i], pre, next, i);
 	}
 	if (c != 1 || i < 3)
-		ft_error("Error: Invalid Map\n");
+		ft_error("Error: Invalid Map\nMissing value\n");
 }
 
 // int main(int ac, char **av)
@@ -103,13 +103,19 @@ void	parse(t_game *game, char *path)
 // 	if (ac != 2)
 // 		ft_error("Error\nWrong Number Of Args\n");
 // 	game = malloc(sizeof(t_game));
+// 	game->floor_c = -1;
+// 	game->ceilling_c = -1;
+// 	game->no_textr = NULL;
+// 	game->so_textr = NULL;
+// 	game->we_textr = NULL;
+// 	game->ea_textr = NULL;
 // 	parse(game, av[1]);
 // 	printf("NO: %s\n", game->no_textr);
 // 	printf("SO: %s\n", game->so_textr);
 // 	printf("WE: %s\n", game->we_textr);
 // 	printf("EA: %s\n", game->ea_textr);
-// 	printf("FC: %i\n", game->floor_c);
-// 	printf("CE: %i\n", game->ceilling_c);
+// 	printf("F: %i\n", game->floor_c);
+// 	printf("C: %i\n", game->ceilling_c);
 // 	i = -1;
 // 	while (game->map[++i])
 // 		printf("%s\n", game->map[i]);
