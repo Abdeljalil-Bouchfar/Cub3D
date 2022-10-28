@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 22:23:33 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:50:44 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define DOOR_W 230
 # define FLOOR_W 890
 # define V 1
-# define P_SPEED 10
+# define P_SPEED 5
 # define W 13
 # define Q 12
 # define X 7
@@ -99,6 +99,7 @@ typedef struct s_game
 	char	*ea_textr;
 	int		floor_c;
 	int		ceilling_c;
+	int		speed;
 }		t_game;
 
 // ----------------- Parse -------------------
