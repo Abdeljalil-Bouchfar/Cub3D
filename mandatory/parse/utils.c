@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/28 17:37:58 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:13:02 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	get_color(char *line)
 			if (rgb[n] < 0 || rgb[n] > 255)
 				ft_error("Error: Invalid Color\n");
 		}
-		i = j;
+		i = j - 1;
 		while (line[i] && !ft_isdigit(line[i]) && (line[i] != ' ' || line[i] != '\t' || line[i] == ','))
 		{
 			if (line[i] == ',')
