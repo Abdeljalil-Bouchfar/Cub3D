@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 18:44:29 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:55:43 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,16 @@ int	key_hook2(int keycode, t_game *game)
 		game->keys[4] = 0;
 		game->hand = mlx_xpm_file_to_image(game->mlx, "xpms/hand/hand1.xpm", &hi, &hi);
 	}
+	else if (keycode == 48)
+	{
+		game->keys[5] = 0;
+		game->speed = 1;
+	}
 	return (0);
 }
 
 int	key_hook1(int keycode, t_game *game)
 {
-
-	int hi;
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
@@ -74,6 +77,8 @@ int	key_hook1(int keycode, t_game *game)
 		ft_destroy(game);
 	else if (keycode == W)
 		game->offset += 3;
+	else if (keycode == 48)
+		game->keys[5] = 1;
 	return (0);
 }
 
@@ -120,16 +125,17 @@ void	get_img_path(t_game *game)
 
 	game->lineo = malloc(sizeof(float) * WIN_WIDTH);
 	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
-	game->keys = calloc(sizeof(int), 5);
+	game->keys = calloc(sizeof(int), 6);
 	game->pix = 10;
 	game->offset = 3;
 	game->cpa = 3;
 	game->barn = 0;
+	game->speed = 1;
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	get_player_cord(game);
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	game->pdx = cos(degtorad(game->pa)) * (P_SPEED*game->speed);
+	game->pdy = sin(degtorad(game->pa)) * (P_SPEED*game->speed);
 	game->tex1 = mlx_xpm_file_to_image(game->mlx, "xpms/stone/stone.xpm", &hi, &hi);
 	game->tadr1 = mlx_get_data_addr(game->tex1, &game->bits_per_pixel1, &game->line_length1, &game->endian1);
 	game->sky = mlx_xpm_file_to_image(game->mlx, "xpms/sky/sky5.xpm", &hi, &hi);
@@ -172,6 +178,8 @@ int	ft_hook(t_game *game)
 		ft_moveright(game);
 	if (game->keys[3])
 		ft_moveleft(game);
+	if (game->keys[5])
+		game->speed = 2;
 	draw_rays(game);
 	game->pix+=3;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);

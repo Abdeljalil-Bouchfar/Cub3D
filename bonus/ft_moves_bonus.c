@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 15:26:32 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:50:13 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_moveup(t_game *game)
 	else
 		yo = 30;
 	if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '0' || game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '3')
-		game->px += game->pdx;
+		game->px += game->pdx*game->speed;
 	if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '0' || game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '3')
-		game->py += game->pdy;
+		game->py += game->pdy*game->speed;
 }
 
 void	ft_movedown(t_game *game)
@@ -45,9 +45,9 @@ void	ft_movedown(t_game *game)
 	else
 		yo = 20;
 	if (game->map[(int)(game->py / 50.0)][(int)((game->px-xo) / 50.0)] == '0' || game->map[(int)(game->py / 50.0)][(int)((game->px-xo) / 50.0)] == '3')
-		game->px -= game->pdx;
+		game->px -= game->pdx*game->speed;
 	if (game->map[(int)((game->py-yo) / 50.0)][(int)(game->px / 50.0)] == '0' || game->map[(int)((game->py-yo) / 50.0)][(int)(game->px / 50.0)] == '3')
-		game->py -= game->pdy;
+		game->py -= game->pdy*game->speed;
 }
 
 void	ft_moveright(t_game *game)
@@ -56,8 +56,8 @@ void	ft_moveright(t_game *game)
 	game->pix += 20;
 	if (game->pa > 360)
 		game->pa -= 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	game->pdx = cos(degtorad(game->pa)) * P_SPEED*game->speed;
+	game->pdy = sin(degtorad(game->pa)) * P_SPEED*game->speed;
 }
 
 void	ft_moveleft(t_game *game)
@@ -66,8 +66,8 @@ void	ft_moveleft(t_game *game)
 	game->pix -= 20;
 	if (game->pa < 0)
 		game->pa += 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	game->pdx = cos(degtorad(game->pa)) * P_SPEED*game->speed;
+	game->pdy = sin(degtorad(game->pa)) * P_SPEED*game->speed;
 }
 
 void	ft_opendoor(t_game *game)

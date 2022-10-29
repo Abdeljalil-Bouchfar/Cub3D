@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 17:12:54 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:39:35 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_game
 void	parse(t_game *game, char *path);
 void	validate_path(char *str, char *cub);
 int		ft_open_file(char *map_file);
-int		extarct_data(t_game *game, char *line);
+int		extract_data(t_game *game, char *line);
 
 // ----------------- Shared -------------------
 
