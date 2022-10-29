@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 17:42:35 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:59:23 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	get_player_cord(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->px = j * 53.5;
-				game->py = i * 53.5;
+				game->px = j * 51.5;
+				game->py = i * 51.5;
 				get_player_angle(game, game->map[i][j]);
 				game->map[i][j] = '0';
 			}
@@ -53,6 +53,7 @@ void	get_tex_path(t_game *g)
 {
 	int	hi;
 
+	// printf("[%s]\n", g->ea_textr);
 	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
 	if (!g->no_tex)
 		ft_error("wrong texture path!!\n(north texture)\n");
@@ -107,3 +108,9 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }
+
+
+/*todo list :
+	rak 9lbti colors dyal floor kat7to f ceilling
+	khassk skipi spaces after .xpm name
+*/
