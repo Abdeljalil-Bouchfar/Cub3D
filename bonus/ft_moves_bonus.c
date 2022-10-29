@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 18:50:13 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:25:34 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_movedown(t_game *game)
 		game->py -= game->pdy*game->speed;
 }
 
-void	ft_moveright(t_game *game)
+void	ft_rotateright(t_game *game)
 {
 	game->pa += 3;
 	game->pix += 20;
@@ -60,7 +60,7 @@ void	ft_moveright(t_game *game)
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED*game->speed;
 }
 
-void	ft_moveleft(t_game *game)
+void	ft_rotateleft(t_game *game)
 {
 	game->pa -= 3;
 	game->pix -= 20;
@@ -68,6 +68,60 @@ void	ft_moveleft(t_game *game)
 		game->pa += 360;
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED*game->speed;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED*game->speed;
+}
+
+void	ft_moveright(t_game *game)
+{
+	int	xo;
+	int	yo;
+	double nadx;
+	double nady;
+	double na;
+
+	game->pix += 20;
+	na = fixang(game->pa + 90.0);
+	nadx = cos(degtorad(na)) * P_SPEED;
+	nady = sin(degtorad(na)) * P_SPEED;
+	if (nadx < 0)
+		xo = -20;
+	else
+		xo = 20;
+	if (nady < 0)
+		yo = -20;
+	else
+		yo = 20;
+	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	{
+		game->px += nadx;
+		game->py += nady;
+	}
+}
+
+void	ft_moveleft(t_game *game)
+{
+	int	xo;
+	int	yo;
+	double nadx;
+	double nady;
+	double na;
+
+	game->pix -= 20;
+	na = fixang(game->pa - 90.0);
+	nadx = cos(degtorad(na)) * P_SPEED;
+	nady = sin(degtorad(na)) * P_SPEED;
+	if (nadx < 0)
+		xo = -20;
+	else
+		xo = 20;
+	if (nady < 0)
+		yo = -20;
+	else
+		yo = 20;
+	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	{
+		game->px += nadx;
+		game->py += nady;
+	}
 }
 
 void	ft_opendoor(t_game *game)

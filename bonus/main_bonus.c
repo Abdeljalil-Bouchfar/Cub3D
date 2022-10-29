@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 18:55:43 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:24:18 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ int	key_hook2(int keycode, t_game *game)
 		game->keys[4] = 0;
 		game->hand = mlx_xpm_file_to_image(game->mlx, "xpms/hand/hand1.xpm", &hi, &hi);
 	}
-	else if (keycode == 48)
-	{
+	else if (keycode == ROTATE_RIGHT)
 		game->keys[5] = 0;
+	else if (keycode == ROTATE_LEFT)
+		game->keys[6] = 0;
+	else if (keycode == 48)
 		game->speed = 1;
-	}
 	return (0);
 }
 
@@ -71,14 +72,16 @@ int	key_hook1(int keycode, t_game *game)
 		ft_opendoor(game);
 	else if (keycode == SPACE)
 		game->keys[4] = 1;
+	else if (keycode == ROTATE_RIGHT)
+		game->keys[5] = 1;
+	else if (keycode == ROTATE_LEFT)
+		game->keys[6] = 1;
 	else if (keycode == Q)
 		ft_build(game);
 	else if (keycode == X)
 		ft_destroy(game);
-	else if (keycode == W)
-		game->offset += 3;
 	else if (keycode == 48)
-		game->keys[5] = 1;
+		game->speed = 2;
 	return (0);
 }
 
@@ -125,7 +128,7 @@ void	get_img_path(t_game *game)
 
 	game->lineo = malloc(sizeof(float) * WIN_WIDTH);
 	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
-	game->keys = calloc(sizeof(int), 6);
+	game->keys = calloc(sizeof(int), 7);
 	game->pix = 10;
 	game->offset = 3;
 	game->cpa = 3;
@@ -144,8 +147,6 @@ void	get_img_path(t_game *game)
 	game->dooradr = mlx_get_data_addr(game->door, &game->bits_per_pixel6, &game->line_length6, &game->endian6);
 	game->door2 = mlx_xpm_file_to_image(game->mlx, "xpms/door/door2.xpm", &hi, &hi);
 	game->door2adr = mlx_get_data_addr(game->door2, &game->bits_per_pixel8, &game->line_length8, &game->endian8);
-	game->floor = mlx_xpm_file_to_image(game->mlx, "xpms/floor/floor.xpm", &hi, &hi);
-	game->flooradr = mlx_get_data_addr(game->floor, &game->bits_per_pixel7, &game->line_length7, &game->endian7);
 	creat_str_bar(game);
 	game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
 	game->hand = mlx_xpm_file_to_image(game->mlx, "xpms/hand/hand1.xpm", &hi, &hi);
@@ -164,13 +165,11 @@ int	ft_hook(t_game *game)
 		ft_anime(game);
 	if (game->keys[0])
 	{
-		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_moveup(game);
 	}
 	if (game->keys[1])
 	{
-		// game->offset *= -1;
 		game->cpa *= -1;
 		ft_movedown(game);
 	}
@@ -179,7 +178,9 @@ int	ft_hook(t_game *game)
 	if (game->keys[3])
 		ft_moveleft(game);
 	if (game->keys[5])
-		game->speed = 2;
+		ft_rotateright(game);
+	if (game->keys[6])
+		ft_rotateleft(game);
 	draw_rays(game);
 	game->pix+=3;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);

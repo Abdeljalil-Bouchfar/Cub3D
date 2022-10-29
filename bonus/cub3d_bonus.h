@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 18:50:44 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:24:39 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@
 # define WIN_WIDTH 1080.0
 
 # define BUFFER_SIZE 1
-# define UP 126
-# define DOWN 125
-# define RIGHT 124
-# define LEFT 123
+# define UP 13
+# define DOWN 1
+# define RIGHT 2
+# define LEFT 0
+# define ROTATE_RIGHT 124
+# define ROTATE_LEFT 123
 # define E 14
 # define SPACE 49
 # define IMG_W1 826
 # define DOOR_W 230
-# define FLOOR_W 890
 # define V 1
 # define P_SPEED 5
-# define W 13
 # define Q 12
 # define X 7
 
@@ -85,11 +85,6 @@ typedef struct s_game
 	int		bits_per_pixel8;
 	int		line_length8;
 	int		endian8;
-	void	*floor;
-	char	*flooradr;
-	int		bits_per_pixel7;
-	int		line_length7;
-	int		endian7;
 	void	*bar;
 	void	*hand;
 	char	*handadr;
@@ -134,7 +129,7 @@ double	degtorad(double a);
 double	dist(float ax, float ay, float bx, float by);
 int		ft_hook(t_game *game);
 void	ft_drawc(t_game *game, float y1);
-void	ft_drawf(t_game *game, double lineh, float lineo, float x, float y);
+void	ft_drawf(t_game *game, double lineh, float lineo);
 void	ft_cloud(t_game *game);
 void	ft_moveup(t_game *game);
 void	ft_movedown(t_game *game);
@@ -148,5 +143,7 @@ void	draw_rays(t_game *game);
 void	ft_build(t_game *game);
 void	ft_destroy(t_game *game);
 void	creat_str_bar(t_game *game);
+void	ft_rotateright(t_game *game);
+void	ft_rotateleft(t_game *game);
 
 #endif

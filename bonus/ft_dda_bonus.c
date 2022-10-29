@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 16:33:01 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:10:33 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,37 +50,15 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 	}
 }
 
-void	ft_drawf(t_game *game, double lineh, float lineo, float x, float y)
+void	ft_drawf(t_game *game, double lineh, float lineo)
 {
-	char	*dst;
-	float	dy, tx, ty, deg, rafix;
-	int		j,l;
-	(void)x;
-	(void)y;
+	int		j;
 
 	j = (int)(lineh + lineo);
-	l=0;
-	deg = degtorad(game->r);
-	rafix = cos(degtorad(fixang(game->pa-game->r)));
 	while (j < WIN_HIGHT)
 	{
-		dy = j-(WIN_HIGHT/2.0);
-		tx = game->px*20 + (cos(deg)*(WIN_HIGHT/2)*FLOOR_W/dy/rafix);
-		ty = game->py*20 + (sin(deg)*(WIN_HIGHT/2)*FLOOR_W/dy/rafix);
-		int y;
-		int x;
-		y = ((int)(ty)%FLOOR_W);
-		// printf("%d\n", y);
-		if (y < 0)
-			y *= -1;
-		x = ((int)(tx)%FLOOR_W);
-		if (x < 0)
-			x *= -1;
-		dst = game->flooradr + (y * game->line_length7 + x * (game->bits_per_pixel7 / 8));
-		my_mlx_pixel_put(game, game->i, j, *(unsigned int *)dst);
-		// my_mlx_pixel_put(game, game->i, 1080-j, *(unsigned int *)dst);
+		my_mlx_pixel_put(game, game->i, j, 0x0A8500);
 		j++;
-		l++;
 	}
 }
 
@@ -128,7 +106,7 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 		ft_drawline3(game, lineo, ch, x);
 	else
 		ft_drawline3(game, lineo, ch, y);
-	ft_drawf(game, lineh, lineo, x, y);
+	ft_drawf(game, lineh, lineo);
 }
 
 void	ft_3dscene2(t_game *game, float x, float y, int i)
@@ -156,7 +134,7 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 		ft_drawline4(game, lineo, ch, x);
 	else
 		ft_drawline4(game, lineo, ch, y);
-	ft_drawf(game, lineh, lineo, x, y);
+	ft_drawf(game, lineh, lineo);
 }
 
 void	ft_castray2(t_game *game, double x, double y)
