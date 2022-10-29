@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 16:07:46 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:27:53 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	get_tex_path(t_game *g)
 {
 	int	hi;
 
-	// printf("[%s]\n", g->ea_textr);
 	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
 	if (!g->no_tex)
 		ft_error("wrong texture path!!\n(north texture)\n");
@@ -111,6 +110,5 @@ int	main(int ac, char **av)
 
 
 /*todo list :
-	rak 9lbti colors dyal floor kat7to f ceilling
-	khassk skipi spaces after .xpm name
+	Mini map
 */

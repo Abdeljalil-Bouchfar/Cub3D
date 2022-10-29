@@ -3,7 +3,7 @@ SO 		 ./xpms/ressalhi2.xpm
 C 255, 255,255
 WE  	 ./xpms/ressalhi3.xpm
 EA          ./xpms/ressalhi4.xpm
-F  0 , 0 , 0 
+F  0 , 0 ,, 0 
  1111111111111111111111
 100000000000S00000000001
  1000000000000000000001

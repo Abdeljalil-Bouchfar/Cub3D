@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 17:39:09 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:55:20 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	read_file(t_game *game, int fd)
 			count++;
 		}
 		else if (*line != '\n')
-			count += extarct_data(game, line);
+			count += extract_data(game, line);
 	}
 	game->map = ft_split(str, '\n');
 }
@@ -110,10 +110,10 @@ void	parse(t_game *game, char *path)
 // 	game->we_textr = NULL;
 // 	game->ea_textr = NULL;
 // 	parse(game, av[1]);
-// 	printf("NO: %s\n", game->no_textr);
-// 	printf("SO: %s\n", game->so_textr);
-// 	printf("WE: %s\n", game->we_textr);
-// 	printf("EA: %s\n", game->ea_textr);
+// 	printf("NO: |%s|\n", game->no_textr);
+// 	printf("SO: |%s|\n", game->so_textr);
+// 	printf("WE: |%s|\n", game->we_textr);
+// 	printf("EA: |%s|\n", game->ea_textr);
 // 	printf("F: %i\n", game->floor_c);
 // 	printf("C: %i\n", game->ceilling_c);
 // 	i = -1;
