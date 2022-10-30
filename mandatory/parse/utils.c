@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/29 16:58:14 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/30 22:29:10 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,35 @@ int	get_color(char *line)
 	int		i;
 	int		j;
 	int		n;
+	int		q;
 
 	i = 0;
-	n = 0;
+	q = 0;
+	n = -1;
 	while (line[i])
 	{
-		while (line[i] && !ft_isdigit(line[i]))
-		{
-			if (line[i] == ',')
-				n++;
-			i++;
-		}
 		j = i;
-		while (ft_isdigit(line[j]))
+		while (line[j] && ft_isdigit(line[j]))
 			j++;
 		if (n < 3 && i != j)
 		{
 			tmp = malloc(sizeof(char) * (j - i + 1));
 			ft_strlcpy(tmp, line + i, j - i + 1);
-			rgb[n] = ft_atoi(tmp);
-			if (rgb[n] < 0 || rgb[n] > 255)
-				ft_error("Error: Invalid Color\n");
+			rgb[++n] = ft_atoi(tmp);
+			if (rgb[n] < 0 || rgb[n] > 255 || j - i > 3)
+				ft_error("Error: Invalid Color 1\n");
 		}
 		i = j;
-		if (n > 2)
-			ft_error("Error: Invalid Color\n");
+		while (line[i] && !ft_isdigit(line[i]))
+		{
+			if (line[i] == ',')
+				q++;
+			else if (line[i] != ' ' && line[i] != '\t')
+				ft_error("Error: Invalid Color 2\n");
+			i++;
+		}
+		if (n > 2 || q > 2)
+			ft_error("Error: Invalid Color 3\n");
 	}
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
@@ -90,6 +94,8 @@ int	set_data(t_game *game, char *line, int code)
 	j = i;
 	while (line[j] && line[j] != '\n' && (line[j] != ' ' || code == 4 || code == 5))
 		j++;
+			// while (code >= 0 && code <= 3 && line[j] && (line[j] == ' ' || line[j] == '\t' ||  line[j] == '\n'))
+	// 	j--;
 	res = malloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
 	if ((code == 0 && game->no_textr) || (code == 1 && game->so_textr)

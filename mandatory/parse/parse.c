@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 16:55:20 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:36:33 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	validate_line(char *line, char *pre, char *next, int i)
 		if (line[j] == 'N' || line[j] == 'S'
 			|| line[j] == 'E' || line[j] == 'W')
 			c++;
-		if ((line[j] != '1' && line[j] != ' '
+		if ((line[j] != '1' && line[j] != ' ' && line[j] != '\t'
 				&& (j == 0 || line[j + 1] == '\0'
 					|| next == NULL || pre == NULL
 					|| j >= ft_strlen(next) || j >= ft_strlen(pre)
-					|| (j < ft_strlen(next) && next[j] == ' ')
-					|| (j < ft_strlen(pre) && pre[j] == ' ')))
+					|| (j < ft_strlen(next) && (next[j] == ' ' || next[j] == '\t'))
+					|| (j < ft_strlen(pre) && (pre[j] == ' ' || pre[j] == '\t'))))
 			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
 				&& line[j] != ' ' && line[j] != '\t'))
