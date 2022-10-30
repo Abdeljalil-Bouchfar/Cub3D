@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:27:53 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/30 14:28:20 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,8 @@ int	main(int ac, char **av)
 
 /*todo list :
 	Mini map
+	this case "EA ./xpms/ressalhi4.xpm kkkkkkk" it should not work 
+	this case "C 100	,100   100,   100" it should not work 
+	this case "C 100,100,9223372036854775808" it should not work 
+
 */
