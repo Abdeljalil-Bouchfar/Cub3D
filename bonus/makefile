@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
+#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/01 09:19:06 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/01 16:06:12 by ressalhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = #-g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
 SRCS =	main_bonus.c \
 		parse/parse.c \
 		parse/utils.c \
@@ -33,7 +33,6 @@ SRCS =	main_bonus.c \
 		ft_moves_bonus.c \
 		ft_animation_bonus.c
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
-#OBJ = $(SRCS:.c=.o)
 
 all : $(NAME)
 
