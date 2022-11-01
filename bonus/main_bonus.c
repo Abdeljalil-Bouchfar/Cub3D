@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 07:21:26 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/01 08:08:34 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	get_img_path(t_game *game)
 	game->barn = 0;
 	game->speed = 1;
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
+	//game->mini_map = mlx_new_image(game->mlx, 200, 200);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * (P_SPEED*game->speed);
@@ -151,9 +152,27 @@ void	get_img_path(t_game *game)
 	game->bar = mlx_xpm_file_to_image(game->mlx, game->bartex[game->barn], &hi, &hi);
 	game->hand = mlx_xpm_file_to_image(game->mlx, "xpms/hand/hand1.xpm", &hi, &hi);
 	draw_rays(game);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 850, 900);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->bar, 170, 920);
+	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
+	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 850, 900);
+	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->bar, 170, 920);
+}
+
+void mini_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 20;
+	while (y < 200)
+	{
+		x = 20;
+		while (x < 200)
+		{
+			my_mlx_pixel_put(game, x, y, 0);
+			x++;
+		}
+		y++;
+	}
 }
 
 int	ft_hook(t_game *game)
@@ -182,6 +201,7 @@ int	ft_hook(t_game *game)
 	if (game->keys[6])
 		ft_rotateleft(game);
 	draw_rays(game);
+	mini_map(game);
 	game->pix+=3;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->hand, 0+game->cpa, 500);
