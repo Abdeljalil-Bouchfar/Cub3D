@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:24:18 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/01 07:21:26 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,9 +221,15 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
 	game = malloc(sizeof(t_game));
-	parse(game, av[1]);
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
+	game->floor_c = -1;
+	game->ceilling_c = -1;
+	game->no_textr = NULL;
+	game->so_textr = NULL;
+	game->we_textr = NULL;
+	game->ea_textr = NULL;
+	parse(game, av[1]);
 	get_img_path(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
