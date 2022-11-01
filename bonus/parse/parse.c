@@ -3,39 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 15:28:21 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/31 23:36:52 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d_bonus.h"
+#include "../cub3d.h"
+
+int	ft_open_file(char *map_file, int perm)
+{
+	int	fd;
+
+	fd = open(map_file, perm);
+	if (fd <= 0)
+		ft_error("Map file Wrong!!\n");
+	return (fd);
+}
+
+void	validate_path(char *str, char *cub)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(str) - ft_strlen(cub);
+	if (i <= 0 || str[i] != '.')
+		ft_error("Wrong File!!\n");
+	j = 0;
+	while (str[i + j] != '\0' && cub[j] != '\0')
+	{
+		if (str[i + j] == cub[j])
+			j++;
+		else
+			break ;
+	}
+	if (!(str[i + j] == '\0' && cub[j] == '\0'))
+		ft_error("That's Wrong!!, It Should be (*.cub)\n");
+}
 
 void	read_file(t_game *game, int fd)
 {
-	int		stage;
+	int		count;
 	char	*line;
 	char	*str;
 
 	str = ft_strdup("");
-	stage = 0;
+	count = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (stage <= 6 && *line == '\n')
+		else if (*line == '\n' && count == 6)
 			continue ;
-		if (stage >= 6)
+		if (count >= 6)
 		{
 			if (*line == '\n')
-				ft_error("Error: Invalid Map 3\n");
+				ft_error("Error: Invalid Map\nEmpty line\n");
 			str = ft_strjoin(str, line);
-			stage++;
+			count++;
 		}
-		else
-			stage += set_elements(game, line, stage);
+		else if (*line != '\n')
+			count += check_line(game, line);
 	}
 	game->map = ft_split(str, '\n');
 }
@@ -52,18 +82,19 @@ int	validate_line(char *line, char *pre, char *next, int i)
 		if (line[j] == 'N' || line[j] == 'S'
 			|| line[j] == 'E' || line[j] == 'W')
 			c++;
-		if ((line[j] != '1' && line[j] != ' '
-				&& (j == 0 || line[j + 1] == '\0'
-					|| next == NULL || pre == NULL
+		if ((line[j] != '1' && line[j] != ' ' && line[j] != '\t'
+				&& (j == 0 || line[j + 1] == '\0' || next == NULL || pre == NULL
 					|| j >= ft_strlen(next) || j >= ft_strlen(pre)
-					|| (j < ft_strlen(next) && next[j] == ' ')
-					|| (j < ft_strlen(pre) && pre[j] == ' ')))
+					|| (j < ft_strlen(next) && (next[j] == ' '
+							|| next[j] == '\t')) || (j < ft_strlen(pre)
+						&& (pre[j] == ' ' || pre[j] == '\t'))))
 			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
-				&& line[j] != ' ' && line[j] != '	'))
-				{
-					ft_error("Error: Invalid Map\n");
-				}
+				&& line[j] != ' ' && line[j] != '\t'))
+		{
+			printf("Error: Invalid Map\nunexpected character (%i, %i)\n", i, j);
+			exit(1);
+		}
 	}
 	return (c);
 }
@@ -77,7 +108,7 @@ void	parse(t_game *game, char *path)
 	char	*pre;
 
 	validate_path(path, ".cub");
-	fd = ft_open_file(path);
+	fd = ft_open_file(path, O_RDONLY);
 	read_file(game, fd);
 	i = -1;
 	c = 0;
@@ -91,7 +122,7 @@ void	parse(t_game *game, char *path)
 		c += validate_line(game->map[i], pre, next, i);
 	}
 	if (c != 1 || i < 3)
-		ft_error("Error: Invalid Map\n");
+		ft_error("Error: Invalid Map\nMissing value\n");
 }
 
 // int main(int ac, char **av)
@@ -102,13 +133,19 @@ void	parse(t_game *game, char *path)
 // 	if (ac != 2)
 // 		ft_error("Error\nWrong Number Of Args\n");
 // 	game = malloc(sizeof(t_game));
+// 	game->floor_c = -1;
+// 	game->ceilling_c = -1;
+// 	game->no_textr = NULL;
+// 	game->so_textr = NULL;
+// 	game->we_textr = NULL;
+// 	game->ea_textr = NULL;
 // 	parse(game, av[1]);
-// 	printf("NO: %s\n", game->no_textr);
-// 	printf("SO: %s\n", game->so_textr);
-// 	printf("WE: %s\n", game->we_textr);
-// 	printf("EA: %s\n", game->ea_textr);
-// 	printf("FC: %i\n", game->floor_c);
-// 	printf("CE: %i\n", game->ceilling_c);
+// 	printf("NO: |%s|\n", game->no_textr);
+// 	printf("SO: |%s|\n", game->so_textr);
+// 	printf("WE: |%s|\n", game->we_textr);
+// 	printf("EA: |%s|\n", game->ea_textr);
+// 	printf("F: %i\n", game->floor_c);
+// 	printf("C: %i\n", game->ceilling_c);
 // 	i = -1;
 // 	while (game->map[++i])
 // 		printf("%s\n", game->map[i]);

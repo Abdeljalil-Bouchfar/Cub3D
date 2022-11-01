@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:27:50 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/10/31 01:00:47 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ typedef struct s_game
 // ----------------- Parse -------------------
 
 void	parse(t_game *game, char *path);
-void	validate_path(char *str, char *cub);
-int		ft_open_file(char *map_file);
-int		extract_data(t_game *game, char *line);
+int		check_line(t_game *game, char *line);
 
 // ----------------- Shared -------------------
 
