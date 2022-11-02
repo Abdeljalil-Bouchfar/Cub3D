@@ -6,11 +6,93 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 16:27:35 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:49:15 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+void	ft_3dsprite(t_game *game, double x, double y, int i)
+{
+	double	lineh, ch;
+	float	lineo;
+	double	ca, len;
+
+	ca = game->pa - game->r;
+	if (ca < 0)
+		ca += 360;
+	if (ca > 360)
+		ca -= 360;
+	len = dist(game->px, game->py, x, y);
+	len = len * cos(degtorad(ca));
+	lineh = (50*WIN_HIGHT) / len;
+	ch = lineh;
+	if (lineh > WIN_HIGHT)
+		lineh = WIN_HIGHT;
+	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	if (i == 1)
+		ft_drawline5(game, lineo, ch, x);
+	else
+		ft_drawline5(game, lineo, ch, y);
+}
+
+void	ft_sprite2(t_game *game, double x, double y)
+{
+	double	x2;
+	double	y2;
+
+	x2 = cos(degtorad(game->r));
+	y2 = sin(degtorad(game->r));
+	while (1)
+	{
+		if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '4')
+		{
+			x += x2 / 64;
+			ft_3dsprite(game, x, y, 0);
+			return ;
+		}
+		if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '4')
+		{
+			y += y2 / 64;
+			ft_3dsprite(game, x, y, 1);
+			return ;
+		}
+		if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '1')
+			return ;
+		if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '1')
+			return ;
+		x += x2 / 64;
+		y += y2 / 64;
+	}
+}
+
+void	ft_sprite(t_game *game, double x2, double y2)
+{
+	double	x;
+	double	y;
+
+	x = game->px;
+	y = game->py;
+	while (1)
+	{
+		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] == '4')
+		{
+			ft_sprite2(game, x, y);
+			return ;
+		}
+		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] == '4')
+		{
+			ft_sprite2(game, x, y);
+			return ;
+		}
+		if (game->map[(int)y / 50][(int)(x + x2) / 50] == '1')
+			return ;
+		if (game->map[(int)(y + y2) / 50][(int)x / 50] == '1')
+			return ;
+		x += x2;
+		y += y2;
+	}
+}
 
 void	draw_rays(t_game *game)
 {
@@ -24,11 +106,12 @@ void	draw_rays(t_game *game)
 		x = cos(degtorad(game->r));
 		y = sin(degtorad(game->r));
 		ft_drawl(game, x, y);
+		ft_sprite(game, x, y);
 		game->i++;
 		game->r += 60.0 / WIN_WIDTH;
 		game->r = fixang(game->r);
 	}
-	ft_drawc(game, 0);
+	// ft_drawc(game, 0);
 }
 
 int	key_hook2(int keycode, t_game *game)
@@ -118,6 +201,9 @@ void	get_img_path(t_game *game)
 	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
 	game->keys = calloc(sizeof(int), 6);
 	game->speed = 1;
+	game->spritex = 0;
+	game->spritey = 0;
+	game->map[6][21] = '4';
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	//game->mini_map = mlx_new_image(game->mlx, 200, 200);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
@@ -130,6 +216,8 @@ void	get_img_path(t_game *game)
 	game->tadr1 = mlx_get_data_addr(game->tex1, &game->bits_per_pixel1, &game->line_length1, &game->endian1);
 	game->door = mlx_xpm_file_to_image(game->mlx, "xpms/door/door.xpm", &hi, &hi);
 	game->dooradr = mlx_get_data_addr(game->door, &game->bits_per_pixel6, &game->line_length6, &game->endian6);
+	game->sprite = mlx_xpm_file_to_image(game->mlx, "xpms/fire/fire1.xpm", &hi, &hi);
+	game->spriteadr = mlx_get_data_addr(game->sprite, &game->bits_per_pixel2, &game->line_length2, &game->endian2);
 	game->door2 = mlx_xpm_file_to_image(game->mlx, "xpms/door/door2.xpm", &hi, &hi);
 	game->door2adr = mlx_get_data_addr(game->door2, &game->bits_per_pixel8, &game->line_length8, &game->endian8);
 	draw_rays(game);
@@ -189,6 +277,7 @@ int	ft_hook(t_game *game)
 	mlx_destroy_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
+	ft_anime(game);
 	if (game->keys[0])
 		ft_moveup(game);
 	if (game->keys[1])
