@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 16:18:17 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:49:36 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 # define E 14
 # define IMG_W1 826
 # define DOOR_W 230
+# define SPRITE_W 256
 # define P_SPEED 8
-
+# define V 2
 typedef struct s_game
 {
 	void	*mlx;
@@ -47,6 +48,8 @@ typedef struct s_game
 	double	pdy;
 	double	pa;
 	double	r;
+	double	spritex;
+	double	spritey;
 	float	*lineo;
 	float	*lineh;
 	int		i;
@@ -61,6 +64,11 @@ typedef struct s_game
 	int		bits_per_pixel1;
 	int		line_length1;
 	int		endian1;
+	void	*sprite;
+	char	*spriteadr;
+	int		bits_per_pixel2;
+	int		line_length2;
+	int		endian2;
 	void	*door;
 	char	*dooradr;
 	int		bits_per_pixel6;
@@ -126,5 +134,6 @@ void	ft_destroy(t_game *game);
 void	creat_str_bar(t_game *game);
 void	ft_rotateright(t_game *game);
 void	ft_rotateleft(t_game *game);
-
+void	ft_drawline4(t_game *game, float y1, double lineh, float x);
+void	ft_drawline5(t_game *game, float y1, double lineh, float x);
 #endif

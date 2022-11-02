@@ -49,9 +49,3 @@
 // 	s[7] = i + 48;
 // 	return (s);
 // }
-
-int main()
-{
-	long i = 4147483647;
-	printf("%ld\n", i);
-}

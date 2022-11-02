@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 14:57:12 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:43:28 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,28 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 		if (y1 >= WIN_HIGHT)
 			break ;
 		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
-		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		if (*(unsigned int *)dst != 0xFF000000)
+			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		y1++;
+		i++;
+	}
+}
+
+void	ft_drawline5(t_game *game, float y1, double lineh, float x)
+{
+	char	*dst;
+	int		i;
+
+	i = 0;
+	if (lineh > WIN_HIGHT)
+		i = (lineh - WIN_HIGHT) / 2;
+	while (i < lineh)
+	{
+		if (y1 >= WIN_HIGHT)
+			break ;
+		dst = game->spriteadr + (int)(i * (SPRITE_W / lineh)) % SPRITE_W * game->line_length2 + (int)(x * SPRITE_W / 50) % SPRITE_W * (game->bits_per_pixel2/ 8);
+		if (*(unsigned int *)dst != 0xFF000000)
+			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
@@ -182,12 +203,12 @@ void	ft_drawl(t_game *game, double x2, double y2)
 	y = game->py;
 	while (1)
 	{
-		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] != '0' && game->map[(int)(y) / 50][(int)(x + x2) / 50] != '3')
+		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] == '1' || game->map[(int)(y) / 50][(int)(x + x2) / 50] == '2')
 		{
 			ft_castray2(game, x, y);
 			return ;
 		}
-		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] != '0' && game->map[(int)(y + y2) / 50][(int)(x) / 50] != '3')
+		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] == '1' || game->map[(int)(y + y2) / 50][(int)(x) / 50] == '2')
 		{
 			ft_castray2(game, x, y);
 			return ;
