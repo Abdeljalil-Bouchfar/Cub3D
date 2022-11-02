@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 16:21:19 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:28:05 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void draw_player(t_game *game, int x, int y)
 	{
 		while (xi - x < 20)
 		{
-			my_mlx_pixel_put(game, xi, yi, 0x000000);
+			my_mlx_pixel_put(game, xi, yi, 0xFF0000);
 			xi++;
 		}
 		yi++;
@@ -250,8 +250,8 @@ void mini_map(t_game *game)
 	int	y;
 
 	l = 0;
-	xi = game->px / 20 - 100;
-	yi = game->py / 20 - 100;
+	xi = (game->px / 20) - 100;
+	yi = (game->py / 20) - 100;
 	if (xi < 0)
 		xi = 0;
 	if (yi < 0)
