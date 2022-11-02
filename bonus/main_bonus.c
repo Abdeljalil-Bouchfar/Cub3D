@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 12:02:46 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:13:58 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,19 +186,19 @@ void mini_map(t_game *game)
 		{
 			if (dist(120, 120, x, y) <= 100)
 			{	
-				if (l > y / 15 && game->map[y / 15]
-					&& ft_strlen(game->map[y / 15]) > x / 15)
+				if (l > y / 20 && game->map[y / 20]
+					&& ft_strlen(game->map[y / 20]) > x / 20)
 				{
-					t = game->map[y / 15][x / 15];
+					t = game->map[y / 20][x / 20];
 					if (t != '1')
-						my_mlx_pixel_put(game, x, y, game->ceilling_c);
+						my_mlx_pixel_put(game, x, y, 0x808080);
 					else if (t == 'N' || t == 'S' || t == 'W' || t == 'E')
-						my_mlx_pixel_put(game, x, y, 10000);
+						my_mlx_pixel_put(game, x, y, 0x800000);
 					else
-						my_mlx_pixel_put(game, x, y, 0);
+						my_mlx_pixel_put(game, x, y, 0x008000);
 				}
 				else
-					my_mlx_pixel_put(game, x, y, 0);
+					my_mlx_pixel_put(game, x, y, 0x008000);
 			}
 			x++;
 		}

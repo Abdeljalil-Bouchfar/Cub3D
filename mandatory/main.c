@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/30 23:38:09 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/01 07:21:42 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,6 @@ void	get_tex_path(t_game *g)
 
 void	ft_init(t_game *game, char *arg)
 {
-	game->floor_c = -1;
-	game->ceilling_c = -1;
-	game->no_textr = NULL;
-	game->so_textr = NULL;
-	game->we_textr = NULL;
-	game->ea_textr = NULL;
-	parse(game, arg);
 	game->keys = ft_calloc(sizeof(int), 6);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp,
@@ -101,6 +94,13 @@ int	main(int ac, char **av)
 	game = malloc(sizeof(t_game));
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
+	game->floor_c = -1;
+	game->ceilling_c = -1;
+	game->no_textr = NULL;
+	game->so_textr = NULL;
+	game->we_textr = NULL;
+	game->ea_textr = NULL;
+	parse(game, av[1]);
 	ft_init(game, av[1]);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
