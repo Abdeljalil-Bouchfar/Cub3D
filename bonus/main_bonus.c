@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 16:28:05 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:20:05 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,13 +228,14 @@ void draw_player(t_game *game, int x, int y)
 	int	xi;
 	int	yi;
 
-	xi = x;
-	yi = y;
-	while (yi - y < 20)
+	yi = 0;
+	while (yi < 10)
 	{
-		while (xi - x < 20)
+		xi = 0;
+		while (xi < 10)
 		{
-			my_mlx_pixel_put(game, xi, yi, 0xFF0000);
+			//if (dist(115, 115, xi + x, yi + y) <= 10)
+				my_mlx_pixel_put(game, xi + x, yi + y, 0xFF0000);
 			xi++;
 		}
 		yi++;
@@ -250,8 +251,8 @@ void mini_map(t_game *game)
 	int	y;
 
 	l = 0;
-	xi = (game->px / 20) - 100;
-	yi = (game->py / 20) - 100;
+	xi = (game->px / 50)*20 - 120;
+	yi = (game->py / 50)*20 - 120;
 	if (xi < 0)
 		xi = 0;
 	if (yi < 0)
@@ -267,15 +268,9 @@ void mini_map(t_game *game)
 			if (dist(120, 120, x, y) <= 100)
 			{
 				if (l > ((y + yi )/ 20) && game->map[((y + yi )/ 20)]
-					&& ft_strlen(game->map[((y + yi )/ 20)]) > ((x + xi) / 20))
-				{
-					if (game->map[y / 20][((x + xi) / 20)] != '1')
-						my_mlx_pixel_put(game, x, y, 0x00FFFF);
-					else if ((int)(game->px / 20.0) == x && (int)(game->px / 20.0) == y)
-						draw_player(game, x, y);
-					else
-						my_mlx_pixel_put(game, x, y, 0x808080);
-				}
+					&& ft_strlen(game->map[((y + yi )/ 20)]) > ((x + xi) / 20)
+					&& game->map[((y + yi )/ 20)][((x + xi) / 20)] != '1')
+					my_mlx_pixel_put(game, x, y, 0x0A8500);
 				else
 					my_mlx_pixel_put(game, x, y, 0x808080);
 			}
@@ -283,6 +278,7 @@ void mini_map(t_game *game)
 		}
 		y++;
 	}
+	draw_player(game, 110, 110);
 }
 
 int	ft_hook(t_game *game)
