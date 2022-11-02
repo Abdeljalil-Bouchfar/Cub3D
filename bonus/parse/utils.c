@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/01 09:28:37 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:18:00 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,17 @@ int	get_color(char *line)
 	i = 0;
 	q = 0;
 	n = -1;
-	while (line[i])
+	while (i < ft_strlen(line))
 	{
-		i += set_nbr(line, &rgb[++n]);
-		while (line[i] && !ft_isdigit(line[i]))
+		i += set_nbr(line + i, &rgb[++n]);
+		while (i < ft_strlen(line) && !ft_isdigit(line[i]))
 		{
 			if (line[i] == ',')
 				q++;
-			else if (line[i] != ' ' && line[i] != '\t')
+			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			{
 				ft_error("Error: Invalid Color 2\n");
+			}
 			i++;
 		}
 		if (n > 2 || q > 2)
@@ -86,9 +88,12 @@ int	set_values(t_game *game, char *line, int code)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	j = i;
-	while (line[j] && line[j] != '\n'
-		&& (line[j] != ' ' || code == 4 || code == 5))
+	while (line[j] && line[j] != '\n')
+	{
+		if ((line[j] == ' ' || line[i] == '\t') && code < 4)
+			break;
 		j++;
+	}
 	res = malloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
 	if ((code == 0 && game->no_textr) || (code == 1 && game->so_textr)

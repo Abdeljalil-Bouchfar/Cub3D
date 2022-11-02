@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:32:48 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/27 15:26:42 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:01:40 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,4 @@ double	fixang(double a)
 	if (a < 0)
 		a += 360.0;
 	return (a);
-}
-
-char	*get_bar(int i)
-{
-	char	*s;
-
-	s = ft_strdup("bar/bar1.xpm");
-	s[7] = i + 48;
-	return (s);
-}
-
-void	creat_str_bar(t_game *game)
-{
-	int	i;
-
-	game->bartex = malloc(sizeof(char *) * 10);
-	i = 0;
-	while (i < 9)
-	{
-		game->bartex[i] = get_bar(i + 1);
-		i++;
-	}
-	game->bartex[i] = 0;
 }

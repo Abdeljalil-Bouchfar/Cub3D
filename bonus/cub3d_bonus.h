@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 08:07:18 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:18:17 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,15 @@
 # define ROTATE_RIGHT 124
 # define ROTATE_LEFT 123
 # define E 14
-# define SPACE 49
 # define IMG_W1 826
 # define DOOR_W 230
-# define V 1
-# define P_SPEED 5
-# define Q 12
-# define X 7
+# define P_SPEED 8
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	int		barn;
-	char	**bartex;
 	float	px;
 	float	py;
 	double	pdx;
@@ -54,12 +48,9 @@ typedef struct s_game
 	double	pa;
 	double	r;
 	float	*lineo;
-	int		offset;
-	int		cpa;
 	float	*lineh;
 	int		i;
 	int		*keys;
-	float	pix;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -70,11 +61,6 @@ typedef struct s_game
 	int		bits_per_pixel1;
 	int		line_length1;
 	int		endian1;
-	void	*sky;
-	char	*skyadr;
-	int		bits_per_pixel5;
-	int		line_length5;
-	int		endian5;
 	void	*door;
 	char	*dooradr;
 	int		bits_per_pixel6;
@@ -85,9 +71,6 @@ typedef struct s_game
 	int		bits_per_pixel8;
 	int		line_length8;
 	int		endian8;
-	void	*bar;
-	void	*hand;
-	char	*handadr;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;
@@ -95,6 +78,8 @@ typedef struct s_game
 	int		floor_c;
 	int		ceilling_c;
 	int		speed;
+	int		mousex;
+	int		mousey;
 }		t_game;
 
 // ----------------- Parse -------------------

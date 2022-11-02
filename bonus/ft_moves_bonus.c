@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:25:34 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:04:13 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_movedown(t_game *game)
 void	ft_rotateright(t_game *game)
 {
 	game->pa += 3;
-	game->pix += 20;
 	if (game->pa > 360)
 		game->pa -= 360;
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED*game->speed;
@@ -63,7 +62,6 @@ void	ft_rotateright(t_game *game)
 void	ft_rotateleft(t_game *game)
 {
 	game->pa -= 3;
-	game->pix -= 20;
 	if (game->pa < 0)
 		game->pa += 360;
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED*game->speed;
@@ -78,7 +76,6 @@ void	ft_moveright(t_game *game)
 	double nady;
 	double na;
 
-	game->pix += 20;
 	na = fixang(game->pa + 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;
@@ -105,7 +102,6 @@ void	ft_moveleft(t_game *game)
 	double nady;
 	double na;
 
-	game->pix -= 20;
 	na = fixang(game->pa - 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;

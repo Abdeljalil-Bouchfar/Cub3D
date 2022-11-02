@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:10:33 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:57:12 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_drawf(t_game *game, double lineh, float lineo)
 
 void	ft_drawc(t_game *game, float y1)
 {
-	char *dst;
 	int	i;
 	
 	i = 0;
@@ -73,8 +72,7 @@ void	ft_drawc(t_game *game, float y1)
 		y1 = 0;
 		while (y1 < game->lineo[i])
 		{
-			dst = game->skyadr + (int)(y1+100) * game->line_length5 + (int)(i+game->pix) * (game->bits_per_pixel5 / 8);
-			my_mlx_pixel_put(game, i, y1, *(unsigned int *)dst);
+			my_mlx_pixel_put(game, i, y1, game->ceilling_c);
 			y1++;
 		}
 		i++;

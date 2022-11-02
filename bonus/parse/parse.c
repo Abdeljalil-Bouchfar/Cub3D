@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 07:14:00 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:33:57 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	validate_line(char *line, char *pre, char *next, int i)
 						&& (pre[j] == ' ' || pre[j] == '\t'))))
 			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
+				&& line[j] != '2' && line[j] != '3' && line[j] != '4'
 				&& line[j] != ' ' && line[j] != '\t'))
 		{
 			printf("Error: Invalid Map\nunexpected character (%i, %i)\n", i, j);
