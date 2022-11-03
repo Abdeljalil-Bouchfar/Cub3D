@@ -6,93 +6,11 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 17:20:05 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:24:09 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-void	ft_3dsprite(t_game *game, double x, double y, int i)
-{
-	double	lineh, ch;
-	float	lineo;
-	double	ca, len;
-
-	ca = game->pa - game->r;
-	if (ca < 0)
-		ca += 360;
-	if (ca > 360)
-		ca -= 360;
-	len = dist(game->px, game->py, x, y);
-	len = len * cos(degtorad(ca));
-	lineh = (50*WIN_HIGHT) / len;
-	ch = lineh;
-	if (lineh > WIN_HIGHT)
-		lineh = WIN_HIGHT;
-	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	if (i == 1)
-		ft_drawline5(game, lineo, ch, x);
-	else
-		ft_drawline5(game, lineo, ch, y);
-}
-
-void	ft_sprite2(t_game *game, double x, double y)
-{
-	double	x2;
-	double	y2;
-
-	x2 = cos(degtorad(game->r));
-	y2 = sin(degtorad(game->r));
-	while (1)
-	{
-		if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '4')
-		{
-			x += x2 / 64;
-			ft_3dsprite(game, x, y, 0);
-			return ;
-		}
-		if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '4')
-		{
-			y += y2 / 64;
-			ft_3dsprite(game, x, y, 1);
-			return ;
-		}
-		if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '1')
-			return ;
-		if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '1')
-			return ;
-		x += x2 / 64;
-		y += y2 / 64;
-	}
-}
-
-void	ft_sprite(t_game *game, double x2, double y2)
-{
-	double	x;
-	double	y;
-
-	x = game->px;
-	y = game->py;
-	while (1)
-	{
-		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] == '4')
-		{
-			ft_sprite2(game, x, y);
-			return ;
-		}
-		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] == '4')
-		{
-			ft_sprite2(game, x, y);
-			return ;
-		}
-		if (game->map[(int)y / 50][(int)(x + x2) / 50] == '1')
-			return ;
-		if (game->map[(int)(y + y2) / 50][(int)x / 50] == '1')
-			return ;
-		x += x2;
-		y += y2;
-	}
-}
 
 void	draw_rays(t_game *game)
 {
@@ -111,7 +29,6 @@ void	draw_rays(t_game *game)
 		game->r += 60.0 / WIN_WIDTH;
 		game->r = fixang(game->r);
 	}
-	// ft_drawc(game, 0);
 }
 
 int	key_hook2(int keycode, t_game *game)
@@ -197,12 +114,8 @@ void	get_img_path(t_game *game)
 {
 	int	hi;
 
-	game->lineo = malloc(sizeof(float) * WIN_WIDTH);
-	game->lineh = malloc(sizeof(float) * WIN_WIDTH);
-	game->keys = calloc(sizeof(int), 6);
+	game->keys = ft_calloc(sizeof(int), 6);
 	game->speed = 1;
-	game->spritex = 0;
-	game->spritey = 0;
 	game->map[6][21] = '4';
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	//game->mini_map = mlx_new_image(game->mlx, 200, 200);
@@ -278,7 +191,7 @@ void mini_map(t_game *game)
 		}
 		y++;
 	}
-	draw_player(game, 110, 110);
+	draw_player(game, 115, 115);
 }
 
 int	ft_hook(t_game *game)

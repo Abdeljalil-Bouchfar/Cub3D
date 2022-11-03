@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 15:43:28 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:16:26 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,14 @@ void	ft_drawf(t_game *game, double lineh, float lineo)
 	}
 }
 
-void	ft_drawc(t_game *game, float y1)
+void	ft_drawc(t_game *game, float lineo)
 {
 	int	i;
 	
 	i = 0;
-	while (i < WIN_HIGHT)
+	while (i < lineo)
 	{
-		y1 = 0;
-		while (y1 < game->lineo[i])
-		{
-			my_mlx_pixel_put(game, i, y1, game->ceilling_c);
-			y1++;
-		}
+		my_mlx_pixel_put(game, game->i, i, 0x0BFBE9);
 		i++;
 	}
 }
@@ -117,15 +112,13 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	ch = lineh;
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
-	game->lineh[game->i] = lineh;
 	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
-	// lineo += game->offset;
-	game->lineo[game->i] = lineo;
 	if (i == 1)
 		ft_drawline3(game, lineo, ch, x);
 	else
 		ft_drawline3(game, lineo, ch, y);
 	ft_drawf(game, lineh, lineo);
+	ft_drawc(game, lineo);
 }
 
 void	ft_3dscene2(t_game *game, float x, float y, int i)
@@ -145,15 +138,13 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	ch = lineh;
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
-	game->lineh[game->i] = lineh;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	// lineo += game->offset;
-	game->lineo[game->i] = lineo;
 	if (i == 1)
 		ft_drawline4(game, lineo, ch, x);
 	else
 		ft_drawline4(game, lineo, ch, y);
 	ft_drawf(game, lineh, lineo);
+	ft_drawc(game, lineo);
 }
 
 void	ft_castray2(t_game *game, double x, double y)
