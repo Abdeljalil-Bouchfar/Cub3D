@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 15:16:26 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:41:16 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,7 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	float	lineo;
 	double	ca, len;
 
-	ca = game->pa - game->r;
-	if (ca < 0)
-		ca += 360;
-	if (ca > 360)
-		ca -= 360;
+	ca = fixang(game->pa - game->r);
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
 	lineh = (50*WIN_HIGHT) / len;
@@ -113,6 +109,7 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
+	lineo += game->offset;
 	if (i == 1)
 		ft_drawline3(game, lineo, ch, x);
 	else
@@ -127,11 +124,7 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	float	lineo;
 	double	ca, len;
 
-	ca = game->pa - game->r;
-	if (ca < 0)
-		ca += 360;
-	if (ca > 360)
-		ca -= 360;
+	ca = fixang(game->pa - game->r);
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
 	lineh = (50*WIN_HIGHT) / len;
@@ -139,6 +132,7 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	lineo += game->offset;
 	if (i == 1)
 		ft_drawline4(game, lineo, ch, x);
 	else

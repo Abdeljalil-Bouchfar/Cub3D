@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 15:24:09 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:54:19 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	get_img_path(t_game *game)
 
 	game->keys = ft_calloc(sizeof(int), 6);
 	game->speed = 1;
+	game->offset = 0;
 	game->map[6][21] = '4';
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	//game->mini_map = mlx_new_image(game->mlx, 200, 200);
@@ -225,13 +226,11 @@ int		key_hook3(int x, int y, t_game *game)
 		if (game->mousex < x)
 		{
 			game->mousex = x;
-			game->mousey = y;
 			ft_rotateright(game);
 		}
 		else if (game->mousex > x)
 		{
 			game->mousex = x;
-			game->mousey = y;
 			ft_rotateleft(game);
 		}
 	}

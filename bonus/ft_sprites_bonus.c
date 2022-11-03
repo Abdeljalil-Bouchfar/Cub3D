@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:30 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 15:20:59 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:41:27 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ void	ft_3dsprite(t_game *game, double x, double y, int i)
 	float	lineo;
 	double	ca, len;
 
-	ca = game->pa - game->r;
-	if (ca < 0)
-		ca += 360;
-	if (ca > 360)
-		ca -= 360;
+	ca = fixang(game->pa - game->r);
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
 	lineh = (50*WIN_HIGHT) / len;
@@ -30,6 +26,7 @@ void	ft_3dsprite(t_game *game, double x, double y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
+	lineo += game->offset;
 	if (i == 1)
 		ft_drawline5(game, lineo, ch, x);
 	else

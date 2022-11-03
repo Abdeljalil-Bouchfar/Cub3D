@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 15:26:01 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:40:58 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_game
 	int		speed;
 	int		mousex;
 	int		mousey;
+	int		offset;
 }		t_game;
 
 // ----------------- Parse -------------------
