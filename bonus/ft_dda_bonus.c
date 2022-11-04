@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 17:41:16 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:22:42 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	ft_drawline5(t_game *game, float y1, double lineh, float x)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->spriteadr + (int)(i * (SPRITE_W / lineh)) % SPRITE_W * game->line_length2 + (int)(x * SPRITE_W / 50) % SPRITE_W * (game->bits_per_pixel2/ 8);
+		dst = game->spriteadr[game->index/2] + (int)(i * (SPRITE_W / lineh)) % SPRITE_W * game->line_length2[game->index/2] + (int)(x * SPRITE_W / 50) % SPRITE_W * (game->bits_per_pixel2[game->index/2]/ 8);
+		// printf("%d\n", game->index);
 		if (*(unsigned int *)dst != 0xFF000000)
 			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
@@ -137,8 +138,6 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 		ft_drawline4(game, lineo, ch, x);
 	else
 		ft_drawline4(game, lineo, ch, y);
-	ft_drawf(game, lineh, lineo);
-	ft_drawc(game, lineo);
 }
 
 void	ft_castray2(t_game *game, double x, double y)
@@ -150,32 +149,32 @@ void	ft_castray2(t_game *game, double x, double y)
 	y2 = (sin(degtorad(game->r)) * 5);
 	while (1)
 	{
-		if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '1')
+		if (game->map[(int)y / 50][(int)(x + x2 / 32) / 50] == '1')
 		{
-			x += x2 / 64;
+			x += x2 / 32;
 			ft_3dscene(game, x, y, 0);
 			return ;
 		}
-		else if (game->map[(int)y / 50][(int)(x + x2 / 64) / 50] == '2')
+		// else if (game->map[(int)y / 50][(int)(x + x2 / 32) / 50] == '2')
+		// {
+		// 	x += x2 / 32;
+		// 	ft_3dscene2(game, x, y, 0);
+		// 	return ;
+		// }
+		if (game->map[(int)(y + y2 / 32) / 50][(int)x / 50] == '1')
 		{
-			x += x2 / 64;
-			ft_3dscene2(game, x, y, 0);
-			return ;
-		}
-		if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '1')
-		{
-			y += y2 / 64;
+			y += y2 / 32;
 			ft_3dscene(game, x, y, 1);
 			return ;
 		}
-		else if (game->map[(int)(y + y2 / 64) / 50][(int)x / 50] == '2')
-		{
-			y += y2 / 64;
-			ft_3dscene2(game, x, y, 1);
-			return ;
-		}
-		x += x2 / 64;
-		y += y2 / 64;
+		// else if (game->map[(int)(y + y2 / 32) / 50][(int)x / 50] == '2')
+		// {
+		// 	y += y2 / 32;
+		// 	ft_3dscene2(game, x, y, 1);
+		// 	return ;
+		// }
+		x += x2 / 32;
+		y += y2 / 32;
 	}
 }
 
@@ -188,12 +187,12 @@ void	ft_drawl(t_game *game, double x2, double y2)
 	y = game->py;
 	while (1)
 	{
-		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] == '1' || game->map[(int)(y) / 50][(int)(x + x2) / 50] == '2')
+		if (game->map[(int)(y) / 50][(int)(x + x2) / 50] != '0' && game->map[(int)(y) / 50][(int)(x + x2) / 50] != '3')
 		{
 			ft_castray2(game, x, y);
 			return ;
 		}
-		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] == '1' || game->map[(int)(y + y2) / 50][(int)(x) / 50] == '2')
+		if (game->map[(int)(y + y2) / 50][(int)(x) / 50] != '0' && game->map[(int)(y + y2) / 50][(int)(x) / 50] != '3')
 		{
 			ft_castray2(game, x, y);
 			return ;

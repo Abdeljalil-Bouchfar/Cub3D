@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 17:54:19 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:22:22 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,28 +110,77 @@ void	get_player_cord(t_game *game)
 	}
 }
 
+char	*get_tex(int i)
+{
+	char	*s;
+
+	s = ft_strdup("xpms/fire/fire1.xpm");
+	s[14] = i + 48;
+	return (s);
+}
+
+void	get_str_path(t_game *game)
+{
+	int	i;
+
+	game->spritetex = malloc(sizeof(char *) * 9);
+	i = 0;
+	while (i < 8)
+	{
+		game->spritetex[i] = get_tex(i + 1);
+		i++;
+	}
+	game->spritetex[i] = 0;
+}
+void	get_sprites(t_game *game)
+{
+	int	i;
+	int	hi;
+
+	get_str_path(game);
+	game->sprite = malloc(sizeof(void *) * 8);
+	game->spriteadr = malloc(sizeof(char *) * 9);
+	i = 0;
+	while (i < 8)
+	{
+		game->sprite[i] = mlx_xpm_file_to_image(game->mlx, game->spritetex[i], &hi, &hi);
+		i++;
+	}
+	i = 0;
+	while (i < 8)
+	{
+		game->spriteadr[i] = mlx_get_data_addr(game->sprite[i], &game->bits_per_pixel2[i], &game->line_length2[i], &game->endian2[i]);
+		i++;
+	}
+	game->spriteadr[i] = 0;
+}
+
 void	get_img_path(t_game *game)
 {
 	int	hi;
 
 	game->keys = ft_calloc(sizeof(int), 6);
+	game->bits_per_pixel2 = ft_calloc(sizeof(int), 9);
+	game->line_length2 = ft_calloc(sizeof(int), 9);
+	game->endian2 = ft_calloc(sizeof(int), 9);
 	game->speed = 1;
 	game->offset = 0;
-	game->map[6][21] = '4';
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	//game->mini_map = mlx_new_image(game->mlx, 200, 200);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	get_player_cord(game);
 	game->mousex = WIN_WIDTH / 2;
 	game->mousey = WIN_HIGHT / 2;
+	game->index = 0;
+	get_sprites(game);
 	game->pdx = cos(degtorad(game->pa)) * (P_SPEED*game->speed);
 	game->pdy = sin(degtorad(game->pa)) * (P_SPEED*game->speed);
 	game->tex1 = mlx_xpm_file_to_image(game->mlx, "xpms/stone/stone.xpm", &hi, &hi);
 	game->tadr1 = mlx_get_data_addr(game->tex1, &game->bits_per_pixel1, &game->line_length1, &game->endian1);
 	game->door = mlx_xpm_file_to_image(game->mlx, "xpms/door/door.xpm", &hi, &hi);
 	game->dooradr = mlx_get_data_addr(game->door, &game->bits_per_pixel6, &game->line_length6, &game->endian6);
-	game->sprite = mlx_xpm_file_to_image(game->mlx, "xpms/fire/fire1.xpm", &hi, &hi);
-	game->spriteadr = mlx_get_data_addr(game->sprite, &game->bits_per_pixel2, &game->line_length2, &game->endian2);
+	// game->sprite = mlx_xpm_file_to_image(game->mlx, "xpms/fire/fire1.xpm", &hi, &hi);
+	// game->spriteadr = mlx_get_data_addr(game->sprite, &game->bits_per_pixel2, &game->line_length2, &game->endian2);
 	game->door2 = mlx_xpm_file_to_image(game->mlx, "xpms/door/door2.xpm", &hi, &hi);
 	game->door2adr = mlx_get_data_addr(game->door2, &game->bits_per_pixel8, &game->line_length8, &game->endian8);
 	draw_rays(game);
@@ -200,7 +249,7 @@ int	ft_hook(t_game *game)
 	mlx_destroy_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
-	ft_anime(game);
+	// ft_anime(game);
 	if (game->keys[0])
 		ft_moveup(game);
 	if (game->keys[1])
@@ -213,6 +262,9 @@ int	ft_hook(t_game *game)
 		ft_rotateright(game);
 	if (game->keys[5])
 		ft_rotateleft(game);
+	game->index++;
+	if (game->index > 14)
+		game->index = 0;
 	draw_rays(game);
 	mini_map(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);

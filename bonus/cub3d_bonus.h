@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/03 17:40:58 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:22:53 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_game
 	double	pa;
 	double	r;
 	int		i;
+	int		index;
 	int		*keys;
 	void	*img;
 	char	*addr;
@@ -60,11 +61,14 @@ typedef struct s_game
 	int		bits_per_pixel1;
 	int		line_length1;
 	int		endian1;
-	void	*sprite;
-	char	*spriteadr;
-	int		bits_per_pixel2;
-	int		line_length2;
-	int		endian2;
+	char	**spritetex;
+	void	**sprite;
+	char	**spriteadr;
+	int		*bits_per_pixel2;
+	int		*line_length2;
+	int		*endian2;
+	void	*spr;
+	char	*spradr;
 	void	*door;
 	char	*dooradr;
 	int		bits_per_pixel6;
@@ -137,5 +141,5 @@ void	ft_drawline5(t_game *game, float y1, double lineh, float x);
 void	ft_3dsprite(t_game *game, double x, double y, int i);
 void	ft_sprite2(t_game *game, double x, double y);
 void	ft_sprite(t_game *game, double x2, double y2);
-
+void	ft_3dscene2(t_game *game, float x, float y, int i);
 #endif
