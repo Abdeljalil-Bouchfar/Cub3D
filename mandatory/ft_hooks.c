@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/28 15:43:10 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:31:22 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 		if (game->r >= 0 && game->r <= 180.0)
 			dst = game->so_texadr + (int)(i * (S_W / lineh)) % S_W * game->llen2
 				+ (int)(x * S_W / 50) % S_W * (game->bpp2 / 8);
-		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst); // TODO: SEGV, run ./cub3d maps/{e b}.cub
+		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
@@ -69,7 +69,6 @@ int	key_hook2(int keycode, t_game *game)
 		game->keys[4] = 0;
 	else if (keycode == ROTATE_LEFT)
 		game->keys[5] = 0;
-	
 	return (0);
 }
 

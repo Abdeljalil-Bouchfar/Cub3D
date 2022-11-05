@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/04 18:22:53 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:43:12 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,27 @@ typedef struct s_game
 	int		*keys;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		bpp;
+	int		ll;
+	int		end;
 	void	*tex1;
 	char	*tadr1;
-	int		bits_per_pixel1;
-	int		line_length1;
-	int		endian1;
+	int		bpp1;
+	int		ll1;
+	int		end1;
 	char	**spritetex;
 	void	**sprite;
 	char	**spriteadr;
-	int		*bits_per_pixel2;
-	int		*line_length2;
-	int		*endian2;
+	int		*bpp2;
+	int		*ll2;
+	int		*end2;
 	void	*spr;
 	char	*spradr;
 	void	*door;
 	char	*dooradr;
-	int		bits_per_pixel6;
-	int		line_length6;
-	int		endian6;
-	void	*door2;
-	char	*door2adr;
-	int		bits_per_pixel8;
-	int		line_length8;
-	int		endian8;
+	int		bpp6;
+	int		ll6;
+	int		end6;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;

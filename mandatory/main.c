@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 07:21:42 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:22:41 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	get_tex_path(t_game *g)
 	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
 }
 
-void	ft_init(t_game *game, char *arg)
+void	ft_init(t_game *game)
 {
 	game->keys = ft_calloc(sizeof(int), 6);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
@@ -83,6 +83,12 @@ void	ft_init(t_game *game, char *arg)
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
+}
+
+int	red_cross(void)
+{
+	ft_error("EXIT\n");
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -101,14 +107,10 @@ int	main(int ac, char **av)
 	game->we_textr = NULL;
 	game->ea_textr = NULL;
 	parse(game, av[1]);
-	ft_init(game, av[1]);
+	ft_init(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
+	mlx_hook(game->mlx_win, 17, 0, red_cross, NULL);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }
-
-
-/*todo list :
-	Mini map
-*/

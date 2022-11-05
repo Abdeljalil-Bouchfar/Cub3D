@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 15:54:27 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:44:30 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->tadr1 + (int)(i * (IMG_W1 / lineh)) % IMG_W1 * game->line_length1 + (int)(x * IMG_W1 / 50) % IMG_W1 * (game->bits_per_pixel1 / 8);
+		dst = game->tadr1 + (int)(i * (IMG_W1 / lineh)) % IMG_W1 * game->ll1 + (int)(x * IMG_W1 / 50) % IMG_W1 * (game->bpp1 / 8);
 		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
@@ -43,7 +43,7 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->line_length6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bits_per_pixel6/ 8);
+		dst = game->dooradr + (int)(i * (DOOR_W / lineh)) % DOOR_W * game->ll6 + (int)(x * DOOR_W / 50) % DOOR_W * (game->bpp6/ 8);
 		if (*(unsigned int *)dst != 0xFF000000)
 			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
@@ -63,7 +63,7 @@ void	ft_drawline5(t_game *game, float y1, double lineh, float x)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
-		dst = game->spriteadr[game->index/2] + (int)(i * (SPRITE_W / lineh)) % SPRITE_W * game->line_length2[game->index/2] + (int)(x * SPRITE_W / 50) % SPRITE_W * (game->bits_per_pixel2[game->index/2]/ 8);
+		dst = game->spriteadr[game->index/2] + (int)(i * (SPRITE_W / lineh)) % SPRITE_W * game->ll2[game->index/2] + (int)(x * SPRITE_W / 50) % SPRITE_W * (game->bpp2[game->index/2]/ 8);
 		if (*(unsigned int *)dst != 0xFF000000)
 			my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;

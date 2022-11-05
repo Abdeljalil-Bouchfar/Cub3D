@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:32:48 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/29 16:08:12 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:25:57 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 		if (game->r >= 90.0 && game->r <= 270.0)
 			dst = game->ea_texadr + (int)(i * (E_W / lineh)) % E_W * game->llen4
 				+ (int)(x * E_W / 50) % E_W * (game->bpp4 / 8);
-		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst); // TODO: SEGV, run ./cub3d maps/a.cub
+		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
