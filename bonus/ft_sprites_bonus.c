@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:30 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/04 18:21:17 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:53:53 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,26 @@ void	ft_sprite2(t_game *game, double x, double y)
 	y2 = sin(degtorad(game->r));
 	while (1)
 	{
-		if (game->map[(int)y / 50][(int)(x + x2 / 8) / 50] == '4')
+		if (game->map[(int)y / 50][(int)(x + x2 / 4) / 50] == '4')
 		{
-			x += x2 / 8;
+			x += x2 / 4;
 			ft_3dsprite(game, x, y, 0);
 			ft_3dsprite(game, x+5, y+5, 0);
 			return ;
 		}
-		else if (game->map[(int)y / 50][(int)(x + x2 / 8) / 50] == '2')
+		if (game->map[(int)(y + y2 / 4) / 50][(int)x / 50] == '4')
 		{
-			x += x2 / 8;
-			ft_3dscene2(game, x, y, 0);
-			return ;
-		}
-		if (game->map[(int)(y + y2 / 8) / 50][(int)x / 50] == '4')
-		{
-			y += y2 / 8;
+			y += y2 / 4;
 			ft_3dsprite(game, x, y, 1);
 			ft_3dsprite(game, x+5, y+5, 1);
 			return ;
 		}
-		else if (game->map[(int)(y + y2 / 8) / 50][(int)x / 50] == '2')
-		{
-			y += y2 / 8;
-			ft_3dscene2(game, x, y, 1);
+		if (game->map[(int)y / 50][(int)(x + x2 / 4) / 50] != '0' && game->map[(int)y / 50][(int)(x + x2 / 4) / 50] != '3')
 			return ;
-		}
-		if (game->map[(int)y / 50][(int)(x + x2 / 8) / 50] == '1')
+		if (game->map[(int)(y + y2 / 4) / 50][(int)x / 50] != '0' && game->map[(int)(y + y2 / 4) / 50][(int)x / 50] != '3')
 			return ;
-		if (game->map[(int)(y + y2 / 8) / 50][(int)x / 50] == '1')
-			return ;
-		x += x2 / 8;
-		y += y2 / 8;
+		x += x2 / 4;
+		y += y2 / 4;
 	}
 }
 
@@ -86,14 +74,14 @@ void	ft_sprite(t_game *game, double x2, double y2)
 	y = game->py;
 	while (1)
 	{
-		if (game->map[(int)(y + y2) / 50][(int)(x + x2) / 50] == '4' || game->map[(int)(y + y2) / 50][(int)(x + x2) / 50] == '2')
+		if (game->map[(int)(y + y2) / 50][(int)(x + x2) / 50] == '4')
 		{
 			ft_sprite2(game, x, y);
 			return ;
 		}
-		if (game->map[(int)y / 50][(int)(x + x2) / 50] == '1')
+		if (game->map[(int)y / 50][(int)(x + x2) / 50] != '0' && game->map[(int)y / 50][(int)(x + x2) / 50] != '3')
 			return ;
-		if (game->map[(int)(y + y2) / 50][(int)x / 50] == '1')
+		if (game->map[(int)(y + y2) / 50][(int)x / 50] != '0' && game->map[(int)(y + y2) / 50][(int)x / 50] != '3')
 			return ;
 		x += x2;
 		y += y2;

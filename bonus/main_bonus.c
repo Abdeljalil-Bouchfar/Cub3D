@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/04 18:22:22 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 13:35:55 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_rays(t_game *game)
 		x = cos(degtorad(game->r));
 		y = sin(degtorad(game->r));
 		ft_drawl(game, x, y);
-		ft_sprite(game, x, y);
+		ft_sprite(game, x*2, y*2);
 		game->i++;
 		game->r += 60.0 / WIN_WIDTH;
 		game->r = fixang(game->r);
