@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:44:30 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/06 23:52:50 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2.0) - (lineh / 2.0);
-	lineo += game->offset;
 	if (i == 1)
 		ft_drawline3(game, lineo, ch, x);
 	else
@@ -132,7 +131,6 @@ void	ft_3dscene2(t_game *game, float x, float y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	lineo += game->offset;
 	if (i == 1)
 		ft_drawline4(game, lineo, ch, x);
 	else
@@ -150,32 +148,32 @@ void	ft_castray2(t_game *game, double x, double y)
 	y2 = (sin(degtorad(game->r)) * 5);
 	while (1)
 	{
-		if (game->map[(int)y / 50][(int)(x + x2 / 32) / 50] == '1')
+		if (game->map[(int)y / 50][(int)(x + x2 / 16) / 50] == '1')
 		{
-			x += x2 / 32;
+			x += x2 / 16;
 			ft_3dscene(game, x, y, 0);
 			return ;
 		}
-		else if (game->map[(int)y / 50][(int)(x + x2 / 32) / 50] == '2')
+		else if (game->map[(int)y / 50][(int)(x + x2 / 16) / 50] == '2')
 		{
-			x += x2 / 32;
+			x += x2 / 16;
 			ft_3dscene2(game, x, y, 0);
 			return ;
 		}
-		if (game->map[(int)(y + y2 / 32) / 50][(int)x / 50] == '1')
+		if (game->map[(int)(y + y2 / 16) / 50][(int)x / 50] == '1')
 		{
-			y += y2 / 32;
+			y += y2 / 16;
 			ft_3dscene(game, x, y, 1);
 			return ;
 		}
-		else if (game->map[(int)(y + y2 / 32) / 50][(int)x / 50] == '2')
+		else if (game->map[(int)(y + y2 / 16) / 50][(int)x / 50] == '2')
 		{
-			y += y2 / 32;
+			y += y2 / 16;
 			ft_3dscene2(game, x, y, 1);
 			return ;
 		}
-		x += x2 / 32;
-		y += y2 / 32;
+		x += x2 / 16;
+		y += y2 / 16;
 	}
 }
 

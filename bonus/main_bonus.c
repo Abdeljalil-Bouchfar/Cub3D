@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/06 14:22:19 by ressalhi         ###   ########.fr       */
-=======
-/*   Updated: 2022/11/06 20:39:33 by abouchfa         ###   ########.fr       */
->>>>>>> da1f91b0d5fd8dc04f280eb94ef45c7b52d831b6
+/*   Updated: 2022/11/06 23:50:36 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +24,7 @@ void	draw_rays(t_game *g)
 		x = cos(degtorad(g->r));
 		y = sin(degtorad(g->r));
 		ft_drawl(g, x, y);
-		ft_sprite(g, x * 2, y * 2);
+		ft_sprite(g, x * 5, y * 5);
 		g->i++;
 		g->r += 60.0 / WIN_WIDTH;
 		g->r = fixang(g->r);
@@ -55,7 +51,7 @@ int	key_hook2(int keycode, t_game *g)
 int	key_hook1(int keycode, t_game *g)
 {
 	if (keycode == 53)
-		ft_error("g CLOSED\n");
+		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
 		g->keys[0] = 1;
 	else if (keycode == DOWN)
@@ -204,7 +200,7 @@ int	ft_hook(t_game *g)
 	if (g->index > 14)
 		g->index = 0;
 	draw_rays(g);
-	mini_map(g);
+	// mini_map(g);
 	mlx_put_image_to_window(g->mlx, g->mlx_win, g->img, 0, 0);
 	return (0);
 }
