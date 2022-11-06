@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/05 20:11:46 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/11/06 20:40:27 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRCS =	main_bonus.c \
 		ft_dda_bonus.c \
 		ft_moves_bonus.c \
 		ft_animation_bonus.c \
-		ft_sprites_bonus.c 
+		ft_sprites_bonus.c \
+		mini_map.c
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
 
