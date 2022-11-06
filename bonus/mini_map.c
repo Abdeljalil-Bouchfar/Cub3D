@@ -6,29 +6,36 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:39:09 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/06 20:59:05 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/06 22:04:35 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	draw_player(t_game *game, int x, int y)
+void	draw_player(t_game *game, float x, float y)
 {
-	void	*img;
 	int	xi;
 	int	yi;
 
 	yi = 0;
-	img = mlx_new_image(game->mlx, 10, 10);
 	while (yi < 10)
 	{
 		xi = 0;
 		while (xi < 10)
 		{
-			//if (dist(115, 115, xi + x, yi + y) <= 10)
-				my_mlx_pixel_put(game, xi + x, yi + y, 0x000000);
+			my_mlx_pixel_put(game, xi + x, yi + y, 0x000000);
 			xi++;
 		}
+		yi++;
+	}
+	yi = 0;
+	x += 5;
+	y += 5; 
+	while (yi < 15)
+	{
+		my_mlx_pixel_put(game, x, y, 0x000000);
+		x += cos(degtorad(game->pa));
+		y += sin(degtorad(game->pa));
 		yi++;
 	}
 }
@@ -73,5 +80,5 @@ void	mini_map(t_game *g)
 		}
 		y++;
 	}
-	draw_player(g, 115, 115);
+	draw_player(g, 120.0f, 120.0f);
 }
