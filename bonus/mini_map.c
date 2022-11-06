@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:39:09 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/06 22:04:35 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/06 22:26:25 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ void	draw_player(t_game *game, float x, float y)
 		}
 		yi++;
 	}
-	yi = 0;
 	x += 5;
 	y += 5; 
-	while (yi < 15)
+	while (yi--)
 	{
 		my_mlx_pixel_put(game, x, y, 0x000000);
 		x += cos(degtorad(game->pa));
 		y += sin(degtorad(game->pa));
-		yi++;
 	}
 }
 
