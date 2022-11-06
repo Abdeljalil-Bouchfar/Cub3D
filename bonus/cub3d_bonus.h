@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:43:12 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/06 14:20:45 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ typedef struct s_game
 	char	*ea_textr;
 	int		floor_c;
 	int		ceilling_c;
-	int		speed;
 	int		mousex;
-	int		mousey;
-	int		offset;
 }		t_game;
 
 // ----------------- Parse -------------------
