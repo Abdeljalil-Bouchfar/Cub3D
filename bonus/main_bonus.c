@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/06 14:22:19 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/06 20:39:33 by abouchfa         ###   ########.fr       */
+>>>>>>> da1f91b0d5fd8dc04f280eb94ef45c7b52d831b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,64 +181,6 @@ void	ft_init(t_game *g)
 	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &hi, &hi);
 	g->dooradr = mlx_get_data_addr(g->door, &g->bpp6, &g->ll6, &g->end6);
 	draw_rays(g);
-}
-
-void	draw_player(t_game *g, int x, int y)
-{
-	int	xi;
-	int	yi;
-
-	yi = 0;
-	while (yi < 10)
-	{
-		xi = 0;
-		while (xi < 10)
-		{
-			//if (dist(115, 115, xi + x, yi + y) <= 10)
-				my_mlx_pixel_put(g, xi + x, yi + y, 0xFF0000);
-			xi++;
-		}
-		yi++;
-	}
-}
-
-void	mini_map(t_game *g)
-{
-	int	l;
-	int	xi;
-	int	yi;
-	int	x;
-	int	y;
-
-	l = 0;
-	xi = (g->px / 50) * 20 - 120;
-	yi = (g->py / 50) * 20 - 120;
-	if (xi < 0)
-		xi = 0;
-	if (yi < 0)
-		yi = 0;
-	while (g->map[l])
-		l++;
-	y = 0;
-	while (y < 220)
-	{
-		x = 0;
-		while (x < 220)
-		{
-			if (dist(120, 120, x, y) <= 100)
-			{
-				if (l > ((y + yi) / 20) && g->map[((y + yi) / 20)]
-					&& ft_strlen(g->map[((y + yi) / 20)]) > ((x + xi) / 20)
-					&& g->map[((y + yi) / 20)][((x + xi) / 20)] != '1')
-						my_mlx_pixel_put(g, x, y, 0x0A8500);
-				else
-					my_mlx_pixel_put(g, x, y, 0x808080);
-			}
-			x++;
-		}
-		y++;
-	}
-	draw_player(g, 115, 115);
 }
 
 int	ft_hook(t_game *g)

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/06 14:20:45 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/06 20:39:56 by abouchfa         ###   ########.fr       */
+>>>>>>> da1f91b0d5fd8dc04f280eb94ef45c7b52d831b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +138,5 @@ void	ft_3dsprite(t_game *game, double x, double y, int i);
 void	ft_sprite2(t_game *game, double x, double y);
 void	ft_sprite(t_game *game, double x2, double y2);
 void	ft_3dscene2(t_game *game, float x, float y, int i);
+void	mini_map(t_game *g);
 #endif
