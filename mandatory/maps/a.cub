@@ -1,12 +1,12 @@
  NO ./xpms/ressalhi1.xpm
 
-	SO 				./xpms/ressalhi1.xpm
+	SO 				./xpms/ressalhi2.xpm
 
-WE 			./xpms/ressalhi1.xpm
+WE 			./xpms/ressalhi3.xpm
 
-EA ./xpms/ressalhi1.xpm
-F 110,100,0
-C 120,30,90
+EA ./xpms/ressalhi4.xpm
+C 55, 55,  9 
+F 10,10,   10
 
 
                                       111

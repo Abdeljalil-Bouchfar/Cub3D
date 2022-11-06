@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/01 16:04:13 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:02:39 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ft_moveup(t_game *game)
 		game->px += game->pdx*game->speed;
 	if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '0' || game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '3')
 		game->py += game->pdy*game->speed;
+	else if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '4')
+		ft_error("YOU DIE\n");
+	else if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '4')
+		ft_error("YOU DIE\n");
 }
 
 void	ft_movedown(t_game *game)

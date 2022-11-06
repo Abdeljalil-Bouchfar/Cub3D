@@ -6,13 +6,13 @@
 #    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/02 14:36:01 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/11/05 20:11:46 by ressalhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror
 SRCS =	main_bonus.c \
 		parse/parse.c \
 		parse/utils.c \
@@ -27,11 +27,14 @@ SRCS =	main_bonus.c \
 		shared/ft_split.c \
 		shared/ft_isdigit.c \
 		shared/ft_atoi.c \
+		shared/ft_calloc.c \
 		shared/ft_strlcpy.c \
 		shared/ft_strncmp.c \
 		ft_dda_bonus.c \
 		ft_moves_bonus.c \
-		ft_animation_bonus.c
+		ft_animation_bonus.c \
+		ft_sprites_bonus.c 
+
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
 
 all : $(NAME)

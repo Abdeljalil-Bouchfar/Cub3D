@@ -6,77 +6,77 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/26 17:01:58 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:28:36 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_moveup(t_game *game)
+void	ft_moveup(t_game *g)
 {
 	int	xo;
 	int	yo;
 
-	if (game->pdx < 0)
+	if (g->pdx < 0)
 		xo = -30;
 	else
 		xo = 30;
-	if (game->pdy < 0)
+	if (g->pdy < 0)
 		yo = -30;
 	else
 		yo = 30;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
-		game->px += game->pdx;
-	if (game->map[(int)((game->py + yo) / 50.0)][(int)(game->px / 50.0)] == '0')
-		game->py += game->pdy;
+	if (g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
+		g->px += g->pdx;
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')
+		g->py += g->pdy;
 }
 
-void	ft_movedown(t_game *game)
+void	ft_movedown(t_game *g)
 {
 	int	xo;
 	int	yo;
 
-	if (game->pdx < 0)
+	if (g->pdx < 0)
 		xo = -20;
 	else
 		xo = 20;
-	if (game->pdy < 0)
+	if (g->pdy < 0)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px - xo) / 50.0)] == '0')
-		game->px -= game->pdx;
-	if (game->map[(int)((game->py - yo) / 50.0)][(int)(game->px / 50.0)] == '0')
-		game->py -= game->pdy;
+	if (g->map[(int)(g->py / 50.0)][(int)((g->px - xo) / 50.0)] == '0')
+		g->px -= g->pdx;
+	if (g->map[(int)((g->py - yo) / 50.0)][(int)(g->px / 50.0)] == '0')
+		g->py -= g->pdy;
 }
 
-void	ft_rotateright(t_game *game)
+void	ft_rotateright(t_game *g)
 {
-	game->pa += 3;
-	if (game->pa > 360)
-		game->pa -= 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	g->pa += 3;
+	if (g->pa > 360)
+		g->pa -= 360;
+	g->pdx = cos(degtorad(g->pa)) * P_SPEED;
+	g->pdy = sin(degtorad(g->pa)) * P_SPEED;
 }
 
-void	ft_rotateleft(t_game *game)
+void	ft_rotateleft(t_game *g)
 {
-	game->pa -= 3;
-	if (game->pa < 0)
-		game->pa += 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	g->pa -= 3;
+	if (g->pa < 0)
+		g->pa += 360;
+	g->pdx = cos(degtorad(g->pa)) * P_SPEED;
+	g->pdy = sin(degtorad(g->pa)) * P_SPEED;
 }
 
-void	ft_moveright(t_game *game)
+void	ft_moveright(t_game *g)
 {
-	int	xo;
-	int	yo;
-	double nadx;
-	double nady;
-	double na;
+	int		xo;
+	int		yo;
+	double	nadx;
+	double	nady;
+	double	na;
 
-	na = fixang(game->pa + 90.0);
+	na = fixang(g->pa + 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;
 	if (nadx < 0)
@@ -87,22 +87,22 @@ void	ft_moveright(t_game *game)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 	{
-		game->px += nadx;
-		game->py += nady;
+		g->px += nadx;
+		g->py += nady;
 	}
 }
 
-void	ft_moveleft(t_game *game)
+void	ft_moveleft(t_game *g)
 {
-	int	xo;
-	int	yo;
-	double nadx;
-	double nady;
-	double na;
+	int		xo;
+	int		yo;
+	double	nadx;
+	double	nady;
+	double	na;
 
-	na = fixang(game->pa - 90.0);
+	na = fixang(g->pa - 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;
 	if (nadx < 0)
@@ -113,9 +113,9 @@ void	ft_moveleft(t_game *game)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 	{
-		game->px += nadx;
-		game->py += nady;
+		g->px += nadx;
+		g->py += nady;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 15:49:36 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:43:12 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <math.h>
-
 
 # define WIN_HIGHT 1080.0
 # define WIN_WIDTH 1080.0
@@ -37,6 +36,7 @@
 # define SPRITE_W 256
 # define P_SPEED 8
 # define V 2
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -48,37 +48,32 @@ typedef struct s_game
 	double	pdy;
 	double	pa;
 	double	r;
-	double	spritex;
-	double	spritey;
-	float	*lineo;
-	float	*lineh;
 	int		i;
+	int		index;
 	int		*keys;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		bpp;
+	int		ll;
+	int		end;
 	void	*tex1;
 	char	*tadr1;
-	int		bits_per_pixel1;
-	int		line_length1;
-	int		endian1;
-	void	*sprite;
-	char	*spriteadr;
-	int		bits_per_pixel2;
-	int		line_length2;
-	int		endian2;
+	int		bpp1;
+	int		ll1;
+	int		end1;
+	char	**spritetex;
+	void	**sprite;
+	char	**spriteadr;
+	int		*bpp2;
+	int		*ll2;
+	int		*end2;
+	void	*spr;
+	char	*spradr;
 	void	*door;
 	char	*dooradr;
-	int		bits_per_pixel6;
-	int		line_length6;
-	int		endian6;
-	void	*door2;
-	char	*door2adr;
-	int		bits_per_pixel8;
-	int		line_length8;
-	int		endian8;
+	int		bpp6;
+	int		ll6;
+	int		end6;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;
@@ -88,6 +83,7 @@ typedef struct s_game
 	int		speed;
 	int		mousex;
 	int		mousey;
+	int		offset;
 }		t_game;
 
 // ----------------- Parse -------------------
@@ -109,6 +105,7 @@ void	ft_error(char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 // ----------------- Graphics -------------------
 
@@ -136,4 +133,8 @@ void	ft_rotateright(t_game *game);
 void	ft_rotateleft(t_game *game);
 void	ft_drawline4(t_game *game, float y1, double lineh, float x);
 void	ft_drawline5(t_game *game, float y1, double lineh, float x);
+void	ft_3dsprite(t_game *game, double x, double y, int i);
+void	ft_sprite2(t_game *game, double x, double y);
+void	ft_sprite(t_game *game, double x2, double y2);
+void	ft_3dscene2(t_game *game, float x, float y, int i);
 #endif

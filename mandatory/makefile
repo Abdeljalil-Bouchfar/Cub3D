@@ -6,16 +6,16 @@
 #    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/10/29 16:08:33 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/11/05 18:30:21 by ressalhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = #-g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
 		parse/parse.c \
-		parse/utils.c \
+		parse/parse_utils.c \
 		utils.c \
 		shared/gnl.c \
 		shared/ft_strlen.c \
@@ -30,16 +30,15 @@ SRCS =	main.c \
 		shared/ft_strlcpy.c \
 		shared/ft_strncmp.c \
 		shared/ft_calloc.c \
-		ft_dda.c \
+		ft_raycasting.c \
 		ft_moves.c \
 		ft_hooks.c 
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
-#OBJ = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(SRCS)
-	$(CC) $(SRCS) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(MLX_FLAGS) -o $(NAME)
 
 clean :
 	rm -f $(NAME)
