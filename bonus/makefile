@@ -6,13 +6,13 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/06 20:40:27 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/07 15:30:10 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
 SRCS =	main_bonus.c \
 		parse/parse.c \
 		parse/utils.c \

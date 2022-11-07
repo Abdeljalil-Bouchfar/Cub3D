@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:39:09 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/06 22:26:25 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:11:18 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	draw_player(t_game *game, float x, float y)
 {
-	int	xi;
-	int	yi;
+	float	xi;
+	float	yi;
 
-	yi = 0;
-	while (yi < 10)
+	yi = -5;
+	while (yi < 5)
 	{
-		xi = 0;
-		while (xi < 10)
+		xi = -5;
+		while (xi < 5)
 		{
-			my_mlx_pixel_put(game, xi + x, yi + y, 0x000000);
-			xi++;
+			if (dist(120, 120, x + xi, y + yi) <= 5.0)
+				my_mlx_pixel_put(game, xi + x, yi + y, 0x000000);
+			xi += 0.1;
 		}
-		yi++;
+		yi += 0.1;
 	}
-	x += 5;
-	y += 5; 
+	yi = 10;
 	while (yi--)
 	{
-		my_mlx_pixel_put(game, x, y, 0x000000);
+		my_mlx_pixel_put(game, x, y, 0xFFFFFF);;
 		x += cos(degtorad(game->pa));
 		y += sin(degtorad(game->pa));
 	}

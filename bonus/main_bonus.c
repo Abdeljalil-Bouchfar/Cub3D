@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/06 20:39:33 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:31:14 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,8 +253,3 @@ int	main(int ac, char **av)
 	mlx_loop_hook(g->mlx, ft_hook, g);
 	mlx_loop(g->mlx);
 }
-
-/*
-	todo list:
-		problem in getcolor 
-*/
