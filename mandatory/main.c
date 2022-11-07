@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:22:41 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:39:00 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	ft_init(t_game *game)
 	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
-	draw_rays(game);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
+	// draw_rays(game);
+	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }
 
 int	red_cross(void)

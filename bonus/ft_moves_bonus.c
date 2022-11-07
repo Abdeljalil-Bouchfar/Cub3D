@@ -6,81 +6,85 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/06 23:43:24 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:54:22 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	ft_moveup(t_game *game)
+void	ft_moveup(t_game *g)
 {
 	int	xo;
 	int	yo;
-	
-	if (game->pdx < 0)
+
+	if (g->pdx < 0)
 		xo = -30;
 	else
 		xo = 30;
-	if (game->pdy < 0)
+	if (g->pdy < 0)
 		yo = -30;
 	else
 		yo = 30;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '0' || game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '3')
-		game->px += game->pdx;
-	if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '0' || game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '3')
-		game->py += game->pdy;
-	else if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '4')
-		ft_error("YOU DIE\n");
-	else if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '4')
+	if (g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '0'
+		|| g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '3')
+		g->px += g->pdx;
+	if (g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '0'
+		|| g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '3')
+		g->py += g->pdy;
+	else if (g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '4')
 		ft_error("YOU DIE\n");
 }
 
-void	ft_movedown(t_game *game)
+void	ft_movedown(t_game *g)
 {
 	int	xo;
 	int	yo;
-	
-	if (game->pdx < 0)
+
+	if (g->pdx < 0)
 		xo = -20;
 	else
 		xo = 20;
-	if (game->pdy < 0)
+	if (g->pdy < 0)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px-xo) / 50.0)] == '0' || game->map[(int)(game->py / 50.0)][(int)((game->px-xo) / 50.0)] == '3')
-		game->px -= game->pdx;
-	if (game->map[(int)((game->py-yo) / 50.0)][(int)(game->px / 50.0)] == '0' || game->map[(int)((game->py-yo) / 50.0)][(int)(game->px / 50.0)] == '3')
-		game->py -= game->pdy;
+	if (g->map[(int)(g->py / 50)][(int)((g->px - xo) / 50)] == '0'
+		|| g->map[(int)(g->py / 50)][(int)((g->px - xo) / 50)] == '3')
+		g->px -= g->pdx;
+	if (g->map[(int)((g->py - yo) / 50)][(int)(g->px / 50)] == '0'
+		|| g->map[(int)((g->py - yo) / 50)][(int)(g->px / 50)] == '3')
+		g->py -= g->pdy;
+	else if (g->map[(int)((g->py - yo) / 50)][(int)((g->px - xo) / 50)] == '4')
+		ft_error("YOU DIE\n");
 }
 
-void	ft_rotateright(t_game *game)
+void	ft_rotateright(t_game *g)
 {
-	game->pa += 3;
-	if (game->pa > 360)
-		game->pa -= 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	g->pa += 3;
+	if (g->pa > 360)
+		g->pa -= 360;
+	g->pdx = cos(degtorad(g->pa)) * P_SPEED;
+	g->pdy = sin(degtorad(g->pa)) * P_SPEED;
 }
 
-void	ft_rotateleft(t_game *game)
+void	ft_rotateleft(t_game *g)
 {
-	game->pa -= 3;
-	if (game->pa < 0)
-		game->pa += 360;
-	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
-	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
+	g->pa -= 3;
+	if (g->pa < 0)
+		g->pa += 360;
+	g->pdx = cos(degtorad(g->pa)) * P_SPEED;
+	g->pdy = sin(degtorad(g->pa)) * P_SPEED;
 }
 
-void	ft_moveright(t_game *game)
+void	ft_moveright(t_game *g)
 {
-	int	xo;
-	int	yo;
-	double nadx;
-	double nady;
-	double na;
+	int		xo;
+	int		yo;
+	double	nadx;
+	double	nady;
+	double	na;
 
-	na = fixang(game->pa + 90.0);
+	na = fixang(g->pa + 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;
 	if (nadx < 0)
@@ -91,22 +95,22 @@ void	ft_moveright(t_game *game)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '0')
 	{
-		game->px += nadx;
-		game->py += nady;
+		g->px += nadx;
+		g->py += nady;
 	}
 }
 
-void	ft_moveleft(t_game *game)
+void	ft_moveleft(t_game *g)
 {
-	int	xo;
-	int	yo;
-	double nadx;
-	double nady;
-	double na;
+	int		xo;
+	int		yo;
+	double	nadx;
+	double	nady;
+	double	na;
 
-	na = fixang(game->pa - 90.0);
+	na = fixang(g->pa - 90.0);
 	nadx = cos(degtorad(na)) * P_SPEED;
 	nady = sin(degtorad(na)) * P_SPEED;
 	if (nadx < 0)
@@ -117,66 +121,32 @@ void	ft_moveleft(t_game *game)
 		yo = -20;
 	else
 		yo = 20;
-	if (game->map[(int)((game->py + yo) / 50.0)][(int)((game->px + xo) / 50.0)] == '0')
+	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '0')
 	{
-		game->px += nadx;
-		game->py += nady;
+		g->px += nadx;
+		g->py += nady;
 	}
 }
 
-void	ft_opendoor(t_game *game)
+void	ft_opendoor(t_game *g)
 {
 	int	xo;
 	int	yo;
-	
-	if (game->pdx < 0)
-		xo = -50;
-	else
-		xo = 50;
-	if (game->pdy < 0)
-		yo = -50;
-	else
-		yo = 50;
-	if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '3')
-		game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] = '2';
-	else if (game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] == '2')
-		game->map[(int)(game->py / 50.0)][(int)((game->px+xo) / 50.0)] = '3';
-	else if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '3')
-		game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] = '2';
-	else if (game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] == '2')
-		game->map[(int)((game->py+yo) / 50.0)][(int)(game->px / 50.0)] = '3';
-}
 
-void	ft_build(t_game *game)
-{
-	int	xo;
-	int	yo;
-	
-	if (game->pdx < 0)
+	if (g->pdx < 0)
 		xo = -50;
 	else
 		xo = 50;
-	if (game->pdy < 0)
+	if (g->pdy < 0)
 		yo = -50;
 	else
 		yo = 50;
-	if (game->map[(int)((game->py+yo) / 50.0)][(int)((game->px+xo) / 50.0)] == '0')
-		game->map[(int)((game->py+yo) / 50.0)][(int)((game->px+xo) / 50.0)] = '1';
-}
-
-void	ft_destroy(t_game *game)
-{
-	int	xo;
-	int	yo;
-	
-	if (game->pdx < 0)
-		xo = -50;
-	else
-		xo = 50;
-	if (game->pdy < 0)
-		yo = -50;
-	else
-		yo = 50;
-	if (game->map[(int)((game->py+yo) / 50.0)][(int)((game->px+xo) / 50.0)] == '1')
-		game->map[(int)((game->py+yo) / 50.0)][(int)((game->px+xo) / 50.0)] = '0';
+	if (g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '3')
+		g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] = '2';
+	else if (g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '2')
+		g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] = '3';
+	else if (g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '3')
+		g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] = '2';
+	else if (g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '2')
+		g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] = '3';
 }

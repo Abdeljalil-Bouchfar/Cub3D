@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/06 23:41:50 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:18:15 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define E 14
 # define IMG_W1 826
 # define DOOR_W 230
-# define SPRITE_W 256
+# define S_W 256
 # define P_SPEED 8
 # define V 2
 
@@ -107,7 +107,7 @@ void	*ft_calloc(size_t count, size_t size);
 // ----------------- Graphics -------------------
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	ft_drawl(t_game *game, double x2, double y2);
+void	ft_raycast(t_game *game, double x2, double y2);
 double	degtorad(double a);
 double	dist(float ax, float ay, float bx, float by);
 int		ft_hook(t_game *game);
@@ -135,4 +135,5 @@ void	ft_sprite2(t_game *game, double x, double y);
 void	ft_sprite(t_game *game, double x2, double y2);
 void	ft_3dscene2(t_game *game, float x, float y, int i);
 void	mini_map(t_game *g);
+
 #endif

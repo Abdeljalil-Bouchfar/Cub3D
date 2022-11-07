@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:28:36 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:18:14 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_moveup(t_game *g)
 		yo = -30;
 	else
 		yo = 30;
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '1' && g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0' && g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')
+		return ;
 	if (g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 		g->px += g->pdx;
 	if (g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')

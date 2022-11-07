@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 13:05:28 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/07 19:57:06 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIN_HIGHT 1080.0
-# define WIN_WIDTH 1520.0
+# define WIN_HIGHT 920.0
+# define WIN_WIDTH 1280.0
 
 # define BUFFER_SIZE 1
 # define UP 13
@@ -34,7 +34,7 @@
 # define S_W 1162
 # define W_W 1468
 # define E_W 1000
-# define P_SPEED 7
+# define P_SPEED 5
 
 typedef struct s_game
 {
