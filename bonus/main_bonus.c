@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/07 16:17:33 by ressalhi         ###   ########.fr       */
-=======
-/*   Updated: 2022/11/07 15:48:51 by abouchfa         ###   ########.fr       */
->>>>>>> 3fbe20c9ed4f95c88e0c28ffad47fdd8f2e8226c
+/*   Updated: 2022/11/07 21:34:08 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +148,8 @@ void	get_sprites(t_game *g)
 	while (i < 8)
 	{
 		g->spriteadr[i] = mlx_get_data_addr(g->sprite[i],
-				&g->bpp2[i], &g->ll2[i],
-				&g->end2[i]);
+				&g->bpp6[i], &g->ll6[i],
+				&g->end6[i]);
 		i++;
 	}
 	g->spriteadr[i] = 0;
@@ -164,9 +160,9 @@ void	ft_init(t_game *g)
 	int	hi;
 
 	g->keys = ft_calloc(sizeof(int), 6);
-	g->bpp2 = ft_calloc(sizeof(int), 9);
-	g->ll2 = ft_calloc(sizeof(int), 9);
-	g->end2 = ft_calloc(sizeof(int), 9);
+	g->bpp6 = ft_calloc(sizeof(int), 9);
+	g->ll6 = ft_calloc(sizeof(int), 9);
+	g->end6 = ft_calloc(sizeof(int), 9);
 	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
 	g->addr = mlx_get_data_addr(g->img,
 			&g->bpp, &g->ll, &g->end);
@@ -176,10 +172,24 @@ void	ft_init(t_game *g)
 	get_sprites(g);
 	g->pdx = cos(degtorad(g->pa)) * (P_SPEED);
 	g->pdy = sin(degtorad(g->pa)) * (P_SPEED);
-	g->tex1 = mlx_xpm_file_to_image(g->mlx, "xpms/stone.xpm", &hi, &hi);
-	g->tadr1 = mlx_get_data_addr(g->tex1, &g->bpp1, &g->ll1, &g->end1);
+	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
+	if (!g->no_tex)
+		ft_error("wrong texture path!!\n(north texture)\n");
+	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &hi, &hi);
+	if (!g->we_tex)
+		ft_error("wrong texture path!!\n(west texture)\n");
+	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &hi, &hi);
+	if (!g->so_tex)
+		ft_error("wrong texture path!!\n(south texture)\n");
+	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &hi, &hi);
+	if (!g->ea_tex)
+		ft_error("wrong texture path!!\n(east texture)\n");
+	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp1, &g->llen1, &g->en1);
+	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp2, &g->llen2, &g->en2);
+	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp3, &g->llen3, &g->en3);
+	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
 	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &hi, &hi);
-	g->dooradr = mlx_get_data_addr(g->door, &g->bpp6, &g->ll6, &g->end6);
+	g->dooradr = mlx_get_data_addr(g->door, &g->bpp5, &g->ll5, &g->end5);
 	draw_rays(g);
 }
 
