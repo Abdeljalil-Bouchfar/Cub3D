@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/07 16:18:15 by ressalhi         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/07 15:48:43 by abouchfa         ###   ########.fr       */
+>>>>>>> 3fbe20c9ed4f95c88e0c28ffad47fdd8f2e8226c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +95,7 @@ int		check_line(t_game *game, char *line);
 // ----------------- Shared -------------------
 
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(char *s);
+char	*ft_strdup(char *src);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

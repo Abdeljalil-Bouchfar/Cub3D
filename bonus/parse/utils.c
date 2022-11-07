@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/02 15:18:00 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:37:07 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	get_color(char *line)
 		if (n > 2 || q > 2)
 			ft_error("Error: Invalid Color 3\n");
 	}
+	free(line);
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 

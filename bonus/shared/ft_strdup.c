@@ -6,11 +6,11 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 13:34:22 by abouchfa          #+#    #+#             */
-/*   Updated: 2021/11/12 18:33:33 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:16:20 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../cub3d_bonus.h"
 
 char	*ft_strdup(char *src)
 {

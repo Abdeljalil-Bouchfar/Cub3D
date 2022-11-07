@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 13:33:57 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:37:23 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	read_file(t_game *game, int fd)
 	int		count;
 	char	*line;
 	char	*str;
+	char	*tmp;
 
 	str = ft_strdup("");
 	count = 0;
@@ -61,13 +62,18 @@ void	read_file(t_game *game, int fd)
 		{
 			if (*line == '\n')
 				ft_error("Error: Invalid Map\nEmpty line\n");
+			tmp = str;
 			str = ft_strjoin(str, line);
+			free(tmp);
 			count++;
 		}
 		else if (*line != '\n')
 			count += check_line(game, line);
+		free(line);
 	}
+	free(line);
 	game->map = ft_split(str, '\n');
+	free(str);
 }
 
 int	validate_line(char *line, char *pre, char *next, int i)
