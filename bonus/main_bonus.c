@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:31:14 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:48:51 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_rays(t_game *g)
 		x = cos(degtorad(g->r));
 		y = sin(degtorad(g->r));
 		ft_drawl(g, x, y);
-		ft_sprite(g, x * 2, y * 2);
+		ft_sprite(g, x * 5, y * 5);
 		g->i++;
 		g->r += 60.0 / WIN_WIDTH;
 		g->r = fixang(g->r);
@@ -45,15 +45,13 @@ int	key_hook2(int keycode, t_game *g)
 		g->keys[4] = 0;
 	else if (keycode == ROTATE_LEFT)
 		g->keys[5] = 0;
-	else if (keycode == 48)
-		g->speed = 1;
 	return (0);
 }
 
 int	key_hook1(int keycode, t_game *g)
 {
 	if (keycode == 53)
-		ft_error("g CLOSED\n");
+		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
 		g->keys[0] = 1;
 	else if (keycode == DOWN)
@@ -68,8 +66,6 @@ int	key_hook1(int keycode, t_game *g)
 		g->keys[5] = 1;
 	else if (keycode == E)
 		ft_opendoor(g);
-	else if (keycode == 48)
-		g->speed = 2;
 	return (0);
 }
 
@@ -159,7 +155,7 @@ void	get_sprites(t_game *g)
 	g->spriteadr[i] = 0;
 }
 
-void	get_img_path(t_game *g)
+void	ft_init(t_game *g)
 {
 	int	hi;
 
@@ -167,18 +163,15 @@ void	get_img_path(t_game *g)
 	g->bpp2 = ft_calloc(sizeof(int), 9);
 	g->ll2 = ft_calloc(sizeof(int), 9);
 	g->end2 = ft_calloc(sizeof(int), 9);
-	g->speed = 1;
-	g->offset = 0;
 	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
 	g->addr = mlx_get_data_addr(g->img,
 			&g->bpp, &g->ll, &g->end);
 	get_player_cord(g);
 	g->mousex = WIN_WIDTH / 2;
-	g->mousey = WIN_HIGHT / 2;
 	g->index = 0;
 	get_sprites(g);
-	g->pdx = cos(degtorad(g->pa)) * (P_SPEED * g->speed);
-	g->pdy = sin(degtorad(g->pa)) * (P_SPEED * g->speed);
+	g->pdx = cos(degtorad(g->pa)) * (P_SPEED);
+	g->pdy = sin(degtorad(g->pa)) * (P_SPEED);
 	g->tex1 = mlx_xpm_file_to_image(g->mlx, "xpms/stone.xpm", &hi, &hi);
 	g->tadr1 = mlx_get_data_addr(g->tex1, &g->bpp1, &g->ll1, &g->end1);
 	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &hi, &hi);
@@ -207,7 +200,7 @@ int	ft_hook(t_game *g)
 	if (g->index > 14)
 		g->index = 0;
 	draw_rays(g);
-	mini_map(g);
+	// mini_map(g);
 	mlx_put_image_to_window(g->mlx, g->mlx_win, g->img, 0, 0);
 	return (0);
 }
@@ -246,7 +239,7 @@ int	main(int ac, char **av)
 	g->we_textr = NULL;
 	g->ea_textr = NULL;
 	parse(g, av[1]);
-	get_img_path(g);
+	ft_init(g);
 	mlx_hook(g->mlx_win, 2, 1L << 0, key_hook1, g);
 	mlx_hook(g->mlx_win, 3, 1L << 1, key_hook2, g);
 	mlx_hook(g->mlx_win, 6, 1L << 2, key_hook3, g);

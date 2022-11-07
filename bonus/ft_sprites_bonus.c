@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:30 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 15:53:53 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/06 23:49:01 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_3dsprite(t_game *game, double x, double y, int i)
 	if (lineh > WIN_HIGHT)
 		lineh = WIN_HIGHT;
 	lineo = (WIN_HIGHT/2) - (lineh / 2);
-	lineo += game->offset;
 	if (i == 1)
 		ft_drawline5(game, lineo, ch, x);
 	else
@@ -38,22 +37,20 @@ void	ft_sprite2(t_game *game, double x, double y)
 	double	x2;
 	double	y2;
 
-	x2 = cos(degtorad(game->r));
-	y2 = sin(degtorad(game->r));
+	x2 = cos(degtorad(game->r))*4;
+	y2 = sin(degtorad(game->r))*4;
 	while (1)
 	{
 		if (game->map[(int)y / 50][(int)(x + x2 / 4) / 50] == '4')
 		{
 			x += x2 / 4;
 			ft_3dsprite(game, x, y, 0);
-			ft_3dsprite(game, x+5, y+5, 0);
 			return ;
 		}
 		if (game->map[(int)(y + y2 / 4) / 50][(int)x / 50] == '4')
 		{
 			y += y2 / 4;
 			ft_3dsprite(game, x, y, 1);
-			ft_3dsprite(game, x+5, y+5, 1);
 			return ;
 		}
 		if (game->map[(int)y / 50][(int)(x + x2 / 4) / 50] != '0' && game->map[(int)y / 50][(int)(x + x2 / 4) / 50] != '3')
