@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:48:51 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:17:46 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int	ft_hook(t_game *g)
 	if (g->index > 14)
 		g->index = 0;
 	draw_rays(g);
-	// mini_map(g);
+	mini_map(g);
 	mlx_put_image_to_window(g->mlx, g->mlx_win, g->img, 0, 0);
 	return (0);
 }
