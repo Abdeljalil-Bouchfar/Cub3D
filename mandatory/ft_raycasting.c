@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:13:39 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 19:56:10 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:19:57 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	ft_3dscene(t_game *game, float x, float y, int i)
 	float	lineo;
 	double	ca;
 
-	ca = game->pa - game->r;
-	ca = fixang(ca);
+	ca = fixang(game->pa - game->r);
 	len = dist(game->px, game->py, x, y);
 	len = len * cos(degtorad(ca));
 	lineh = (50 * WIN_HIGHT) / len;

@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 22:29:31 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:51:43 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@
 # define W_W 1468
 # define E_W 1000
 # define DOOR_W 230
-# define SP_W 256
 # define P_SPEED 8
-# define V 2
 
 typedef struct s_game
 {
@@ -51,11 +49,7 @@ typedef struct s_game
 	double	pdy;
 	double	pa;
 	double	r;
-	double	length;
-	double	xhit;
-	double	yhit;
 	int		i;
-	int		index;
 	int		*keys;
 	void	*img;
 	char	*addr;
@@ -82,14 +76,6 @@ typedef struct s_game
 	int		bpp4;
 	int		llen4;
 	int		en4;
-	char	**spritetex;
-	void	**sprite;
-	char	**spriteadr;
-	int		*bpp6;
-	int		*ll6;
-	int		*end6;
-	void	*spr;
-	char	*spradr;
 	void	*door;
 	char	*dooradr;
 	int		bpp5;
@@ -128,35 +114,30 @@ void	*ft_calloc(size_t count, size_t size);
 // ----------------- Graphics -------------------
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	ft_raycast(t_game *game, double x2, double y2);
 double	degtorad(double a);
 double	dist(float ax, float ay, float bx, float by);
 int		ft_hook(t_game *game);
 void	ft_drawc(t_game *game, float y1);
 void	ft_drawf(t_game *game, double lineh, float lineo);
-void	ft_cloud(t_game *game);
 void	ft_moveup(t_game *game);
 void	ft_movedown(t_game *game);
 void	ft_moveright(t_game *game);
 void	ft_moveleft(t_game *game);
-void	ft_animation(t_game *game);
 void	ft_opendoor(t_game *game);
 double	fixang(double a);
-void	ft_anime(t_game *game);
 void	draw_rays(t_game *game);
-void	ft_build(t_game *game);
-void	ft_destroy(t_game *game);
-void	creat_str_bar(t_game *game);
 void	ft_rotateright(t_game *game);
 void	ft_rotateleft(t_game *game);
 void	ft_drawline1(t_game *game, float y1, double lineh, float x);
 void	ft_drawline2(t_game *game, float y1, double lineh, float x);
 void	ft_drawline3(t_game *game, float y1, double lineh, float x);
-void	ft_drawline4(t_game *game, float y1, double lineh, float x);
-void	ft_3dsprite(t_game *game, double x, double y, int i);
-void	ft_sprite2(t_game *game, double x, double y);
-void	ft_sprite(t_game *game, double x2, double y2);
 void	ft_3dscene2(t_game *game, float x, float y, int i);
 void	mini_map(t_game *g);
+void	ft_raycastwall(t_game *game, double x2, double y2);
+int		ft_wallordoor(t_game *game, double x, double y, char c);
+int		key_hook1(int keycode, t_game *g);
+int		key_hook2(int keycode, t_game *g);
+int		key_hook3(int x, int y, t_game *g);
+int		red_cross(void);
 
 #endif

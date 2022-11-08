@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:39:09 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/07 12:11:18 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:00:00 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	mini_map(t_game *g)
 					{
 						if (g->map[((y + yi) / 20)][((x + xi) / 20)] == '2')
 							my_mlx_pixel_put(g, x, y, 0xFFFF00);
-						else if (g->map[((y + yi) / 20)][((x + xi) / 20)] == '4')
-							my_mlx_pixel_put(g, x, y, 0xFF0000);
 						else
 							my_mlx_pixel_put(g, x, y, 0x0A8500);
 					}

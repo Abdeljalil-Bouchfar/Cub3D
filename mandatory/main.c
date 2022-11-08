@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 21:58:10 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:48:58 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_player_angle(t_game *game, char c)
 
 void	get_player_cord(t_game *game)
 {
-	int	i; 
+	int	i;
 	int	j;
 
 	i = 0;
@@ -83,12 +83,6 @@ void	ft_init(t_game *game)
 	game->pdy = sin(degtorad(game->pa)) * P_SPEED;
 	draw_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
-}
-
-int	red_cross(void)
-{
-	ft_error("EXIT\n");
-	return (0);
 }
 
 int	main(int ac, char **av)
