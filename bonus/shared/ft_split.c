@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:35:49 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 14:17:15 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:38:03 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*ft_addw(const char *s, char c)
 
 	i = 0;
 	j = ft_wordlen(s, c);
-	w = malloc(j + 1);
+	w = alloc(j + 1);
 	if (!w)
 		return (0);
 	while (s[i] != c && s[i] && j > 0)
@@ -78,7 +78,7 @@ char	**ft_split(char *s, char c)
 	j = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(char *) * (ft_wordc(s, c) + 1));
+	tab = alloc(sizeof(char *) * (ft_wordc(s, c) + 1));
 	if (!tab)
 		return (0);
 	while (s[i])

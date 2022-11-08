@@ -6,7 +6,7 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/07 15:30:10 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/08 13:23:49 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ SRCS =	main_bonus.c \
 		shared/ft_calloc.c \
 		shared/ft_strlcpy.c \
 		shared/ft_strncmp.c \
-		ft_dda_bonus.c \
+		shared/memmory_utils.c \
+		ft_raycasting_bonus.c \
 		ft_moves_bonus.c \
-		ft_animation_bonus.c \
 		ft_sprites_bonus.c \
 		mini_map.c
 

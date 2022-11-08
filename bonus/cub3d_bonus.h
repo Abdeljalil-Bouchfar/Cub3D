@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:48:43 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:18:13 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,20 @@
 # define ROTATE_RIGHT 124
 # define ROTATE_LEFT 123
 # define E 14
-# define IMG_W1 826
+# define N_W 1190
+# define S_W 1162
+# define W_W 1468
+# define E_W 1000
 # define DOOR_W 230
-# define SPRITE_W 256
+# define SP_W 256
 # define P_SPEED 8
 # define V 2
+
+typedef struct s_allocs
+{
+	void			*content;
+	struct s_allocs	*next;
+}	t_allocs;
 
 typedef struct s_game
 {
@@ -48,6 +57,9 @@ typedef struct s_game
 	double	pdy;
 	double	pa;
 	double	r;
+	double	length;
+	double	xhit;
+	double	yhit;
 	int		i;
 	int		index;
 	int		*keys;
@@ -56,24 +68,39 @@ typedef struct s_game
 	int		bpp;
 	int		ll;
 	int		end;
-	void	*tex1;
-	char	*tadr1;
+	void	*no_tex;
+	char	*no_texadr;
 	int		bpp1;
-	int		ll1;
-	int		end1;
+	int		llen1;
+	int		en1;
+	void	*so_tex;
+	char	*so_texadr;
+	int		bpp2;
+	int		llen2;
+	int		en2;
+	void	*we_tex;
+	char	*we_texadr;
+	int		bpp3;
+	int		llen3;
+	int		en3;
+	void	*ea_tex;
+	char	*ea_texadr;
+	int		bpp4;
+	int		llen4;
+	int		en4;
 	char	**spritetex;
 	void	**sprite;
 	char	**spriteadr;
-	int		*bpp2;
-	int		*ll2;
-	int		*end2;
+	int		*bpp6;
+	int		*ll6;
+	int		*end6;
 	void	*spr;
 	char	*spradr;
 	void	*door;
 	char	*dooradr;
-	int		bpp6;
-	int		ll6;
-	int		end6;
+	int		bpp5;
+	int		ll5;
+	int		end5;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;
@@ -90,6 +117,8 @@ int		check_line(t_game *game, char *line);
 
 // ----------------- Shared -------------------
 
+void	*alloc(size_t size);
+void	ft_lstclear(void);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *src);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -107,7 +136,7 @@ void	*ft_calloc(size_t count, size_t size);
 // ----------------- Graphics -------------------
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	ft_drawl(t_game *game, double x2, double y2);
+void	ft_raycast(t_game *game, double x2, double y2);
 double	degtorad(double a);
 double	dist(float ax, float ay, float bx, float by);
 int		ft_hook(t_game *game);
@@ -128,11 +157,16 @@ void	ft_destroy(t_game *game);
 void	creat_str_bar(t_game *game);
 void	ft_rotateright(t_game *game);
 void	ft_rotateleft(t_game *game);
+void	ft_drawline1(t_game *game, float y1, double lineh, float x);
+void	ft_drawline2(t_game *game, float y1, double lineh, float x);
+void	ft_drawline3(t_game *game, float y1, double lineh, float x);
 void	ft_drawline4(t_game *game, float y1, double lineh, float x);
-void	ft_drawline5(t_game *game, float y1, double lineh, float x);
 void	ft_3dsprite(t_game *game, double x, double y, int i);
 void	ft_sprite2(t_game *game, double x, double y);
 void	ft_sprite(t_game *game, double x2, double y2);
 void	ft_3dscene2(t_game *game, float x, float y, int i);
 void	mini_map(t_game *g);
+
+t_allocs	**g_allocs;
+
 #endif

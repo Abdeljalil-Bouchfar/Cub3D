@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 10:17:46 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:16:37 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_rays(t_game *g)
 	{
 		x = cos(degtorad(g->r));
 		y = sin(degtorad(g->r));
-		ft_drawl(g, x, y);
+		ft_raycast(g, x, y);
 		ft_sprite(g, x * 5, y * 5);
 		g->i++;
 		g->r += 60.0 / WIN_WIDTH;
@@ -45,6 +45,14 @@ int	key_hook2(int keycode, t_game *g)
 		g->keys[4] = 0;
 	else if (keycode == ROTATE_LEFT)
 		g->keys[5] = 0;
+	return (0);
+}
+
+int	destroy_ntv(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_window(game->mlx, game->mlx_win);
+	ft_error("GAME CLOSED\n");
 	return (0);
 }
 
@@ -119,7 +127,7 @@ void	get_str_path(t_game *g)
 {
 	int	i;
 
-	g->spritetex = malloc(sizeof(char *) * 9);
+	g->spritetex = alloc(sizeof(char *) * 9);
 	i = 0;
 	while (i < 8)
 	{
@@ -135,8 +143,8 @@ void	get_sprites(t_game *g)
 	int	hi;
 
 	get_str_path(g);
-	g->sprite = malloc(sizeof(void *) * 8);
-	g->spriteadr = malloc(sizeof(char *) * 9);
+	g->sprite = alloc(sizeof(void *) * 8);
+	g->spriteadr = alloc(sizeof(char *) * 9);
 	i = 0;
 	while (i < 8)
 	{
@@ -148,8 +156,8 @@ void	get_sprites(t_game *g)
 	while (i < 8)
 	{
 		g->spriteadr[i] = mlx_get_data_addr(g->sprite[i],
-				&g->bpp2[i], &g->ll2[i],
-				&g->end2[i]);
+				&g->bpp6[i], &g->ll6[i],
+				&g->end6[i]);
 		i++;
 	}
 	g->spriteadr[i] = 0;
@@ -160,9 +168,9 @@ void	ft_init(t_game *g)
 	int	hi;
 
 	g->keys = ft_calloc(sizeof(int), 6);
-	g->bpp2 = ft_calloc(sizeof(int), 9);
-	g->ll2 = ft_calloc(sizeof(int), 9);
-	g->end2 = ft_calloc(sizeof(int), 9);
+	g->bpp6 = ft_calloc(sizeof(int), 9);
+	g->ll6 = ft_calloc(sizeof(int), 9);
+	g->end6 = ft_calloc(sizeof(int), 9);
 	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
 	g->addr = mlx_get_data_addr(g->img,
 			&g->bpp, &g->ll, &g->end);
@@ -172,10 +180,24 @@ void	ft_init(t_game *g)
 	get_sprites(g);
 	g->pdx = cos(degtorad(g->pa)) * (P_SPEED);
 	g->pdy = sin(degtorad(g->pa)) * (P_SPEED);
-	g->tex1 = mlx_xpm_file_to_image(g->mlx, "xpms/stone.xpm", &hi, &hi);
-	g->tadr1 = mlx_get_data_addr(g->tex1, &g->bpp1, &g->ll1, &g->end1);
+	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
+	if (!g->no_tex)
+		ft_error("wrong texture path!!\n(north texture)\n");
+	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &hi, &hi);
+	if (!g->we_tex)
+		ft_error("wrong texture path!!\n(west texture)\n");
+	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &hi, &hi);
+	if (!g->so_tex)
+		ft_error("wrong texture path!!\n(south texture)\n");
+	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &hi, &hi);
+	if (!g->ea_tex)
+		ft_error("wrong texture path!!\n(east texture)\n");
+	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp1, &g->llen1, &g->en1);
+	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp2, &g->llen2, &g->en2);
+	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp3, &g->llen3, &g->en3);
+	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
 	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &hi, &hi);
-	g->dooradr = mlx_get_data_addr(g->door, &g->bpp6, &g->ll6, &g->end6);
+	g->dooradr = mlx_get_data_addr(g->door, &g->bpp5, &g->ll5, &g->end5);
 	draw_rays(g);
 }
 
@@ -229,7 +251,9 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
-	g = malloc(sizeof(t_game));
+	g_allocs = malloc(sizeof(t_allocs *));
+	*g_allocs = NULL;
+	g = alloc(sizeof(t_game));
 	g->mlx = mlx_init();
 	g->mlx_win = mlx_new_window(g->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	g->floor_c = -1;
@@ -242,6 +266,7 @@ int	main(int ac, char **av)
 	ft_init(g);
 	mlx_hook(g->mlx_win, 2, 1L << 0, key_hook1, g);
 	mlx_hook(g->mlx_win, 3, 1L << 1, key_hook2, g);
+	mlx_hook(g->mlx_win, 17, 0L, destroy_ntv, g);
 	mlx_hook(g->mlx_win, 6, 1L << 2, key_hook3, g);
 	mlx_loop_hook(g->mlx, ft_hook, g);
 	mlx_loop(g->mlx);

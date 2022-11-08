@@ -6,11 +6,11 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:23:22 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 12:35:55 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:37:47 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../cub3d_bonus.h"
 
 static void	ft_bzero(void *s, size_t n)
 {
@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*s;
 
-	s = malloc(count * size);
+	s = alloc(count * size);
 	if (!s)
 		return (0);
 	ft_bzero(s, (count * size));

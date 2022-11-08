@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/07 15:37:07 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:14:12 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int	set_nbr(char *line, int *c)
 		j++;
 	if (j > 0)
 	{
-		tmp = malloc(sizeof(char) * (j + 1));
+		tmp = alloc(sizeof(char) * (j + 1));
 		ft_strlcpy(tmp, line, j + 1);
 		*c = ft_atoi(tmp);
-		free(tmp);
 		if (*c < 0 || *c > 255 || j > 3)
 			ft_error("Error: Invalid Color 1\n");
 	}
@@ -51,15 +50,12 @@ int	get_color(char *line)
 			if (line[i] == ',')
 				q++;
 			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			{
 				ft_error("Error: Invalid Color 2\n");
-			}
 			i++;
 		}
 		if (n > 2 || q > 2)
 			ft_error("Error: Invalid Color 3\n");
 	}
-	free(line);
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
@@ -92,10 +88,10 @@ int	set_values(t_game *game, char *line, int code)
 	while (line[j] && line[j] != '\n')
 	{
 		if ((line[j] == ' ' || line[i] == '\t') && code < 4)
-			break;
+			break ;
 		j++;
 	}
-	res = malloc(sizeof(char) * (j - i + 1));
+	res = alloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
 	if ((code == 0 && game->no_textr) || (code == 1 && game->so_textr)
 		|| (code == 2 && game->we_textr) || (code == 3 && game->ea_textr)
