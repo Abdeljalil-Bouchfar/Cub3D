@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:23:46 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:52:43 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIN_HIGHT 1080.0
-# define WIN_WIDTH 1080.0
+# define WIN_WIDTH 1280.0
 
 # define BUFFER_SIZE 1
 # define UP 13
