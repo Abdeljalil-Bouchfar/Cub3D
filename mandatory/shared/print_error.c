@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:46:50 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/24 21:02:27 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:43:44 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	ft_error(char *str)
 {
 	printf("%s", str);
+	ft_lstclear();
 	exit (1);
 }

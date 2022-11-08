@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
+#    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/05 18:30:21 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/11/08 18:20:24 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
 		parse/parse.c \
-		parse/parse_utils.c \
+		parse/utils.c \
 		utils.c \
 		shared/gnl.c \
 		shared/ft_strlen.c \
@@ -30,6 +30,7 @@ SRCS =	main.c \
 		shared/ft_strlcpy.c \
 		shared/ft_strncmp.c \
 		shared/ft_calloc.c \
+		shared/memmory_utils.c \
 		ft_raycasting.c \
 		ft_moves.c \
 		ft_hooks.c 

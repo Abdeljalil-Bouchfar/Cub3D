@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 11:16:56 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/10/21 17:55:05 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:42:41 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s_l = ft_strlen(s);
 	while (i < s_l && i < len)
 		i++;
-	res = malloc (sizeof(char) * i + 1);
+	res = alloc (sizeof(char) * i + 1);
 	if (!res)
 		return (0);
 	i = -1;

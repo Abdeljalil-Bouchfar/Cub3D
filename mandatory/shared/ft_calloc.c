@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:23:22 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/10/24 21:02:09 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:44:19 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../cub3d.h"
 
 static void	ft_bzero(void *s, size_t n)
 {
@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*s;
 
-	s = malloc(count * size);
+	s = alloc(count * size);
 	if (!s)
 		return (0);
 	ft_bzero(s, (count * size));

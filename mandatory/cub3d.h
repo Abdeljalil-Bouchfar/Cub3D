@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 19:57:06 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:20:52 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # define W_W 1468
 # define E_W 1000
 # define P_SPEED 5
+
+typedef struct s_allocs
+{
+	void			*content;
+	struct s_allocs	*next;
+}	t_allocs;
 
 typedef struct s_game
 {
@@ -89,6 +95,8 @@ int		check_line(t_game *game, char *line);
 
 // ----------------- Shared -------------------
 
+void	*alloc(size_t size);
+void	ft_lstclear(void);
 int		ft_strlen(const char *s);
 char	*ft_strdup(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -124,5 +132,7 @@ int		key_hook1(int keycode, t_game *game);
 int		key_hook2(int keycode, t_game *game);
 void	ft_drawline3(t_game *game, float y1, double lineh, float x);
 void	ft_drawline4(t_game *game, float y1, double lineh, float x);
+
+t_allocs	**g_allocs;
 
 #endif

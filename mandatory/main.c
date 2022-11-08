@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 21:58:10 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:16:37 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ void	ft_init(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }
 
-int	red_cross(void)
+int	destroy_ntv(t_game *game)
 {
-	ft_error("EXIT\n");
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_window(game->mlx, game->mlx_win);
+	ft_error("GAME CLOSED\n");
 	return (0);
 }
 
@@ -97,7 +99,9 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("Error\nWrong Number Of Args\n");
-	game = malloc(sizeof(t_game));
+	g_allocs = malloc(sizeof(t_allocs *));
+	*g_allocs = NULL;
+	game = alloc(sizeof(t_game));
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	game->floor_c = -1;
@@ -110,7 +114,7 @@ int	main(int ac, char **av)
 	ft_init(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
-	mlx_hook(game->mlx_win, 17, 0, red_cross, NULL);
+	mlx_hook(game->mlx_win, 17, 0L, destroy_ntv, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }

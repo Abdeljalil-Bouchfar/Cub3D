@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/02 15:18:48 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:42:32 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	parse(t_game *game, char *path)
 
 // 	if (ac != 2)
 // 		ft_error("Error\nWrong Number Of Args\n");
-// 	game = malloc(sizeof(t_game));
+// 	game = alloc(sizeof(t_game));
 // 	game->floor_c = -1;
 // 	game->ceilling_c = -1;
 // 	game->no_textr = NULL;
