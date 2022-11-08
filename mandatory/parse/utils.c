@@ -6,11 +6,11 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/08 20:21:14 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:22:46 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d_bonus.h"
+#include "../cub3d.h"
 
 int	set_nbr(char *line, int *c)
 {
