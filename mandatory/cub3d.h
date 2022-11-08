@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:20:52 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:23:46 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIN_HIGHT 920.0
-# define WIN_WIDTH 1280.0
+# define WIN_HIGHT 1080.0
+# define WIN_WIDTH 1080.0
 
 # define BUFFER_SIZE 1
 # define UP 13
@@ -132,6 +132,7 @@ int		key_hook1(int keycode, t_game *game);
 int		key_hook2(int keycode, t_game *game);
 void	ft_drawline3(t_game *game, float y1, double lineh, float x);
 void	ft_drawline4(t_game *game, float y1, double lineh, float x);
+int		red_cross(void);
 
 t_allocs	**g_allocs;
 

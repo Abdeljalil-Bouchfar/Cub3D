@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 21:18:14 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:50:28 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	ft_moveup(t_game *g)
 		yo = -30;
 	else
 		yo = 30;
-	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '1' && g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0' && g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '1'
+		&& g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0'
+		&& g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')
 		return ;
 	if (g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 		g->px += g->pdx;
@@ -50,15 +52,6 @@ void	ft_movedown(t_game *g)
 		g->px -= g->pdx;
 	if (g->map[(int)((g->py - yo) / 50.0)][(int)(g->px / 50.0)] == '0')
 		g->py -= g->pdy;
-}
-
-void	ft_rotateright(t_game *g)
-{
-	g->pa += 3;
-	if (g->pa > 360)
-		g->pa -= 360;
-	g->pdx = cos(degtorad(g->pa)) * P_SPEED;
-	g->pdy = sin(degtorad(g->pa)) * P_SPEED;
 }
 
 void	ft_rotateleft(t_game *g)

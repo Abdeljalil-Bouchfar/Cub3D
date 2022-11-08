@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:32:48 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:44:06 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:44:19 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,27 @@ double	fixang(double a)
 	if (a < 0)
 		a += 360.0;
 	return (a);
+}
+
+void	ft_opendoor(t_game *g)
+{
+	int	xo;
+	int	yo;
+
+	if (g->pdx < 0)
+		xo = -50;
+	else
+		xo = 50;
+	if (g->pdy < 0)
+		yo = -50;
+	else
+		yo = 50;
+	if (g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '3')
+		g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] = '2';
+	else if (g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] == '2')
+		g->map[(int)(g->py / 50)][(int)((g->px + xo) / 50)] = '3';
+	else if (g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '3')
+		g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] = '2';
+	else if (g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] == '2')
+		g->map[(int)((g->py + yo) / 50)][(int)(g->px / 50)] = '3';
 }

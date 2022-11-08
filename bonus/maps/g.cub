@@ -1,15 +1,15 @@
-NO ./textures/greystone.xpm      
-SO ./textures/wood.xpm
-WE ./textures/hjrifi.xpm
-EA ./textures/redbrick.xpm
+NO  ./xpms/walls/ressalhi1.xpm
+SO  ./xpms/walls/ressalhi2.xpm
+WE  ./xpms/walls/ressalhi3.xpm
+EA  ./xpms/walls/ressalhi4.xpm
 
 F  0,0,0
 C  255,214,114
 
 111111111
 100000001
-111111101
+100040001
 100000001
-101111111
-1000000S1
+100000001
+1000000N1
 111111111

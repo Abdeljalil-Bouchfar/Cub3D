@@ -6,13 +6,13 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/08 13:23:49 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/08 18:33:54 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = #-g -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRCS =	main_bonus.c \
 		parse/parse.c \
 		parse/utils.c \
@@ -23,7 +23,7 @@ SRCS =	main_bonus.c \
 		shared/ft_strdup.c \
 		shared/ft_strjoin.c \
 		shared/ft_substr.c \
-		shared/print_error.c \
+		shared/helpers.c \
 		shared/ft_split.c \
 		shared/ft_isdigit.c \
 		shared/ft_atoi.c \
@@ -33,7 +33,8 @@ SRCS =	main_bonus.c \
 		shared/memmory_utils.c \
 		ft_raycasting_bonus.c \
 		ft_moves_bonus.c \
-		ft_sprites_bonus.c \
+		ft_hook_bonus.c \
+		ft_draw_bonus.c \
 		mini_map.c
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit

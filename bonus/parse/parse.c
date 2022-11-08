@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:12:31 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:37:09 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	read_file(t_game *game, int fd)
 	game->map = ft_split(str, '\n');
 }
 
-int	validate_line(char *line, char *pre, char *next, int i)
+int	validate_line(char *line, char *pre, char *next)
 {
 	int	c;
 	int	j;
@@ -119,7 +119,7 @@ void	parse(t_game *game, char *path)
 		else
 			pre = game->map[i - 1];
 		next = game->map[i + 1];
-		c += validate_line(game->map[i], pre, next, i);
+		c += validate_line(game->map[i], pre, next);
 	}
 	if (c != 1 || i < 3)
 		ft_error("Error: Invalid Map\nMissing value\n");

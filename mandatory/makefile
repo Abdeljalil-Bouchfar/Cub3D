@@ -6,7 +6,7 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/08 18:20:24 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/08 18:33:29 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS =	main.c \
 		shared/ft_strdup.c \
 		shared/ft_strjoin.c \
 		shared/ft_substr.c \
-		shared/print_error.c \
+		shared/helpers.c \
 		shared/ft_split.c \
 		shared/ft_isdigit.c \
 		shared/ft_atoi.c \

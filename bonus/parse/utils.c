@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/08 18:14:12 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:36:52 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	set_nbr(char *line, int *c)
 
 int	get_color(char *line)
 {
-	char	*tmp;
 	int		rgb[3];
 	int		i;
 	int		n;

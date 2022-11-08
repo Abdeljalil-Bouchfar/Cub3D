@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:16:37 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:32:01 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_player_angle(t_game *game, char c)
 
 void	get_player_cord(t_game *game)
 {
-	int	i; 
+	int	i;
 	int	j;
 
 	i = 0;
@@ -85,14 +85,6 @@ void	ft_init(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
 }
 
-int	destroy_ntv(t_game *game)
-{
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->mlx_win);
-	ft_error("GAME CLOSED\n");
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -114,7 +106,7 @@ int	main(int ac, char **av)
 	ft_init(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);
-	mlx_hook(game->mlx_win, 17, 0L, destroy_ntv, game);
+	mlx_hook(game->mlx_win, 17, 0L, red_cross, game);
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }
