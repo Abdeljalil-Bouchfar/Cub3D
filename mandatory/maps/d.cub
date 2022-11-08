@@ -1,11 +1,10 @@
-NO        ./xpms/ressalhi3.xpm    
-SO ./xpms/ressalhi3.xpm
+NO ./xpms/ressalhi1.xpm
+SO ./xpms/ressalhi2.xpm
 WE ./xpms/ressalhi3.xpm
-EA ./xpms/ressalhi3.xpm
+EA ./xpms/ressalhi4.xpm
 
-C  0,0,0
-
-F    124,214,114
+C 0,191,255
+F 139,69,19
                                                         11111111111111111111111111111111111111111111111
                                                        100000000000000000000000000000000000000000000011
       1111111111111111111111111111111111111111         1000000000000000000000000000000000000000000000011

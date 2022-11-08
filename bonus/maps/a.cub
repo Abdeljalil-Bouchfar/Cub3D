@@ -1,12 +1,9 @@
- NO ./textures/stone.xpm
-
-	SO 				./textures/stone.xpm
-
-WE 			./textures/stone.xpm
-
-EA ./textures/stone.xpm
-F 110, 100, 0
-C 120, 30, 90
+NO  ./xpms/walls/ressalhi1.xpm      	
+SO  ./xpms/walls/ressalhi2.xpm
+WE  ./xpms/walls/ressalhi3.xpm   	
+EA  ./xpms/walls/ressalhi4.xpm	
+C 0,191,255
+F 139,69,19
 
 
                                       111

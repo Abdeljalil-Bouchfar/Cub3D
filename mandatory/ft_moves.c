@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 15:50:28 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:02:06 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	ft_moveup(t_game *g)
 	int	yo;
 
 	if (g->pdx < 0)
-		xo = -30;
+		xo = -20;
 	else
-		xo = 30;
+		xo = 20;
 	if (g->pdy < 0)
-		yo = -30;
+		yo = -20;
 	else
-		yo = 30;
+		yo = 20;
 	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '1'
 		&& g->map[(int)(g->py / 50.0)][(int)((g->px + xo) / 50.0)] == '0'
 		&& g->map[(int)((g->py + yo) / 50.0)][(int)(g->px / 50.0)] == '0')

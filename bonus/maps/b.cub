@@ -1,9 +1,9 @@
-NO ./textures/hjrifi.xpm
-WE ./textures/ilefhail.xpm
-SO ./textures/ytouate.xpm
-EA ./textures/hjrifi.xpm
-C    10,10,155
-F    114,114,114
+NO  ./xpms/walls/ressalhi1.xpm      
+SO  ./xpms/walls/ressalhi2.xpm
+WE  ./xpms/walls/ressalhi3.xpm
+EA  ./xpms/walls/ressalhi4.xpm
+C 0,191,255
+F 139,69,19
 
         111111111111111111111111
         1000000000110000000000001

@@ -1,9 +1,10 @@
-NO        ./xpms/ressalhi3.xpm     
-SO  ./xpms/ressalhi3.xpm
-WE  ./xpms/ressalhi3.xpm
-EA  ./xpms/ressalhi3.xpm
-C   10,10,10
-F    160,160,160
+NO ./xpms/ressalhi1.xpm   
+SO ./xpms/ressalhi2.xpm
+WE ./xpms/ressalhi3.xpm
+EA ./xpms/ressalhi4.xpm
+
+C 0,191,255
+F 139,69,19
 
 
 

@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 17:42:32 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:45:26 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,29 +124,3 @@ void	parse(t_game *game, char *path)
 	if (c != 1 || i < 3)
 		ft_error("Error: Invalid Map\nMissing value\n");
 }
-
-// int main(int ac, char **av)
-// {
-// 	t_game	*game;
-// 	int		i;
-
-// 	if (ac != 2)
-// 		ft_error("Error\nWrong Number Of Args\n");
-// 	game = alloc(sizeof(t_game));
-// 	game->floor_c = -1;
-// 	game->ceilling_c = -1;
-// 	game->no_textr = NULL;
-// 	game->so_textr = NULL;
-// 	game->we_textr = NULL;
-// 	game->ea_textr = NULL;
-// 	parse(game, av[1]);
-// 	printf("NO: |%s|\n", game->no_textr);
-// 	printf("SO: |%s|\n", game->so_textr);
-// 	printf("WE: |%s|\n", game->we_textr);
-// 	printf("EA: |%s|\n", game->ea_textr);
-// 	printf("F: %i\n", game->floor_c);
-// 	printf("C: %i\n", game->ceilling_c);
-// 	i = -1;
-// 	while (game->map[++i])
-// 		printf("%s\n", game->map[i]);
-// }

@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:23:46 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:00:43 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIN_HIGHT 1080.0
-# define WIN_WIDTH 1080.0
+# define WIN_WIDTH 1520.0
 
 # define BUFFER_SIZE 1
 # define UP 13
@@ -34,7 +34,7 @@
 # define S_W 1162
 # define W_W 1468
 # define E_W 1000
-# define P_SPEED 5
+# define P_SPEED 8
 
 typedef struct s_allocs
 {

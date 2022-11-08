@@ -3,8 +3,8 @@ SO ./xpms/ressalhi2.xpm
 WE ./xpms/ressalhi3.xpm
 EA ./xpms/ressalhi4.xpm
 
-C 55, 55,  9 
-F 10,10,   10
+C 0,191,255
+F 139,69,19
 
 
 1111111

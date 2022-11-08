@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/08 18:36:52 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:21:12 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	get_color(char *line)
 			if (line[i] == ',')
 				q++;
 			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			{
 				ft_error("Error: Invalid Color 2\n");
+			}
 			i++;
 		}
 		if (n > 2 || q > 2)
@@ -58,23 +60,23 @@ int	get_color(char *line)
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
-void	route_values(t_game *game, int code, char *res)
+void	route_values(t_game *game, char c, char *res)
 {
-	if (code == 0)
+	if (c == 'N')
 		game->no_textr = res;
-	else if (code == 1)
+	else if (c == 'S')
 		game->so_textr = res;
-	else if (code == 2)
+	else if (c == 'W')
 		game->we_textr = res;
-	else if (code == 3)
+	else if (c == 'E')
 		game->ea_textr = res;
-	else if (code == 4)
+	else if (c == 'F')
 		game->floor_c = get_color(res);
-	else if (code == 5)
+	else if (c == 'C')
 		game->ceilling_c = get_color(res);
 }
 
-int	set_values(t_game *game, char *line, int code)
+int	set_values(t_game *game, char *line, char c)
 {
 	char	*res;
 	int		i;
@@ -86,19 +88,19 @@ int	set_values(t_game *game, char *line, int code)
 	j = i;
 	while (line[j] && line[j] != '\n')
 	{
-		if ((line[j] == ' ' || line[i] == '\t') && code < 4)
+		if ((line[j] == ' ' || line[j] == '\t') && c != 'F' && c != 'C')
 			break ;
 		j++;
 	}
 	res = alloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
-	if ((code == 0 && game->no_textr) || (code == 1 && game->so_textr)
-		|| (code == 2 && game->we_textr) || (code == 3 && game->ea_textr)
-		|| (code == 4 && game->floor_c != -1)
-		|| (code == 5 && game->ceilling_c != -1))
+	if ((c == 'N' && game->no_textr) || (c == 'S' && game->so_textr)
+		|| (c == 'W' && game->we_textr) || (c == 'E' && game->ea_textr)
+		|| (c == 'F' && game->floor_c != -1)
+		|| (c == 'C' && game->ceilling_c != -1))
 		ft_error("Error: Duplicate values\n");
 	if (j - i > 0)
-		route_values(game, code, res);
+		route_values(game, c, res);
 	return (1);
 }
 
@@ -116,17 +118,16 @@ int	check_line(t_game *game, char *line)
 			while (line[j] && line[j] != ' ')
 				j++;
 			if (j - i == 2 && !ft_strncmp(line + i, "NO", j - i))
-				return (set_values(game, line + j, 0));
+				return (set_values(game, line + j, line[i]));
 			else if (j - i == 2 && !ft_strncmp(line + i, "SO", j - i))
-				return (set_values(game, line + j, 1));
+				return (set_values(game, line + j, line[i]));
 			else if (j - i == 2 && !ft_strncmp(line + i, "WE", j - i))
-				return (set_values(game, line + j, 2));
+				return (set_values(game, line + j, line[i]));
 			else if (j - i == 2 && !ft_strncmp(line + i, "EA", j - i))
-				return (set_values(game, line + j, 3));
-			else if (line[i] == 'F' && line[i + 1] == ' ')
-				return (set_values(game, line + j, 4));
-			else if (line[i] == 'C' && line[i + 1] == ' ')
-				return (set_values(game, line + j, 5));
+				return (set_values(game, line + j, line[i]));
+			else if ((line[i] == 'F' || line[i] == 'C')
+				&& (line[i + 1] == ' ' || line[i + 1] == '\t'))
+				return (set_values(game, line + j, line[i]));
 		}
 	}
 	return (0);

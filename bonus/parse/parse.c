@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:37:09 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:43:17 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	validate_line(char *line, char *pre, char *next)
 						&& (pre[j] == ' ' || pre[j] == '\t'))))
 			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
 				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
-				&& line[j] != '2' && line[j] != '3' && line[j] != '4'
+				&& line[j] != '2' && line[j] != '3'
 				&& line[j] != ' ' && line[j] != '\t'))
 		{
 			ft_error("Error: Invalid Map\n");
