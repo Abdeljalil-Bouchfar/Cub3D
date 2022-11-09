@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:43:17 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:08:00 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,22 @@ void	read_file(t_game *game, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		else if (*line == '\n' && count == 6)
+		else if (is_empty(line) && count == 6)
 			continue ;
 		if (count >= 6)
 		{
-			if (*line == '\n')
+			if (is_empty(line))
 				ft_error("Error: Invalid Map\nEmpty line\n");
 			str = ft_strjoin(str, line);
 			count++;
 		}
-		else if (*line != '\n')
+		else if (!is_empty(line))
 			count += check_line(game, line);
 	}
 	game->map = ft_split(str, '\n');
 }
 
-int	validate_line(char *line, char *pre, char *next)
+int	validate_line(char *line, char *pre, char *next, int i)
 {
 	int	c;
 	int	j;
@@ -119,7 +119,7 @@ void	parse(t_game *game, char *path)
 		else
 			pre = game->map[i - 1];
 		next = game->map[i + 1];
-		c += validate_line(game->map[i], pre, next);
+		c += validate_line(game->map[i], pre, next, i);
 	}
 	if (c != 1 || i < 3)
 		ft_error("Error: Invalid Map\nMissing value\n");

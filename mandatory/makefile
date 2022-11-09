@@ -6,16 +6,17 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/09 17:36:33 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/09 17:59:58 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
 		parse/parse.c \
-		parse/utils.c \
+		parse/utils1.c \
+		parse/utils2.c \
 		utils.c \
 		shared/gnl.c \
 		shared/ft_strlen.c \

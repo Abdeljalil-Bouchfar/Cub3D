@@ -6,7 +6,7 @@
 #    By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/08 18:33:54 by abouchfa         ###   ########.fr        #
+#    Updated: 2022/11/09 18:04:29 by abouchfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS =	main_bonus.c \
 		parse/parse.c \
-		parse/utils.c \
+		parse/utils1.c \
+		parse/utils2.c \
 		utils_bonus.c \
 		shared/gnl.c \
 		shared/ft_strlen.c \

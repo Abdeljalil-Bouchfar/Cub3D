@@ -6,13 +6,13 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 12:00:22 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:38:55 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_drawline3(t_game *game, float y1, double lineh, float x)
+void	ft_drawline3(t_game *g, float y1, double lineh, float x)
 {
 	char	*dst;
 	int		i;
@@ -24,92 +24,93 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 	{
 		if (y1 >= WIN_HIGHT)
 			break ;
-		if (game->r >= 180.0 && game->r <= 360.0)
-			dst = game->no_texadr + (int)(i * (N_W / lineh)) % N_W * game->llen[1]
-				+ (int)(x * N_W / 50) % N_W * (game->bpp[1] / 8);
-		if (game->r >= 0 && game->r <= 180.0)
-			dst = game->so_texadr + (int)(i * (S_W / lineh)) % S_W * game->llen[2]
-				+ (int)(x * S_W / 50) % S_W * (game->bpp[2] / 8);
-		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
+		if (g->r >= 180.0 && g->r <= 360.0)
+			dst = g->no_texadr + (int)(i * (g->n_h / lineh))
+				% g->n_h * g->llen[1]
+				+ (int)(x * g->n_w / 50) % g->n_w * (g->bpp[1] / 8);
+		if (g->r >= 0 && g->r <= 180.0)
+			dst = g->so_texadr + (int)(i * (g->s_h / lineh))
+				% g->s_h * g->llen[2]
+				+ (int)(x * g->s_w / 50) % g->s_w * (g->bpp[2] / 8);
+		my_mlx_pixel_put(g, g->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
 	}
 }
 
-void	draw_rays(t_game *game)
+void	draw_rays(t_game *g)
 {
 	double	x;
 	double	y;
 
-	game->r = game->pa - 30.0;
-	game->r = fixang(game->r);
-	game->i = 0;
-	while (game->i < WIN_WIDTH)
+	g->r = fixang(g->pa - 30.0);
+	g->i = 0;
+	while (g->i < WIN_WIDTH)
 	{
-		x = (cos(degtorad(game->r)) * 5);
-		y = (sin(degtorad(game->r)) * 5);
-		ft_castray1(game, x, y);
-		game->i++;
-		game->r += 60.0 / WIN_WIDTH;
-		game->r = fixang(game->r);
+		x = (cos(degtorad(g->r)) * 5);
+		y = (sin(degtorad(g->r)) * 5);
+		ft_castray1(g, x, y);
+		g->i++;
+		g->r += 60.0 / WIN_WIDTH;
+		g->r = fixang(g->r);
 	}
 }
 
-int	key_hook2(int keycode, t_game *game)
+int	key_hook2(int keycode, t_game *g)
 {
 	if (keycode == UP)
-		game->keys[0] = 0;
+		g->keys[0] = 0;
 	else if (keycode == DOWN)
-		game->keys[1] = 0;
+		g->keys[1] = 0;
 	else if (keycode == RIGHT)
-		game->keys[2] = 0;
+		g->keys[2] = 0;
 	else if (keycode == LEFT)
-		game->keys[3] = 0;
+		g->keys[3] = 0;
 	else if (keycode == ROTATE_RIGHT)
-		game->keys[4] = 0;
+		g->keys[4] = 0;
 	else if (keycode == ROTATE_LEFT)
-		game->keys[5] = 0;
+		g->keys[5] = 0;
 	return (0);
 }
 
-int	key_hook1(int keycode, t_game *game)
+int	key_hook1(int keycode, t_game *g)
 {
 	if (keycode == 53)
 		ft_error("GAME CLOSED\n");
 	else if (keycode == UP)
-		game->keys[0] = 1;
+		g->keys[0] = 1;
 	else if (keycode == DOWN)
-		game->keys[1] = 1;
+		g->keys[1] = 1;
 	else if (keycode == RIGHT)
-		game->keys[2] = 1;
+		g->keys[2] = 1;
 	else if (keycode == LEFT)
-		game->keys[3] = 1;
+		g->keys[3] = 1;
 	else if (keycode == ROTATE_RIGHT)
-		game->keys[4] = 1;
+		g->keys[4] = 1;
 	else if (keycode == ROTATE_LEFT)
-		game->keys[5] = 1;
+		g->keys[5] = 1;
 	return (0);
 }
 
-int	ft_hook(t_game *game)
+int	ft_hook(t_game *g)
 {
-	mlx_destroy_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
-	game->addr = mlx_get_data_addr(game->img, &game->bpp[0],
-			&game->llen[0], &game->en[0]);
-	if (game->keys[0])
-		ft_moveup(game);
-	if (game->keys[1])
-		ft_movedown(game);
-	if (game->keys[4])
-		ft_rotateright(game);
-	if (game->keys[5])
-		ft_rotateleft(game);
-	if (game->keys[2])
-		ft_moveright(game);
-	if (game->keys[3])
-		ft_moveleft(game);
-	draw_rays(game);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img, 0, 0);
+	mlx_destroy_image(g->mlx, g->img);
+	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
+	g->addr = mlx_get_data_addr(g->img, &g->bpp[0],
+			&g->llen[0], &g->en[0]);
+	if (g->keys[0])
+		ft_moveup(g);
+	if (g->keys[1])
+		ft_movedown(g);
+	if (g->keys[4])
+		ft_rotateright(g);
+	if (g->keys[5])
+		ft_rotateleft(g);
+	if (g->keys[2])
+		ft_moveright(g);
+	if (g->keys[3])
+		ft_moveleft(g);
+	draw_rays(g);
+	mlx_put_image_to_window(g->mlx, g->mlx_win, g->img, 0, 0);
 	return (0);
 }

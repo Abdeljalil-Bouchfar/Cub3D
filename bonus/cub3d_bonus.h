@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:36:43 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:04:51 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@
 # define ROTATE_RIGHT 124
 # define ROTATE_LEFT 123
 # define E 14
-# define N_W 1190
-# define S_W 1162
-# define W_W 1468
-# define E_W 1000
 # define DOOR_W 230
 # define P_SPEED 8
 
@@ -59,34 +55,29 @@ typedef struct s_game
 	int		*keys;
 	void	*img;
 	char	*addr;
-	int		bpp;
-	int		ll;
-	int		end;
+	int		*bpp;
+	int		*llen;
+	int		*en;
 	void	*no_tex;
 	char	*no_texadr;
-	int		bpp1;
-	int		llen1;
-	int		en1;
+	int		n_w;
+	int		n_h;
 	void	*so_tex;
 	char	*so_texadr;
-	int		bpp2;
-	int		llen2;
-	int		en2;
+	int		s_w;
+	int		s_h;
 	void	*we_tex;
 	char	*we_texadr;
-	int		bpp3;
-	int		llen3;
-	int		en3;
+	int		w_w;
+	int		w_h;
 	void	*ea_tex;
 	char	*ea_texadr;
-	int		bpp4;
-	int		llen4;
-	int		en4;
+	int		e_w;
+	int		e_h;
 	void	*door;
 	char	*dooradr;
-	int		bpp5;
-	int		ll5;
-	int		end5;
+	int		d_w;
+	int		d_h;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;
@@ -100,6 +91,8 @@ typedef struct s_game
 
 void	parse(t_game *game, char *path);
 int		check_line(t_game *game, char *line);
+char	*check_path(char *path);
+int		is_empty(char *str);
 
 // ----------------- Shared -------------------
 

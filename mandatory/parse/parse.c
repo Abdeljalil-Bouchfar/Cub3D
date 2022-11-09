@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 15:50:39 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:59:09 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,6 @@ void	validate_path(char *str, char *cub)
 	}
 	if (!(str[i + j] == '\0' && cub[j] == '\0'))
 		ft_error("That's Wrong!!, It Should be (*.cub)\n");
-}
-
-int	is_empty(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			return (0);
-	}
-	return (1);
 }
 
 void	read_file(t_game *game, int fd)

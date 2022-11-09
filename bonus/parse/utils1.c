@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/08 20:21:12 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:07:04 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,25 @@ int	get_color(char *line)
 			if (line[i] == ',')
 				q++;
 			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			{
 				ft_error("Error: Invalid Color 2\n");
-			}
 			i++;
 		}
-		if (n > 2 || q > 2)
-			ft_error("Error: Invalid Color 3\n");
 	}
+	if (n != 2 || q != 2)
+		ft_error("Error: Invalid Color 3\n");
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
 void	route_values(t_game *game, char c, char *res)
 {
 	if (c == 'N')
-		game->no_textr = res;
+		game->no_textr = check_path(res);
 	else if (c == 'S')
-		game->so_textr = res;
+		game->so_textr = check_path(res);
 	else if (c == 'W')
-		game->we_textr = res;
+		game->we_textr = check_path(res);
 	else if (c == 'E')
-		game->ea_textr = res;
+		game->ea_textr = check_path(res);
 	else if (c == 'F')
 		game->floor_c = get_color(res);
 	else if (c == 'C')
@@ -112,10 +110,11 @@ int	check_line(t_game *game, char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != ' ' && line[i] != '\n')
+		if ((i == 0 || line[i - 1] == ' ' || line[i - 1] == '\t')
+			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 		{
-			j = i;
-			while (line[j] && line[j] != ' ')
+			j = i + 1;
+			while (line[j] && line[j] != ' ' && line[j] != '\t')
 				j++;
 			if (j - i == 2 && !ft_strncmp(line + i, "NO", j - i))
 				return (set_values(game, line + j, line[i]));

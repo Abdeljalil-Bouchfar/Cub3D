@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/09 17:27:44 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:06:53 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,13 @@ int	get_color(char *line)
 			if (line[i] == ',')
 				q++;
 			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			{
 				ft_error("Error: Invalid Color 2\n");
-			}
 			i++;
 		}
-		if (n > 2 || q > 2)
-			ft_error("Error: Invalid Color 3\n");
 	}
+	if (n != 2 || q != 2)
+		ft_error("Error: Invalid Color 3\n");
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
-}
-
-char	*check_path(char *path)
-{
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd <= 0)
-		ft_error("XPM file Wrong!!\n");
-	close(fd);
-	return (path);
 }
 
 void	route_values(t_game *game, char c, char *res)
