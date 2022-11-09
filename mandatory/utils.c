@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:32:48 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/07 20:26:05 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:59:28 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = game->addr + (y * game->llen + x * (game->bpp / 8));
+	dst = game->addr + (y * game->llen[0] + x * (game->bpp[0] / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -53,11 +53,11 @@ void	ft_drawline4(t_game *game, float y1, double lineh, float x)
 			break ;
 		if ((game->r >= 0 && game->r <= 90.0)
 			|| (game->r >= 270.0 && game->r <= 360.0))
-			dst = game->we_texadr + (int)(i * (W_W / lineh)) % W_W * game->llen3
-				+ (int)(x * W_W / 50) % W_W * (game->bpp3 / 8);
+			dst = game->we_texadr + (int)(i * (W_W / lineh)) % W_W * game->llen[3]
+				+ (int)(x * W_W / 50) % W_W * (game->bpp[3] / 8);
 		if (game->r >= 90.0 && game->r <= 270.0)
-			dst = game->ea_texadr + (int)(i * (E_W / lineh)) % E_W * game->llen4
-				+ (int)(x * E_W / 50) % E_W * (game->bpp4 / 8);
+			dst = game->ea_texadr + (int)(i * (E_W / lineh)) % E_W * game->llen[4]
+				+ (int)(x * E_W / 50) % E_W * (game->bpp[4] / 8);
 		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;

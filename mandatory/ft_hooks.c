@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:53 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/05 18:31:22 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:00:22 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_drawline3(t_game *game, float y1, double lineh, float x)
 		if (y1 >= WIN_HIGHT)
 			break ;
 		if (game->r >= 180.0 && game->r <= 360.0)
-			dst = game->no_texadr + (int)(i * (N_W / lineh)) % N_W * game->llen1
-				+ (int)(x * N_W / 50) % N_W * (game->bpp1 / 8);
+			dst = game->no_texadr + (int)(i * (N_W / lineh)) % N_W * game->llen[1]
+				+ (int)(x * N_W / 50) % N_W * (game->bpp[1] / 8);
 		if (game->r >= 0 && game->r <= 180.0)
-			dst = game->so_texadr + (int)(i * (S_W / lineh)) % S_W * game->llen2
-				+ (int)(x * S_W / 50) % S_W * (game->bpp2 / 8);
+			dst = game->so_texadr + (int)(i * (S_W / lineh)) % S_W * game->llen[2]
+				+ (int)(x * S_W / 50) % S_W * (game->bpp[2] / 8);
 		my_mlx_pixel_put(game, game->i, y1, *(unsigned int *)dst);
 		y1++;
 		i++;
@@ -95,8 +95,8 @@ int	ft_hook(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
-	game->addr = mlx_get_data_addr(game->img, &game->bpp,
-			&game->llen, &game->en);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp[0],
+			&game->llen[0], &game->en[0]);
 	if (game->keys[0])
 		ft_moveup(game);
 	if (game->keys[1])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 20:21:58 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:01:13 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,17 @@ typedef struct s_game
 	int		*keys;
 	void	*img;
 	char	*addr;
-	int		bpp;
-	int		llen;
-	int		en;
+	int		*bpp;
+	int		*llen;
+	int		*en;
 	void	*no_tex;
 	char	*no_texadr;
-	int		bpp1;
-	int		llen1;
-	int		en1;
 	void	*so_tex;
 	char	*so_texadr;
-	int		bpp2;
-	int		llen2;
-	int		en2;
 	void	*we_tex;
 	char	*we_texadr;
-	int		bpp3;
-	int		llen3;
-	int		en3;
 	void	*ea_tex;
 	char	*ea_texadr;
-	int		bpp4;
-	int		llen4;
-	int		en4;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;

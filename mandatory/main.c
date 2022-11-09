@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:32:01 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:58:34 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,21 @@ void	get_tex_path(t_game *g)
 	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &hi, &hi);
 	if (!g->ea_tex)
 		ft_error("wrong texture path!!\n(east texture)\n");
-	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp1, &g->llen1, &g->en1);
-	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp2, &g->llen2, &g->en2);
-	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp3, &g->llen3, &g->en3);
-	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
+	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp[1], &g->llen[1], &g->en[1]);
+	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp[2], &g->llen[2], &g->en[2]);
+	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp[3], &g->llen[3], &g->en[3]);
+	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp[4], &g->llen[4], &g->en[4]);
 }
 
 void	ft_init(t_game *game)
 {
 	game->keys = ft_calloc(sizeof(int), 6);
+	game->llen = ft_calloc(sizeof(int), 5);
+	game->bpp = ft_calloc(sizeof(int), 5);
+	game->en = ft_calloc(sizeof(int), 5);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HIGHT);
-	game->addr = mlx_get_data_addr(game->img, &game->bpp,
-			&game->llen, &game->en);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp[0],
+			&game->llen[0], &game->en[0]);
 	get_tex_path(game);
 	get_player_cord(game);
 	game->pdx = cos(degtorad(game->pa)) * P_SPEED;
