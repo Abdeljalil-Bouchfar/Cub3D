@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 12:01:13 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:12:39 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@
 # define LEFT 0
 # define ROTATE_RIGHT 124
 # define ROTATE_LEFT 123
-# define N_W 1190
-# define S_W 1162
-# define W_W 1468
-# define E_W 1000
 # define P_SPEED 8
 
 typedef struct s_allocs
@@ -62,12 +58,20 @@ typedef struct s_game
 	int		*en;
 	void	*no_tex;
 	char	*no_texadr;
+	int		n_w;
+	int		n_h;
 	void	*so_tex;
 	char	*so_texadr;
+	int		s_w;
+	int		s_h;
 	void	*we_tex;
 	char	*we_texadr;
+	int		w_w;
+	int		w_h;
 	void	*ea_tex;
 	char	*ea_texadr;
+	int		e_w;
+	int		e_h;
 	char	*no_textr;
 	char	*so_textr;
 	char	*we_textr;

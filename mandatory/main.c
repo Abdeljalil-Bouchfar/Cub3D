@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 11:58:34 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:35:25 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,26 @@ void	get_player_cord(t_game *game)
 
 void	get_tex_path(t_game *g)
 {
-	int	hi;
-
-	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
+	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &g->n_w, &g->n_h);
 	if (!g->no_tex)
 		ft_error("wrong texture path!!\n(north texture)\n");
-	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &hi, &hi);
+	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &g->w_w, &g->w_h);
 	if (!g->we_tex)
 		ft_error("wrong texture path!!\n(west texture)\n");
-	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &hi, &hi);
+	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &g->s_w, &g->s_h);
 	if (!g->so_tex)
 		ft_error("wrong texture path!!\n(south texture)\n");
-	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &hi, &hi);
+	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &g->e_w, &g->e_h);
 	if (!g->ea_tex)
 		ft_error("wrong texture path!!\n(east texture)\n");
-	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp[1], &g->llen[1], &g->en[1]);
-	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp[2], &g->llen[2], &g->en[2]);
-	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp[3], &g->llen[3], &g->en[3]);
-	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp[4], &g->llen[4], &g->en[4]);
+	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp[1],
+			&g->llen[1], &g->en[1]);
+	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp[2],
+			&g->llen[2], &g->en[2]);
+	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp[3],
+			&g->llen[3], &g->en[3]);
+	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp[4],
+			&g->llen[4], &g->en[4]);
 }
 
 void	ft_init(t_game *game)
@@ -92,10 +94,10 @@ int	main(int ac, char **av)
 {
 	t_game	*game;
 
-	if (ac != 2)
-		ft_error("Error\nWrong Number Of Args\n");
 	g_allocs = malloc(sizeof(t_allocs *));
 	*g_allocs = NULL;
+	if (ac != 2)
+		ft_error("Error\nWrong Number Of Args\n");
 	game = alloc(sizeof(t_game));
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");

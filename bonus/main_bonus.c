@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:28:50 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:59:23 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,42 @@ void	get_player_cord(t_game *g)
 
 void	get_img_path(t_game *g)
 {
-	int	hi;
-
-	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &hi, &hi);
+	g->no_tex = mlx_xpm_file_to_image(g->mlx, g->no_textr, &g->n_w, &g->n_h);
 	if (!g->no_tex)
 		ft_error("wrong texture path!!\n(north texture)\n");
-	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &hi, &hi);
+	g->we_tex = mlx_xpm_file_to_image(g->mlx, g->we_textr, &g->w_w, &g->w_h);
 	if (!g->we_tex)
 		ft_error("wrong texture path!!\n(west texture)\n");
-	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &hi, &hi);
+	g->so_tex = mlx_xpm_file_to_image(g->mlx, g->so_textr, &g->s_w, &g->s_h);
 	if (!g->so_tex)
 		ft_error("wrong texture path!!\n(south texture)\n");
-	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &hi, &hi);
+	g->ea_tex = mlx_xpm_file_to_image(g->mlx, g->ea_textr, &g->e_w, &g->e_h);
 	if (!g->ea_tex)
 		ft_error("wrong texture path!!\n(east texture)\n");
-	g->no_texadr = mlx_get_data_addr(g->no_tex, &g->bpp1, &g->llen1, &g->en1);
-	g->so_texadr = mlx_get_data_addr(g->so_tex, &g->bpp2, &g->llen2, &g->en2);
-	g->we_texadr = mlx_get_data_addr(g->we_tex, &g->bpp3, &g->llen3, &g->en3);
-	g->ea_texadr = mlx_get_data_addr(g->ea_tex, &g->bpp4, &g->llen4, &g->en4);
-	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &hi, &hi);
+	g->door = mlx_xpm_file_to_image(g->mlx, "xpms/door.xpm", &g->d_w, &g->d_h);
 	if (!g->door)
 		ft_error("wrong door texture path!!\n");
-	g->dooradr = mlx_get_data_addr(g->door, &g->bpp5, &g->ll5, &g->end5);
+	g->no_texadr = mlx_get_data_addr(g->no_tex,
+			&g->bpp[1], &g->llen[1], &g->en[1]);
+	g->so_texadr = mlx_get_data_addr(g->so_tex,
+			&g->bpp[2], &g->llen[2], &g->en[2]);
+	g->we_texadr = mlx_get_data_addr(g->we_tex,
+			&g->bpp[3], &g->llen[3], &g->en[3]);
+	g->ea_texadr = mlx_get_data_addr(g->ea_tex,
+			&g->bpp[4], &g->llen[4], &g->en[4]);
+	g->dooradr = mlx_get_data_addr(g->door,
+			&g->bpp[5], &g->llen[5], &g->en[5]);
 }
 
 void	ft_init(t_game *g)
 {
 	g->keys = ft_calloc(sizeof(int), 6);
+	g->bpp = ft_calloc(sizeof(int), 6);
+	g->llen = ft_calloc(sizeof(int), 6);
+	g->en = ft_calloc(sizeof(int), 6);
 	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
 	g->addr = mlx_get_data_addr(g->img,
-			&g->bpp, &g->ll, &g->end);
+			&g->bpp[0], &g->llen[0], &g->en[0]);
 	get_img_path(g);
 	get_player_cord(g);
 	g->mousex = WIN_WIDTH / 2;
