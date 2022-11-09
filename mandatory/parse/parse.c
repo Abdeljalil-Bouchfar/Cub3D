@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 19:45:26 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:50:39 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ void	validate_path(char *str, char *cub)
 		ft_error("That's Wrong!!, It Should be (*.cub)\n");
 }
 
+int	is_empty(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			return (0);
+	}
+	return (1);
+}
+
 void	read_file(t_game *game, int fd)
 {
 	int		count;
@@ -55,16 +68,16 @@ void	read_file(t_game *game, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		else if (*line == '\n' && count == 6)
+		else if (is_empty(line) && count == 6)
 			continue ;
 		if (count >= 6)
 		{
-			if (*line == '\n')
+			if (is_empty(line))
 				ft_error("Error: Invalid Map\nEmpty line\n");
 			str = ft_strjoin(str, line);
 			count++;
 		}
-		else if (*line != '\n')
+		else if (!is_empty(line))
 			count += check_line(game, line);
 	}
 	game->map = ft_split(str, '\n');

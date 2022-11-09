@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/08 20:22:46 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:27:44 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,27 @@ int	get_color(char *line)
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
+char	*check_path(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd <= 0)
+		ft_error("XPM file Wrong!!\n");
+	close(fd);
+	return (path);
+}
+
 void	route_values(t_game *game, char c, char *res)
 {
 	if (c == 'N')
-		game->no_textr = res;
+		game->no_textr = check_path(res);
 	else if (c == 'S')
-		game->so_textr = res;
+		game->so_textr = check_path(res);
 	else if (c == 'W')
-		game->we_textr = res;
+		game->we_textr = check_path(res);
 	else if (c == 'E')
-		game->ea_textr = res;
+		game->ea_textr = check_path(res);
 	else if (c == 'F')
 		game->floor_c = get_color(res);
 	else if (c == 'C')
@@ -112,10 +123,11 @@ int	check_line(t_game *game, char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != ' ' && line[i] != '\n')
+		if ((i == 0 || line[i - 1] == ' ' || line[i - 1] == '\t')
+			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 		{
-			j = i;
-			while (line[j] && line[j] != ' ')
+			j = i + 1;
+			while (line[j] && line[j] != ' ' && line[j] != '\t')
 				j++;
 			if (j - i == 2 && !ft_strncmp(line + i, "NO", j - i))
 				return (set_values(game, line + j, line[i]));

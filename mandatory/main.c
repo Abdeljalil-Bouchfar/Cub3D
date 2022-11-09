@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 11:58:34 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:36:02 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,11 @@ int	main(int ac, char **av)
 {
 	t_game	*game;
 
-	if (ac != 2)
-		ft_error("Error\nWrong Number Of Args\n");
 	g_allocs = malloc(sizeof(t_allocs *));
 	*g_allocs = NULL;
+	if (ac != 2)
+		ft_error("Error\nWrong Number Of Args\n");
 	game = alloc(sizeof(t_game));
-	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	game->floor_c = -1;
 	game->ceilling_c = -1;
 	game->no_textr = NULL;
@@ -106,6 +104,8 @@ int	main(int ac, char **av)
 	game->we_textr = NULL;
 	game->ea_textr = NULL;
 	parse(game, av[1]);
+	game->mlx = mlx_init();
+	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
 	ft_init(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook1, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, key_hook2, game);

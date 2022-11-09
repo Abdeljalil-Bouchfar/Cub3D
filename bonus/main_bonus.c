@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 18:28:50 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:04:10 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ int	main(int ac, char **av)
 {
 	t_game	*g;
 
-	if (ac != 2)
-		ft_error("Error\nWrong Number Of Args\n");
 	g_allocs = malloc(sizeof(t_allocs *));
 	*g_allocs = NULL;
+	if (ac != 2)
+		ft_error("Error\nWrong Number Of Args\n");
 	g = malloc(sizeof(t_game));
 	g->mlx = mlx_init();
 	g->mlx_win = mlx_new_window(g->mlx, WIN_WIDTH, WIN_HIGHT, "cub3d");
