@@ -6,13 +6,13 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/09 18:07:04 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:44:08 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	set_nbr(char *line, int *c)
+int	set_nbr(char *line, int *rgb, int *n)
 {
 	char	*tmp;
 	int		j;
@@ -20,13 +20,14 @@ int	set_nbr(char *line, int *c)
 	j = 0;
 	while (line[j] && ft_isdigit(line[j]))
 		j++;
-	if (j > 0)
+	if (j > 0 && *n < 3)
 	{
 		tmp = alloc(sizeof(char) * (j + 1));
 		ft_strlcpy(tmp, line, j + 1);
-		*c = ft_atoi(tmp);
-		if (*c < 0 || *c > 255 || j > 3)
+		rgb[*n] = ft_atoi(tmp);
+		if (rgb[*n] < 0 || rgb[*n] > 255 || j > 3)
 			ft_error("Error: Invalid Color 1\n");
+		*n = *n + 1;
 	}
 	return (j);
 }
@@ -40,20 +41,20 @@ int	get_color(char *line)
 
 	i = 0;
 	q = 0;
-	n = -1;
+	n = 0;
 	while (i < ft_strlen(line))
 	{
-		i += set_nbr(line + i, &rgb[++n]);
+		i += set_nbr(line + i, rgb, &n);
 		while (i < ft_strlen(line) && !ft_isdigit(line[i]))
 		{
 			if (line[i] == ',')
 				q++;
-			else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			else if (line[i] != ' ' && line[i] != '\n')
 				ft_error("Error: Invalid Color 2\n");
 			i++;
 		}
 	}
-	if (n != 2 || q != 2)
+	if (n != 3 || q != 2)
 		ft_error("Error: Invalid Color 3\n");
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
@@ -81,12 +82,12 @@ int	set_values(t_game *game, char *line, char c)
 	int		j;
 
 	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+	while (line[i] && line[i] == ' ')
 		i++;
 	j = i;
 	while (line[j] && line[j] != '\n')
 	{
-		if ((line[j] == ' ' || line[j] == '\t') && c != 'F' && c != 'C')
+		if (line[j] == ' ' && c != 'F' && c != 'C')
 			break ;
 		j++;
 	}
@@ -110,11 +111,10 @@ int	check_line(t_game *game, char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if ((i == 0 || line[i - 1] == ' ' || line[i - 1] == '\t')
-			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+		if ((i == 0 || line[i - 1] == ' ') && line[i] != ' ' && line[i] != '\n')
 		{
 			j = i + 1;
-			while (line[j] && line[j] != ' ' && line[j] != '\t')
+			while (line[j] && line[j] != ' ')
 				j++;
 			if (j - i == 2 && !ft_strncmp(line + i, "NO", j - i))
 				return (set_values(game, line + j, line[i]));
@@ -124,8 +124,7 @@ int	check_line(t_game *game, char *line)
 				return (set_values(game, line + j, line[i]));
 			else if (j - i == 2 && !ft_strncmp(line + i, "EA", j - i))
 				return (set_values(game, line + j, line[i]));
-			else if ((line[i] == 'F' || line[i] == 'C')
-				&& (line[i + 1] == ' ' || line[i + 1] == '\t'))
+			else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
 				return (set_values(game, line + j, line[i]));
 		}
 	}
