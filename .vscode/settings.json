@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"cub3d.h": "c",
+		"algorithm": "c",
+		"sstream": "c",
+		"system_error": "c",
+		"cub3d_bonus.h": "c",
+		"C.C": "cpp"
+	}
+}
