@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:38:03 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 14:48:12 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:16:54 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,10 @@ int	key_hook3(int x, int y, t_game *g)
 	if ((x > 0 && x < WIN_WIDTH) && (y > 0 && y < WIN_HIGHT))
 	{
 		if (g->mousex < x)
-		{
-			g->mousex = x;
 			ft_rotateright(g);
-		}
 		else if (g->mousex > x)
-		{
-			g->mousex = x;
 			ft_rotateleft(g);
-		}
+		g->mousex = x;
 	}
 	return (0);
 }

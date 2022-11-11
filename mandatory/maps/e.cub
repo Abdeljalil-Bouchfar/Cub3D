@@ -1,7 +1,7 @@
-NO ./sky.xpm
-SO ./xpms/ressalhi3.xpm
+NO ./xpms/ressalhi1.xpm
+SO xpms/ressalhi3.xpm
 WE ./xpms/ressalhi2.xpm
-EA ./xpms/ressalhi1.xpm
+EA ./xpms/ressalhi4.xpm
 
 C 0,191,255
 F 139,69,19
