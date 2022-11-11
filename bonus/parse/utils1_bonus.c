@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   utils1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/10 18:44:08 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:28:05 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,9 @@ int	set_values(t_game *game, char *line, char c)
 		i++;
 	j = i;
 	while (line[j] && line[j] != '\n')
-	{
-		if (line[j] == ' ' && c != 'F' && c != 'C')
-			break ;
 		j++;
-	}
+	while (j > 0 && line[j - 1] == ' ')
+		j--;
 	res = alloc(sizeof(char) * (j - i + 1));
 	ft_strlcpy(res, line + i, j - i + 1);
 	if ((c == 'N' && game->no_textr) || (c == 'S' && game->so_textr)
