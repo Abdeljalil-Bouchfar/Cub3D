@@ -6,7 +6,7 @@
 #    By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 17:01:58 by ressalhi          #+#    #+#              #
-#    Updated: 2022/11/11 12:12:53 by ressalhi         ###   ########.fr        #
+#    Updated: 2022/11/11 12:12:37 by ressalhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MLX_FLAGS = -lmlx -framework OpenGL -framework Appkit
 all : $(NAME)
 
 $(NAME) : $(SRCS)
-	$(CC) $(CFLAGS) -I cub3d.h $(SRCS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(MLX_FLAGS) -o $(NAME)
 
 clean :
 	rm -f $(NAME)
