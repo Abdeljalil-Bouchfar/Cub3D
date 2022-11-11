@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 15:46:06 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:53:19 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void	ft_moveright(t_game *g)
 		yo = -20;
 	else
 		yo = 20;
-	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '0'
-		|| g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '3')
-	{
+	if (g->map[(int)((g->py) / 50)][(int)((g->px + xo) / 50)] == '0'
+		|| g->map[(int)((g->py) / 50)][(int)((g->px + xo) / 50)] == '3')
 		g->px += nadx;
+	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px) / 50)] == '0'
+		|| g->map[(int)((g->py + yo) / 50)][(int)((g->px) / 50)] == '3')
 		g->py += nady;
-	}
 }
 
 void	ft_moveleft(t_game *g)
@@ -109,10 +109,10 @@ void	ft_moveleft(t_game *g)
 		yo = -20;
 	else
 		yo = 20;
-	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '0'
-		|| g->map[(int)((g->py + yo) / 50)][(int)((g->px + xo) / 50)] == '3')
-	{
+	if (g->map[(int)((g->py) / 50)][(int)((g->px + xo) / 50)] == '0'
+		|| g->map[(int)((g->py) / 50)][(int)((g->px + xo) / 50)] == '3')
 		g->px += nadx;
+	if (g->map[(int)((g->py + yo) / 50)][(int)((g->px) / 50)] == '0'
+		|| g->map[(int)((g->py + yo) / 50)][(int)((g->px) / 50)] == '3')
 		g->py += nady;
-	}
 }

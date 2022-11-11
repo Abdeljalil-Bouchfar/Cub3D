@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 18:04:51 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:36:55 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
+	char	**map_dup;
 	float	px;
 	float	py;
 	double	pdx;
@@ -93,6 +94,7 @@ void	parse(t_game *game, char *path);
 int		check_line(t_game *game, char *line);
 char	*check_path(char *path);
 int		is_empty(char *str);
+void	valid_space(char **map, int i, int j);
 
 // ----------------- Shared -------------------
 

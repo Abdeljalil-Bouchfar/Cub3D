@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:21:40 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 18:08:00 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:39:59 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,33 +68,34 @@ void	read_file(t_game *game, int fd)
 			count += check_line(game, line);
 	}
 	game->map = ft_split(str, '\n');
+	game->map_dup = ft_split(str, '\n');
 }
 
-int	validate_line(char *line, char *pre, char *next, int i)
+int	validate_line(t_game *game, int i, char *pre, char *next)
 {
-	int	c;
-	int	j;
+	char	*l;
+	int		c;
+	int		j;
 
 	c = 0;
 	j = -1;
-	while (line[++j])
+	l = game->map[i];
+	while (l && l[++j])
 	{
-		if (line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W')
-			c++;
-		if ((line[j] != '1' && line[j] != ' ' && line[j] != '\t'
-				&& (j == 0 || line[j + 1] == '\0' || next == NULL || pre == NULL
-					|| j >= ft_strlen(next) || j >= ft_strlen(pre)
-					|| (j < ft_strlen(next) && (next[j] == ' '
-							|| next[j] == '\t')) || (j < ft_strlen(pre)
-						&& (pre[j] == ' ' || pre[j] == '\t'))))
-			|| (line[j] != '1' && line[j] != '0' && line[j] != 'N'
-				&& line[j] != 'S' && line[j] != 'E' && line[j] != 'W'
-				&& line[j] != '2' && line[j] != '3'
-				&& line[j] != ' ' && line[j] != '\t'))
+		if (l[j] == 'N' || l[j] == 'S' || l[j] == 'E' || l[j] == 'W')
 		{
-			ft_error("Error: Invalid Map\n");
+			valid_space(game->map_dup, i, j);
+			c++;
 		}
+		if ((l[j] != '1' && l[j] != ' '
+				&& (j == 0 || l[j + 1] == '\0' || !next || !pre
+					|| j >= ft_strlen(next) || j >= ft_strlen(pre)
+					|| (j < ft_strlen(next) && next[j] == ' ')
+					|| (j < ft_strlen(pre) && pre[j] == ' ')))
+			|| (l[j] != '1' && l[j] != '0' && l[j] != 'N'
+				&& l[j] != 'S' && l[j] != 'E' && l[j] != 'W'
+				&& l[j] != '2' && l[j] != '3' && l[j] != ' '))
+			ft_error("Error: Invalid Map\n");
 	}
 	return (c);
 }
@@ -119,7 +120,7 @@ void	parse(t_game *game, char *path)
 		else
 			pre = game->map[i - 1];
 		next = game->map[i + 1];
-		c += validate_line(game->map[i], pre, next, i);
+		c += validate_line(game, i, pre, next);
 	}
 	if (c != 1 || i < 3)
 		ft_error("Error: Invalid Map\nMissing value\n");

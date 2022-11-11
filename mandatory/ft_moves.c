@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:27:12 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/08 20:02:06 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:51:41 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,10 @@ void	ft_moveright(t_game *g)
 		yo = -20;
 	else
 		yo = 20;
-	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
-	{
+	if (g->map[(int)((g->py) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 		g->px += nadx;
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px) / 50.0)] == '0')
 		g->py += nady;
-	}
 }
 
 void	ft_moveleft(t_game *g)
@@ -108,9 +107,8 @@ void	ft_moveleft(t_game *g)
 		yo = -20;
 	else
 		yo = 20;
-	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
-	{
+	if (g->map[(int)((g->py) / 50.0)][(int)((g->px + xo) / 50.0)] == '0')
 		g->px += nadx;
+	if (g->map[(int)((g->py + yo) / 50.0)][(int)((g->px) / 50.0)] == '0')
 		g->py += nady;
-	}
 }
