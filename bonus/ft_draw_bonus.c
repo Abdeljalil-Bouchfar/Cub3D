@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:42:13 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/09 14:58:40 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:52:25 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_drawf(t_game *game, double lineh, float lineo)
 	j = (int)(lineh + lineo);
 	while (j < WIN_HIGHT)
 	{
-		my_mlx_pixel_put(game, game->i, j, 0x0A8500);
+		my_mlx_pixel_put(game, game->i, j, game->floor_c);
 		j++;
 	}
 }
@@ -106,7 +106,7 @@ void	ft_drawc(t_game *game, float lineo)
 	i = 0;
 	while (i < lineo)
 	{
-		my_mlx_pixel_put(game, game->i, i, 0x0BFBE9);
+		my_mlx_pixel_put(game, game->i, i, game->ceilling_c);
 		i++;
 	}
 }
