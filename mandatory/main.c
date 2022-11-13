@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:56:11 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/11 15:27:33 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:17:50 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,3 +115,8 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 }
+
+/*todo list;
+
+	(F 139,5 4,194) space inside the number
+*/
