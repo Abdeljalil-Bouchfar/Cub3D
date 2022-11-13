@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/11 15:28:05 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/13 12:02:41 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ int	set_values(t_game *game, char *line, char c)
 		|| (c == 'F' && game->floor_c != -1)
 		|| (c == 'C' && game->ceilling_c != -1))
 		ft_error("Error: Duplicate values\n");
-	if (j - i > 0)
-		route_values(game, c, res);
+	route_values(game, c, res);
 	return (1);
 }
 
