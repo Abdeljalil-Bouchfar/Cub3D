@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:38:03 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/10 22:16:54 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:08:57 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	key_hook3(int x, int y, t_game *g)
 
 int	ft_hook(t_game *g)
 {
+	mlx_clear_window(g->mlx, g->mlx_win);
 	mlx_destroy_image(g->mlx, g->img);
 	g->img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HIGHT);
 	g->addr = mlx_get_data_addr(g->img, &g->bpp[0], &g->llen[0], &g->en[0]);

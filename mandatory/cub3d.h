@@ -6,7 +6,7 @@
 /*   By: ressalhi <ressalhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:59 by ressalhi          #+#    #+#             */
-/*   Updated: 2022/11/11 12:13:19 by ressalhi         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:51:30 by ressalhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIN_HIGHT 1080.0
-# define WIN_WIDTH 1520.0
+# define WIN_WIDTH 1340.0
 
 # define BUFFER_SIZE 1
 # define UP 13
