@@ -6,7 +6,7 @@
 /*   By: abouchfa <abouchfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:40:27 by abouchfa          #+#    #+#             */
-/*   Updated: 2022/11/13 12:02:41 by abouchfa         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:41:03 by abouchfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	set_nbr(char *line, int *rgb, int *n)
 		rgb[*n] = ft_atoi(tmp);
 		if (rgb[*n] < 0 || rgb[*n] > 255 || j > 3)
 			ft_error("Error: Invalid Color 1\n");
-		*n = *n + 1;
 	}
+	*n = *n + 1;
 	return (j);
 }
 

@@ -1,10 +1,10 @@
-NO  ./xpms/walls/ressalhi1.xpm
-EA  ./xpms/walls/ressalhi4.xpm
-SO  ./xpms/walls/ressalhi2.xpm
-WE  ./xpms/walls/ressalhi3.xpm
+NO       ./xpms/walls/ressalhi1.xpm    
+WE      ./xpms/walls/ressalhi3.xpm    
+EA     ./xpms/walls/ressalhi4.xpm      
 
-C 139,69,19
-F 139,54,255
+C     139  ,  69,  19                    
+F  139 ,  5 ,  4 
+SO      ./xpms/walls/ressalhi2.xpm   
 
                                       111
                                      10S01
